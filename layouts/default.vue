@@ -1,4 +1,5 @@
 <template>
+  <coloredCodes />
   <AppHeader />
   <slot />
 </template>
