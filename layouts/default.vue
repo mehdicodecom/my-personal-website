@@ -1,7 +1,10 @@
 <template>
-  <coloredCodes />
-  <AppHeader />
-  <slot />
+  <div class="flex flex-col min-h-screen">
+    <coloredCodes />
+    <AppHeader />
+    <slot />
+    <AppFooter />
+  </div>
 </template>
 
 <script>
