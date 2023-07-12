@@ -1,0 +1,141 @@
+<template>
+  <div class="ml-auto absolute right-4 circularAnimation">
+    <img
+      src="_nuxt/assets/imgs/Mehdi.png"
+      draggable="false"
+      class="mainImg"
+      alt=""
+    />
+    <div class="circle">
+      <img
+        src="_nuxt/assets/imgs/sass.png"
+        draggable="false"
+        class="icon"
+        alt=""
+      />
+
+      <div class="circle" style="--data-number: 1"></div>
+      <div class="circle" style="--data-number: 2">
+        <img
+          src="_nuxt/assets/imgs/CSS.png"
+          draggable="false"
+          class="icon"
+          alt=""
+        />
+        <img
+          src="_nuxt/assets/imgs/nuxt.png"
+          draggable="false"
+          class="icon"
+          alt=""
+        />
+      </div>
+      <div class="circle" style="--data-number: 3">
+        <img
+          src="_nuxt/assets/imgs/JS.png"
+          draggable="false"
+          class="icon"
+          alt=""
+        />
+        <img
+          src="https://mehdicode.com/imgs/html.png"
+          draggable="false"
+          class="icon"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style scoped>
+.circularAnimation {
+  user-select: none;
+  position: relative;
+  transition: 1s all linear;
+  --circleDiameter: 14rem;
+  --icon: 32px;
+  --circlesBigger: 3rem;
+}
+
+.circle {
+  position: relative;
+  background: transparent;
+  border-radius: 100%;
+  border: 1px #f47a08 solid;
+  width: var(--circleDiameter);
+  height: var(--circleDiameter);
+  animation: orbit 15s linear infinite;
+}
+.circularAnimation:hover .circle {
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mainImg {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  width: calc(100% - 20px);
+}
+
+.icon {
+  position: absolute;
+  height: var(--icon);
+  width: var(--icon);
+}
+
+.circle > .icon {
+  right: -12px;
+  top: calc(var(--circleDiameter) / 2);
+}
+
+.circle .circle {
+  position: absolute;
+  --biggerSize: calc(var(--circlesBigger) * var(--data-number));
+  --subCircleDiameter: calc(var(--circleDiameter) + var(--biggerSize));
+  width: var(--subCircleDiameter);
+  height: var(--subCircleDiameter);
+  right: calc(var(--biggerSize) / 2 * -1);
+  top: calc(var(--biggerSize) / 2 * -1);
+}
+
+.circle:nth-of-type(2) > .icon:nth-of-type(1) {
+  left: -4px;
+  top: calc(var(--subCircleDiameter) / 3.5);
+}
+
+.circle:nth-of-type(2) > .icon:nth-of-type(2) {
+  right: -2px;
+  top: calc(var(--subCircleDiameter) / 1.45);
+}
+
+.circle:nth-of-type(3) > .icon:nth-of-type(1) {
+  left: calc(var(--subCircleDiameter) / 4);
+  top: calc(var(--subCircleDiameter) - 30px);
+}
+
+.circle:nth-of-type(3) > .icon:nth-of-type(2) {
+  right: calc(var(--subCircleDiameter) / 4);
+  top: 0;
+}
+.circle:last-of-type {
+  border-width: 2px;
+}
+</style>

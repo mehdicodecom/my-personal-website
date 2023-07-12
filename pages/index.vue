@@ -2,6 +2,12 @@
   <Head>
     <Title>Mehdi Rafiei | Front-end Developer | Home</Title>
   </Head>
+
+  <div class="flex px-30 mt-60">
+    <Home-HelloWorld />
+
+    <Home-Circular />
+  </div>
 </template>
 
 <script>
@@ -10,4 +16,7 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+. {
+}
+</style>

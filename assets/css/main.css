@@ -21,6 +21,7 @@ body {
   font-family: "Roboto", inter, arial;
   color: white;
   background: #1c1c1c;
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
