@@ -1,12 +1,12 @@
 <template>
   <!-- Start Colored Codes Background -->
   <div
-    class="px-7 absolute top-0 w-full gap-20 opacity-30 select-none flex flex-col gap-12 vertical-text items-start overflow-hidden"
+    class="px-7 absolute top-0 w-full gap-20 opacity-20 select-none flex flex-col gap-12 vertical-text items-start overflow-hidden"
   >
     <p
       v-for="code in coloredCodes"
       v-html="code"
-      class="text-codeColor-gray text-xl -scale-100"
+      class="text-gray/50 text-xl -scale-100"
     ></p>
   </div>
   <!-- End Colored Codes Background -->

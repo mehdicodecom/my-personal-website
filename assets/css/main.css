@@ -6,6 +6,10 @@
   box-sizing: border-box;
   outline: none;
 }
+
+.trans3ms {
+  transition: all 0.3s ease-out;
+}
 /* .page-enter-active,
 .page-leave-active {
   transition: all 0.4s;

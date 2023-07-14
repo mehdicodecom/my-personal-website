@@ -1,47 +1,49 @@
 <template>
-  <div class="ml-auto absolute right-4 circularAnimation">
-    <img
-      src="_nuxt/assets/imgs/Mehdi.png"
-      draggable="false"
-      class="mainImg"
-      alt=""
-    />
-    <div class="circle">
+  <div class="relative">
+    <div class="absolute right-4 circularAnimation">
       <img
-        src="_nuxt/assets/imgs/sass.png"
+        src="_nuxt/assets/imgs/Mehdi.png"
         draggable="false"
-        class="icon"
+        class="mainImg"
         alt=""
       />
+      <div class="circle">
+        <img
+          src="_nuxt/assets/imgs/sass.png"
+          draggable="false"
+          class="icon"
+          alt=""
+        />
 
-      <div class="circle" style="--data-number: 1"></div>
-      <div class="circle" style="--data-number: 2">
-        <img
-          src="_nuxt/assets/imgs/CSS.png"
-          draggable="false"
-          class="icon"
-          alt=""
-        />
-        <img
-          src="_nuxt/assets/imgs/nuxt.png"
-          draggable="false"
-          class="icon"
-          alt=""
-        />
-      </div>
-      <div class="circle" style="--data-number: 3">
-        <img
-          src="_nuxt/assets/imgs/JS.png"
-          draggable="false"
-          class="icon"
-          alt=""
-        />
-        <img
-          src="https://mehdicode.com/imgs/html.png"
-          draggable="false"
-          class="icon"
-          alt=""
-        />
+        <div class="circle" style="--data-number: 1"></div>
+        <div class="circle" style="--data-number: 2">
+          <img
+            src="_nuxt/assets/imgs/CSS.png"
+            draggable="false"
+            class="icon"
+            alt=""
+          />
+          <img
+            src="_nuxt/assets/imgs/nuxt.png"
+            draggable="false"
+            class="icon"
+            alt=""
+          />
+        </div>
+        <div class="circle" style="--data-number: 3">
+          <img
+            src="_nuxt/assets/imgs/JS.png"
+            draggable="false"
+            class="icon"
+            alt=""
+          />
+          <img
+            src="https://mehdicode.com/imgs/html.png"
+            draggable="false"
+            class="icon"
+            alt=""
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -57,8 +59,16 @@ export default {};
   position: relative;
   transition: 1s all linear;
   --circleDiameter: 14rem;
-  --icon: 32px;
+  --icon: 30px;
   --circlesBigger: 3rem;
+}
+
+@media (min-width: 1280px) {
+  .circularAnimation {
+    --circleDiameter: 12rem;
+    --icon: 26px;
+    --circlesBigger: 2.5rem;
+  }
 }
 
 .circle {

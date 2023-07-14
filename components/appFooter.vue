@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mt-auto py-8 justify-center text-lg flex items-center gap-3 text-mainLight"
+    class="mt-auto py-8 justify-center text-lg flex items-center gap-3 text-white/40"
   >
     Made with
     <svg class="relative w-6 h-6 love">

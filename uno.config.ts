@@ -16,9 +16,14 @@ export default defineConfig({
       mainLight: "#FAFAFA",
       codeColor: {
         green: "#00DC82",
-        gray: "#7C7C7C",
+        gray: "#343334",
         orange: "#F47A08",
         cyan: "#07FFFF",
+      },
+      socialNetworks: {
+        github: "#4f4e4e",
+        linkedin: "#0A66C2",
+        telegram: "#3390EC",
       },
     },
 
