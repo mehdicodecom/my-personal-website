@@ -20,7 +20,9 @@
   opacity: 0;
   filter: blur(1rem);
 } */
-
+* {
+  cursor: none;
+}
 body {
   font-family: "Roboto", inter, arial;
   color: white;
@@ -41,7 +43,32 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #e0b078;
 }
-
+#cursor {
+  position: fixed;
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: none;
+  left: -100px;
+  top: 50%;
+  background-color: rgb(243 141 3 / 20%);
+  mix-blend-mode: difference;
+  z-index: 10000;
+  height: 40px;
+  width: 40px;
+  transition: all 300ms ease-out;
+}
+#cursorFollow {
+  position: fixed;
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: none;
+  left: -100px;
+  top: 50%;
+  background-color: #f47a08;
+  z-index: 10000;
+  height: 8px;
+  width: 8px;
+}
 ul {
   list-style: none;
 }

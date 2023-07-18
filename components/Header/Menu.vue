@@ -24,6 +24,7 @@
       </li>
     </ul>
   </nav>
+
   <!-- End Menu -->
 </template>
 
@@ -38,17 +39,17 @@ export default {
           path: "/",
         },
         {
-          title: "About",
+          title: "About Me",
           icon: "user",
           path: "/about",
         },
         {
-          title: "Portfolio",
+          title: "Portfolios",
           icon: "folder",
           path: "/works",
         },
         {
-          title: "Contact",
+          title: "Contact Me",
           icon: "contact",
           path: "/contact_me",
         },

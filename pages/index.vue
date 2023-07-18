@@ -3,39 +3,27 @@
     <Title>Mehdi Rafiei | Front-end Developer | Home</Title>
   </Head>
 
-  <div
-    class="flex justify-between w-11/12 mx-auto pl-24 pr-20 2xl:mt-60 xl:mt-46"
-  >
-    <Home-HelloWorld />
+  <div class="flex w-11/12 mx-auto pl-24 pr-20 2xl:mt-60 xl:mt-46">
+    <Home-HelloWorld class="flex-1" />
 
     <Home-Circular />
 
-    <div class="relative flex flex-wrap w-120">
-      <p v-for="(detail, key) in details" class="w-1/2">
-        <span class="block font-semibold text-codeColor-orange">
-          {{ key }}
+    <section class="relative flex-1 ml-20 -top-17">
+      <h2 class="relative text-left">
+        <span class="text-7xl text-white/30 tracking-widest">Latest</span>
+        <span
+          class="absolute left-0 right-0 inline-flex items-center justify-center text-3xl h-full font-bold"
+        >
+          Works
         </span>
-        <span class="text-white/60">{{ detail }}</span>
-      </p>
-    </div>
+      </h2>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
   name: "home",
-  data() {
-    return {
-      details: {
-        Birthdate: "1998/07/11 (25 Yr)",
-        Address: "Tehran, Iran",
-        Experience: "Over 6 years",
-        Interest: "Front, AI, Automation",
-        Email: "info@mehdicode.com",
-        Phone: "+989300432875",
-      },
-    };
-  },
 };
 </script>
 

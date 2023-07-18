@@ -1,49 +1,47 @@
 <template>
-  <div class="relative">
-    <div class="absolute right-4 circularAnimation">
+  <div class="circularAnimation">
+    <img
+      src="_nuxt/assets/imgs/Mehdi.png"
+      draggable="false"
+      class="mainImg"
+      alt=""
+    />
+    <div class="circle">
       <img
-        src="_nuxt/assets/imgs/Mehdi.png"
+        src="_nuxt/assets/imgs/sass.png"
         draggable="false"
-        class="mainImg"
+        class="icon"
         alt=""
       />
-      <div class="circle">
+
+      <div class="circle" style="--data-number: 1"></div>
+      <div class="circle" style="--data-number: 2">
         <img
-          src="_nuxt/assets/imgs/sass.png"
+          src="_nuxt/assets/imgs/CSS.png"
           draggable="false"
           class="icon"
           alt=""
         />
-
-        <div class="circle" style="--data-number: 1"></div>
-        <div class="circle" style="--data-number: 2">
-          <img
-            src="_nuxt/assets/imgs/CSS.png"
-            draggable="false"
-            class="icon"
-            alt=""
-          />
-          <img
-            src="_nuxt/assets/imgs/nuxt.png"
-            draggable="false"
-            class="icon"
-            alt=""
-          />
-        </div>
-        <div class="circle" style="--data-number: 3">
-          <img
-            src="_nuxt/assets/imgs/JS.png"
-            draggable="false"
-            class="icon"
-            alt=""
-          />
-          <img
-            src="https://mehdicode.com/imgs/html.png"
-            draggable="false"
-            class="icon"
-            alt=""
-          />
-        </div>
+        <img
+          src="_nuxt/assets/imgs/nuxt.png"
+          draggable="false"
+          class="icon"
+          alt=""
+        />
+      </div>
+      <div class="circle" style="--data-number: 3">
+        <img
+          src="_nuxt/assets/imgs/JS.png"
+          draggable="false"
+          class="icon"
+          alt=""
+        />
+        <img
+          src="https://mehdicode.com/imgs/html.png"
+          draggable="false"
+          class="icon"
+          alt=""
+        />
       </div>
     </div>
   </div>
@@ -58,12 +56,12 @@ export default {};
   user-select: none;
   position: relative;
   transition: 1s all linear;
-  --circleDiameter: 14rem;
-  --icon: 30px;
-  --circlesBigger: 3rem;
+  --biggerSize: calc(var(--circlesBigger) * 3);
+  --subCircleDiameter: calc(var(--circleDiameter) + var(--biggerSize));
+  width: var(--subCircleDiameter);
 }
 
-@media (min-width: 1280px) {
+@media only screen and (min-width: 1280px) {
   .circularAnimation {
     --circleDiameter: 12rem;
     --icon: 26px;
@@ -71,8 +69,16 @@ export default {};
   }
 }
 
+@media only screen and (min-width: 1550px) {
+  .circularAnimation {
+    --circleDiameter: 14rem;
+    --icon: 30px;
+    --circlesBigger: 3rem;
+  }
+}
 .circle {
   position: relative;
+  margin: auto;
   background: transparent;
   border-radius: 100%;
   border: 1px #f47a08 solid;
@@ -98,11 +104,13 @@ export default {};
 
 .mainImg {
   position: absolute;
-  top: 47%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 44%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transform: translateY(-50%);
   z-index: 5;
-  width: calc(100% - 20px);
+  width: calc(var(--circleDiameter) - 20px);
 }
 
 .icon {
