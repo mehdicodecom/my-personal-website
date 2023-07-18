@@ -8,15 +8,17 @@
 
     <Home-Circular />
 
-    <section class="relative flex-1 ml-20 -top-17">
+    <section class="relative flex-1 ml-30 -top-17">
       <h2 class="relative text-left">
-        <span class="text-7xl text-white/30 tracking-widest">Latest</span>
-        <span
-          class="absolute left-0 right-0 inline-flex items-center justify-center text-3xl h-full font-bold"
-        >
-          Works
-        </span>
+        <span class="text-5xl tracking-widest">Latest</span>
+        <span class="text-3xl font-bold text-codeColor-orange"> Works </span>
       </h2>
+
+      <div class="flex mt-8">
+        <article v-for="project in projects">
+          <screen class="w-90" />
+        </article>
+      </div>
     </section>
   </div>
 </template>
@@ -24,6 +26,15 @@
 <script>
 export default {
   name: "home",
+  data() {
+    return {
+      projects: [
+        {
+          img: "metriland/home.png",
+        },
+      ],
+    };
+  },
 };
 </script>
 
