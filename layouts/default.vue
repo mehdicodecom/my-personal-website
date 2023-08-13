@@ -1,6 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen">
-    <General-CustomCursor />
+  <div class="flex flex-col min-h-screen bg-main-dark">
     <coloredCodes />
     <AppHeader />
     <slot />

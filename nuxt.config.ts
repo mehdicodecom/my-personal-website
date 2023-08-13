@@ -14,5 +14,9 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/css/main.css"],
-  modules: ["@unocss/nuxt"],
+  modules: ["@unocss/nuxt", "nuxt-swiper"],
+  swiper: {
+    prefix: "Swiper",
+    styleLang: "css",
+  },
 });

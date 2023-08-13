@@ -1,38 +1,45 @@
 <template>
-  <section class="relative">
-    <p class="2xl:text-3xl xl:text-2xl font-normal">
-      <span class="text-codeColor-cyan">&lt;</span
-      ><span class="text-codeColor-green">HELLO WORLD</span
-      ><span class="text-codeColor-cyan">/&gt</span>
-    </p>
+  <section class="relative flex flex-col items-start gap-6">
+    <div class="loading textLoading">
+      <p class="inline-block 2xl:text-3xl xl:text-2xl font-normal">
+        <span class="text-main-cyan">&lt;</span>
+        <span class="text-main-green">HELLO WORLD</span>
+        <span class="text-main-cyan">/&gt</span>
+      </p>
+    </div>
 
-    <p class="2xl:text-6xl xl:text-5xl font-bold mt-6">
-      I’M <span class="text-codeColor-orange">Mehdi Rafiei</span>
-    </p>
-    <p class="2xl:text-3xl xl:text-2xl mt-6 text-white/60">
-      Front-End Developer
-    </p>
+    <div class="loading textLoading">
+      <p class="inline-block 2xl:text-6xl xl:text-5xl font-bold">
+        <span> I’M <span class="text-main-orange">Mehdi Rafiei</span></span>
+      </p>
+    </div>
+    <div class="loading textLoading">
+      <p class="inline-block 2xl:text-3xl xl:text-2xl text-white/60">
+        Front-End Developer
+      </p>
+    </div>
 
-    <ul class="flex gap-4 mt-6">
-      <li class="flex gap-4">
-        <a
-          v-for="(value, socialNetwork) in socialNetworks"
-          :href="value.link"
-          target="_blank"
-          class="group/social flex rounded-full trans3ms overflow-hidden bg-dark-300 w-12 h-12 items-center shadow-md hover:(w-34)"
-        >
-          <div
-            :class="`min-w-12 h-12 relative flex justify-center items-center rounded-full trans3ms ${value.groupHover}`"
+    <ul class="flex gap-4">
+      <li class="flex gap-4" v-for="(value, socialNetwork) in socialNetworks">
+        <div class="circleLoading">
+          <a
+            :href="value.link"
+            target="_blank"
+            class="group/social flex rounded-full trans3ms overflow-hidden bg-dark-300 w-12 h-12 items-center shadow-md hover:(w-34)"
           >
-            <svg class="relative w-6 h-6">
-              <use
-                :href="'./_nuxt/assets/imgs/icons.svg' + `#${socialNetwork}`"
-              ></use>
-            </svg>
-          </div>
+            <span
+              :class="`min-w-12 h-12 relative flex justify-center items-center rounded-full trans3ms ${value.groupHover}`"
+            >
+              <svg class="relative w-6 h-6">
+                <use
+                  :href="'./_nuxt/assets/imgs/icons.svg' + `#${socialNetwork}`"
+                ></use>
+              </svg>
+            </span>
 
-          <span class="ml-2 font-semibold text-sm">{{ socialNetwork }}</span>
-        </a>
+            <span class="ml-2 font-semibold text-sm">{{ socialNetwork }}</span>
+          </a>
+        </div>
       </li>
     </ul>
   </section>
@@ -45,18 +52,15 @@ export default {
       socialNetworks: {
         Github: {
           link: "https://github.com/mehdicodecom",
-          groupHover:
-            "group-hover/social:(bg-socialNetworks-github text-white)",
+          groupHover: "group-hover/social:(bg-socials-github text-white)",
         },
         Linkedin: {
           link: "https://www.linkedin.com/in/merafiee/",
-          groupHover:
-            "group-hover/social:(bg-socialNetworks-linkedin text-white)",
+          groupHover: "group-hover/social:(bg-socials-linkedin text-white)",
         },
         Telegram: {
           link: "https://t.me/merafiei",
-          groupHover:
-            "group-hover/social:(bg-socialNetworks-telegram text-white)",
+          groupHover: "group-hover/social:(bg-socials-telegram text-white)",
         },
       },
     };

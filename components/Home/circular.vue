@@ -1,48 +1,51 @@
 <template>
-  <div class="circularSec">
-    <div class="circularAnimation">
-      <img
-        src="_nuxt/assets/imgs/Mehdi.png"
-        draggable="false"
-        class="mainImg"
-        alt=""
-      />
-      <div class="circle">
+  <div class="relative">
+    <div class="circularSec">
+      <div class="circleLoading"></div>
+      <div class="circularAnimation">
         <img
-          src="_nuxt/assets/imgs/sass.png"
+          src="_nuxt/assets/imgs/Mehdi.png"
           draggable="false"
-          class="icon"
+          class="mainImg"
           alt=""
         />
+        <div class="circle">
+          <img
+            src="_nuxt/assets/imgs/sass.png"
+            draggable="false"
+            class="icon"
+            alt=""
+          />
 
-        <div class="circle" style="--data-number: 1"></div>
-        <div class="circle" style="--data-number: 2">
-          <img
-            src="_nuxt/assets/imgs/CSS.png"
-            draggable="false"
-            class="icon"
-            alt=""
-          />
-          <img
-            src="_nuxt/assets/imgs/nuxt.png"
-            draggable="false"
-            class="icon"
-            alt=""
-          />
-        </div>
-        <div class="circle" style="--data-number: 3">
-          <img
-            src="_nuxt/assets/imgs/JS.png"
-            draggable="false"
-            class="icon"
-            alt=""
-          />
-          <img
-            src="https://mehdicode.com/imgs/html.png"
-            draggable="false"
-            class="icon"
-            alt=""
-          />
+          <div class="circle" style="--data-number: 1"></div>
+          <div class="circle" style="--data-number: 2">
+            <img
+              src="_nuxt/assets/imgs/CSS.png"
+              draggable="false"
+              class="icon"
+              alt=""
+            />
+            <img
+              src="_nuxt/assets/imgs/nuxt.png"
+              draggable="false"
+              class="icon"
+              alt=""
+            />
+          </div>
+          <div class="circle" style="--data-number: 3">
+            <img
+              src="_nuxt/assets/imgs/JS.png"
+              draggable="false"
+              class="icon"
+              alt=""
+            />
+            <img
+              src="https://mehdicode.com/imgs/html.png"
+              draggable="false"
+              class="icon"
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -62,9 +65,24 @@ export default {};
   --subCircleDiameter: calc(var(--circleDiameter) + var(--biggerSize));
   width: var(--subCircleDiameter);
 }
-
+.circleLoading {
+  position: absolute;
+  right: 0;
+  left: -1.5rem;
+  margin: 0 auto;
+  top: 44%;
+  z-index: 99;
+}
+.circleLoading::before {
+  content: "";
+  position: absolute;
+  --biggerSize: calc(var(--circlesBigger) * 3);
+  --subCircleDiameter: calc(var(--circleDiameter) + var(--biggerSize) + 3rem);
+  width: var(--subCircleDiameter);
+  height: var(--subCircleDiameter);
+}
 @media only screen and (min-width: 1280px) {
-  .circularAnimation {
+  .circularSec {
     --circleDiameter: 12rem;
     --icon: 26px;
     --circlesBigger: 2.5rem;
@@ -72,7 +90,7 @@ export default {};
 }
 
 @media only screen and (min-width: 1550px) {
-  .circularAnimation {
+  .circularSec {
     --circleDiameter: 14rem;
     --icon: 30px;
     --circlesBigger: 3rem;

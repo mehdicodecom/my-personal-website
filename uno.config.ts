@@ -4,23 +4,23 @@ import transformerVariantGroup from "@unocss/transformer-variant-group";
 export default defineConfig({
   preflight: true,
   safelist: [
-    "text-codeColor-cyan",
-    "text-codeColor-green",
-    "text-codeColor-orange",
-    "text-codeColor-gray",
+    "text-code-cyan",
+    "text-code-green",
+    "text-code-orange",
+    "text-code-gray",
   ],
   transformers: [transformerVariantGroup()],
   theme: {
     colors: {
-      mainDark: "#1C1C1C",
-      mainLight: "#FAFAFA",
-      codeColor: {
+      main: {
+        dark: "#1C1C1C",
+        light: "#FAFAFA",
         green: "#00DC82",
         gray: "#343334",
         orange: "#F47A08",
         cyan: "#07FFFF",
       },
-      socialNetworks: {
+      socials: {
         github: "#4f4e4e",
         linkedin: "#0A66C2",
         telegram: "#3390EC",

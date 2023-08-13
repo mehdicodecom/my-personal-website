@@ -1,10 +1,14 @@
 <template>
   <div class="relative flex flex-wrap w-120">
     <p v-for="(detail, key) in details" class="w-1/2">
-      <span class="block font-semibold text-codeColor-orange">
-        {{ key }}
+      <span class="block loading textLoading">
+        <span class="inline-block font-semibold text-main-orange">
+          {{ key }}
+        </span>
       </span>
-      <span class="text-white/60">{{ detail }}</span>
+      <span class="block loading textLoading">
+        <span class="inline-block text-white/60">{{ detail }}</span>
+      </span>
     </p>
   </div>
 </template>

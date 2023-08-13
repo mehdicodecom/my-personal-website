@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col gap-2">
+  <div>
     <div class="mac">
       <div class="display">
         <div class="screen">
           <img
-            src="_nuxt/assets/imgs/projects/metriland/home.png"
+            :src="`_nuxt/assets/imgs/projects/${project.img}`"
             alt=""
             class="w-full h-full rounded-lg"
           />
@@ -20,18 +20,15 @@
       </div>
       <div class="compBottom"></div>
     </div>
-
-    <section class="flex mt-2 flex-wrap">
-      <p class="flex gap-2">
-        <span class="block font-semibold text-codeColor-orange"> Title </span>
-        <span class="text-white/60">Metriland - Tokenizing RealState</span>
-      </p>
-    </section>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    project: {},
+  },
+};
 </script>
 
 <style scoped>
@@ -42,17 +39,19 @@ export default {};
   align-items: center;
   width: 100%;
   border-radius: 1rem;
-  background: #2a2a2a;
+  background: #4e4e4e;
   animation: shine2 12s infinite;
 }
 
 .screen {
   position: relative;
   padding: 12px 10px 18px;
+  width: 560px;
+  height: 300px;
 }
 .label {
   position: absolute;
-  color: #696969;
+  color: #a7a7a7;
   font-size: 8px;
   font-family: "Signika Negative", sans-serif;
   z-index: 4;

@@ -68,26 +68,26 @@ export default {
         /(\b(\w+)\s*(?=\=))|((?<=\<)([a-z]{1,20})(?=\>)*|(?<=\<\/)([a-z]{1,20})(?=\>)*)|(<\/|>|<|\/>|="|")/g;
       html = html.replace(regex, (match, g1, g2, g3) => {
         if (g1 || g2)
-          return `<span class="text-codeColor-orange">${g1 || g2}</span>`;
-        if (g3) return `<span class="text-codeColor-green">${g3}</span>`;
+          return `<span class="text-main-orange">${g1 || g2}</span>`;
+        if (g3) return `<span class="text-main-green">${g3}</span>`;
         switch (match) {
           case "</": {
-            return `<span class="text-codeColor-cyan">&lt;/</span>`;
+            return `<span class="text-main-cyan">&lt;/</span>`;
           }
           case "/>": {
-            return `<span class="text-codeColor-cyan">/&gt;</span>`;
+            return `<span class="text-main-cyan">/&gt;</span>`;
           }
           case ">": {
-            return `<span class="text-codeColor-cyan">&gt;</span>`;
+            return `<span class="text-main-cyan">&gt;</span>`;
           }
           case "<": {
-            return `<span class="text-codeColor-cyan">&lt;</span>`;
+            return `<span class="text-main-cyan">&lt;</span>`;
           }
           case `="`: {
-            return `<span class="text-codeColor-cyan">&equals;"</span>`;
+            return `<span class="text-main-cyan">&equals;"</span>`;
           }
           case `"`: {
-            return `<span class="text-codeColor-cyan">"</span>`;
+            return `<span class="text-main-cyan">"</span>`;
           }
         }
       });
