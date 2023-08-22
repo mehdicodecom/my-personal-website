@@ -9,9 +9,9 @@
 
     <Header-Resume />
 
-    <Header-ThemeSwitch />
+    <!-- <Header-ThemeSwitch />
 
-    <Header-LangSwitch />
+    <Header-LangSwitch /> -->
   </header>
   <!-- End Header -->
 </template>

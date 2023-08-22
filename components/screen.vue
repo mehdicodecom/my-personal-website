@@ -4,7 +4,7 @@
       <div class="display">
         <div class="screen">
           <img
-            :src="`_nuxt/assets/imgs/projects/${project.img}`"
+            :src="`imgs/projects/${project.img}`"
             alt=""
             class="w-full h-full rounded-lg"
           />

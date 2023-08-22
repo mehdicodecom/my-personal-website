@@ -10,6 +10,13 @@
 .trans3ms {
   transition: all 0.3s ease-out;
 }
+.transMaxHeightIn {
+  transition: max-height 3s ease-in-out;
+}
+
+.transMaxHeightOut {
+  transition: max-height 1.5s ease-in-out;
+}
 /* .page-enter-active,
 .page-leave-active {
   transition: all 0.4s;
@@ -111,6 +118,38 @@ td {
   border-radius: 100%;
   background: white;
   animation: circle-loading 1.5s linear forwards;
+}
+.showup {
+  animation: showup 4s ease-in-out normal;
+  animation-delay: 2s;
+}
+
+.updown {
+  animation: updown 1.8s ease-in-out infinite forwards alternate;
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(-15%);
+  }
+
+  100% {
+    transform: translateY(13%);
+  }
+}
+
+@keyframes showup {
+  0% {
+    transform: translateY(0%);
+  }
+
+  40%,
+  60% {
+    transform: translateY(-30%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
 
 @keyframes text-progress-loading {

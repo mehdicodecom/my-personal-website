@@ -1,18 +1,16 @@
 <template>
   <!-- Start Menu -->
+
   <nav class="flex">
     <ul class="flex items-center gap-12 font-semibold">
       <li v-for="(menu, index) in menus" class="relative pl-1 pr-2">
         <div class="loading textLoading">
           <nuxt-link
             :to="{ path: menu.path }"
-            @click="activeMenu = index"
             class="flex items-center gap-2.5"
           >
             <svg class="relative w-8 h-8">
-              <use
-                :href="'./_nuxt/assets/imgs/icons.svg' + `#${menu.icon}`"
-              ></use>
+              <use :href="'./imgs/icons.svg' + `#${menu.icon}`"></use>
             </svg>
 
             {{ menu.title }}
@@ -55,8 +53,17 @@ export default {
           path: "/contact_me",
         },
       ],
-      activeMenu: 0,
     };
+  },
+  computed: {
+    activeMenu() {
+      let route = this.$route.path;
+      let activeIndex = 0;
+      this.menus.forEach((menu, index) => {
+        if (route === menu.path) activeIndex = index;
+      });
+      return activeIndex;
+    },
   },
 };
 </script>

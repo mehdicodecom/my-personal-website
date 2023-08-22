@@ -10,6 +10,11 @@
         <span class="inline-block text-white/60">{{ detail }}</span>
       </span>
     </p>
+    <!-- <nuxt-link
+      :to="{ path: '/' }"
+      class="bg-main-orange h-12 w-40 rounded-md flex items-center justify-center"
+      >More About me</nuxt-link
+    > -->
   </div>
 </template>
 

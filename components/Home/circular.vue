@@ -3,42 +3,17 @@
     <div class="circularSec">
       <div class="circleLoading"></div>
       <div class="circularAnimation">
-        <img
-          src="_nuxt/assets/imgs/Mehdi.png"
-          draggable="false"
-          class="mainImg"
-          alt=""
-        />
+        <img src="imgs/Mehdi.png" draggable="false" class="mainImg" alt="" />
         <div class="circle">
-          <img
-            src="_nuxt/assets/imgs/sass.png"
-            draggable="false"
-            class="icon"
-            alt=""
-          />
+          <img src="imgs/sass.png" draggable="false" class="icon" alt="" />
 
           <div class="circle" style="--data-number: 1"></div>
           <div class="circle" style="--data-number: 2">
-            <img
-              src="_nuxt/assets/imgs/CSS.png"
-              draggable="false"
-              class="icon"
-              alt=""
-            />
-            <img
-              src="_nuxt/assets/imgs/nuxt.png"
-              draggable="false"
-              class="icon"
-              alt=""
-            />
+            <img src="imgs/CSS.png" draggable="false" class="icon" alt="" />
+            <img src="imgs/nuxt.png" draggable="false" class="icon" alt="" />
           </div>
           <div class="circle" style="--data-number: 3">
-            <img
-              src="_nuxt/assets/imgs/JS.png"
-              draggable="false"
-              class="icon"
-              alt=""
-            />
+            <img src="imgs/JS.png" draggable="false" class="icon" alt="" />
             <img
               src="https://mehdicode.com/imgs/html.png"
               draggable="false"

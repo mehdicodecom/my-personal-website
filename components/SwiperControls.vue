@@ -1,10 +1,6 @@
+<template></template>
 <script>
 export default {
-  data() {
-    return {
-      test: "asdsad",
-    };
-  },
   setup() {
     const swiper = useSwiper();
 
