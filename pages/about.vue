@@ -151,6 +151,46 @@
         </div>
       </div>
     </div>
+
+    <div class="relative mt-20 text-2xl font-bold">
+      <span
+        class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
+      ></span>
+      <div class="loading textLoading inline-block">
+        <span class="relative inline-block z-20">Education </span>
+      </div>
+    </div>
+    <div class="mt-8 flex flex-col gap-6">
+      <div
+        v-for="edu in educations"
+        class="bg-dark py-8 px-6 border border-zinc-700 rounded-md flex gap-4"
+      >
+        <svg class="w-10 h-10 text-main-orange select-none">
+          <use :href="`imgs/icons.svg#edu`"></use>
+        </svg>
+
+        <div>
+          <h3 class="text-xl text-main-orange font-medium">
+            {{ edu.college }}
+            <span class="text-white">({{ edu.degree }})</span>
+          </h3>
+
+          <p class="mt-1 text-white/60">
+            {{ edu.startYear }} - {{ edu.endYear }}
+          </p>
+
+          <ul class="flex gap-6 mt-3 text-white/80">
+            <li><p class="text-main-green font-bold">Courses:</p></li>
+            <li v-for="subject in edu.subjects" class="flex items-center gap-2">
+              <span
+                class="inline-block w-2 h-2 bg-stone-400 rounded-full"
+              ></span>
+              <p>{{ subject }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -245,7 +285,7 @@ export default {
               ],
             },
           ],
-          showDetails: true,
+          showDetails: false,
         },
         {
           company: "Freelance - Metriland, 4Sou & other companies",
@@ -317,6 +357,20 @@ export default {
             },
           ],
           showDetails: false,
+        },
+      ],
+      educations: [
+        {
+          college: "AmirKabir High School",
+          degree: "Diploma in Computer Science",
+          subjects: [
+            "Computer Networks",
+            "Operating Systems",
+            "Web Design",
+            "C++",
+          ],
+          startYear: "2014",
+          endYear: "2018",
         },
       ],
     };
