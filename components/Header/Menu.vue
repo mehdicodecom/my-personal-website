@@ -10,7 +10,7 @@
             class="flex items-center gap-2.5"
           >
             <svg class="relative w-8 h-8">
-              <use :href="'./imgs/icons.svg' + `#${menu.icon}`"></use>
+              <use :href="'/imgs/icons.svg' + `#${menu.icon}`"></use>
             </svg>
 
             {{ menu.title }}
@@ -45,7 +45,7 @@ export default {
         {
           title: "Portfolios",
           icon: "folder",
-          path: "/works",
+          path: "/portfolios",
         },
         {
           title: "Contact Me",

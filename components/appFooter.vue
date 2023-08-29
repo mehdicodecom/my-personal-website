@@ -4,7 +4,7 @@
   >
     Made with
     <svg class="relative w-6 h-6 love">
-      <use :href="'./imgs/icons.svg' + `#love`"></use>
+      <use :href="'/imgs/icons.svg' + `#love`"></use>
     </svg>
     By Mehdi
   </div>

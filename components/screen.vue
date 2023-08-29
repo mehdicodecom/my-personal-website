@@ -4,21 +4,21 @@
       <div class="display">
         <div class="screen">
           <img
-            :src="`imgs/projects/${project.img}`"
+            :src="`/imgs/projects/${project.img}`"
             alt=""
             class="w-full h-full rounded-lg"
           />
         </div>
         <span class="label">MacBook Pro</span>
       </div>
-      <div class="keys">
+      <div class="keys" v-if="!onlyScreen">
         <div class="board"></div>
         <div class="touchpad"></div>
       </div>
-      <div class="comp">
+      <div class="comp" v-if="!onlyScreen">
         <div class="notch"></div>
       </div>
-      <div class="compBottom"></div>
+      <div class="compBottom" v-if="!onlyScreen"></div>
     </div>
   </div>
 </template>
@@ -26,6 +26,9 @@
 <script>
 export default {
   props: {
+    onlyScreen: {
+      default: false,
+    },
     project: {},
   },
 };
@@ -46,8 +49,10 @@ export default {
 .screen {
   position: relative;
   padding: 12px 10px 18px;
-  width: 560px;
-  height: 300px;
+  width: 100%;
+  height: auto;
+  /* width: 560px;
+  height: 300px; */
 }
 .label {
   position: absolute;

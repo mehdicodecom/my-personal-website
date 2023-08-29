@@ -48,7 +48,7 @@
       </div>
 
       <img
-        src="imgs/about/mehdi.jpg"
+        src="/imgs/about/mehdi.jpg"
         alt=""
         class="w-86 rounded-md shadow-lg"
       />
@@ -108,7 +108,7 @@
             >
               <svg class="w-8 h-8 text-white-3 select-none">
                 <use
-                  :href="`imgs/icons.svg#eye_${
+                  :href="`/imgs/icons.svg#eye_${
                     experience.showDetails ? 'close' : 'open'
                   }`"
                 ></use>
@@ -166,7 +166,7 @@
         class="bg-dark py-8 px-6 border border-zinc-700 rounded-md flex gap-4"
       >
         <svg class="w-10 h-10 text-main-orange select-none">
-          <use :href="`imgs/icons.svg#edu`"></use>
+          <use :href="`/imgs/icons.svg#edu`"></use>
         </svg>
 
         <div>

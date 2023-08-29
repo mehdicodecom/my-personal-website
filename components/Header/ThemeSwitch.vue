@@ -4,7 +4,7 @@
     class="ml-8 rounded-full bg-white w-10 h-10 flex items-center justify-center"
   >
     <svg class="relative w-5 h-5 text-black">
-      <use :href="'./imgs/icons.svg' + `#moon`"></use>
+      <use :href="'/imgs/icons.svg' + `#moon`"></use>
     </svg>
   </div>
   <!-- End Theme Switch -->
