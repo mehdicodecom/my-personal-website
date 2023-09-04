@@ -529,6 +529,9 @@ export default defineStore("projects", {
         );
       };
     },
+    portfolioMediaLength(state) {
+      return state.portfolios[state.activeProjectGallery].media.length;
+    },
   },
   actions: {
     showGallery(projectIndex, activeMedia = null) {
@@ -546,19 +549,30 @@ export default defineStore("projects", {
     },
     nextMedia() {
       this.resetGallery();
-      let mediaLength = this.portfolios[this.activeProjectGallery].media.length;
-      if (this.activeMedia === mediaLength - 1) this.activeMedia = 0;
+      if (this.activeMedia === this.portfolioMediaLength - 1)
+        this.activeMedia = 0;
       else this.activeMedia++;
+      this.resetScroll();
     },
     prevMedia() {
       this.resetGallery();
-      let mediaLength = this.portfolios[this.activeProjectGallery].media.length;
-      if (this.activeMedia === 0) this.activeMedia = mediaLength - 1;
+      if (this.activeMedia === 0)
+        this.activeMedia = this.portfolioMediaLength - 1;
       else this.activeMedia--;
+      this.resetScroll();
     },
     resetGallery() {
       this.imgScrollDown = false;
       this.videoPlaying = false;
+    },
+    resetScroll() {
+      let currentMedia =
+        this.portfolios[this.activeProjectGallery].media[this.activeMedia];
+      let currentMediaTransition = currentMedia.transition;
+      currentMedia.transition = "0s";
+      setTimeout(() => {
+        currentMedia.transition = currentMediaTransition;
+      }, 100);
     },
     toggleImgScroll() {
       this.imgScrollDown = !this.imgScrollDown;
