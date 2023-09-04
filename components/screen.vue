@@ -14,9 +14,16 @@
             ]"
           >
             <video
-              class="absolute h-full w-full rounded-lg object-fill"
+              ref="video"
+              @play="videoPlaying = true"
+              @pause="videoPlaying = false"
+              :class="[
+                'absolute h-full w-full rounded-lg screenVideo',
+                { 'object-cover': !videoControls },
+              ]"
               v-if="media?.type === 'video'"
               :src="media?.src"
+              :controls="videoControls"
               controlsList="nodownload"
             ></video>
             <zoom v-if="zoom" />
@@ -42,6 +49,8 @@
 </template>
 
 <script>
+import { mapWritableState } from "pinia";
+import useProjectsStore from "@/stores/projects";
 export default {
   props: {
     onlyScreen: {
@@ -55,6 +64,12 @@ export default {
     screenHeight: {
       default: "18.6rem",
     },
+    videoControls: {
+      default: false,
+    },
+  },
+  computed: {
+    ...mapWritableState(useProjectsStore, ["videoPlaying"]),
   },
 };
 </script>

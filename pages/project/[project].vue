@@ -11,7 +11,6 @@
           <use :href="'/imgs/icons.svg' + `#arrow`"></use>
         </svg>
       </button>
-
       <span class="text-main-orange font-bold text-lg">Portfolios</span>
     </nuxt-link>
     <div class="loading textLoading inline-block">
@@ -38,20 +37,23 @@
     </div>
     <div class="grid grid-cols-4 grid-rows-3 gap-4 mt-8">
       <screen
+        @click="showGallery(projectIndex)"
         class="group relative col-span-3 row-span-3"
         :media="project.media[project.mainMedia]"
         screen-height="33.5rem"
         :only-screen="true"
       />
       <div
+        @click="showGallery(projectIndex, mediaIndex + 1)"
         class="relative group row-span-1 h-42 overflow-hidden rounded-xl"
-        v-for="media in otherMedia"
+        v-for="(media, mediaIndex) in otherMedia"
       >
         <img :src="media.src" alt="" class="min-h-full" />
         <zoom />
       </div>
 
       <div
+        @click="showGallery(projectIndex, 3)"
         v-if="project.media.length - 3 > 0"
         class="bg-dark-200 row-span-1 trans3ms rounded-lg flex items-center justify-center text-3xl cursor-pointer hover:bg-dark-900"
       >
@@ -62,15 +64,22 @@
     <div class="mt-12 text-xl">
       More description of the projects will be added later
     </div>
+    <transition name="fadeScale">
+      <Gallery v-if="galleryVisible" :project="project" />
+    </transition>
   </div>
 </template>
 
 <script>
-import { mapState } from "pinia";
+import { mapState, mapActions } from "pinia";
 import useProjectsStore from "@/stores/projects";
 export default {
   computed: {
-    ...mapState(useProjectsStore, ["getPortfolio"]),
+    ...mapState(useProjectsStore, [
+      "getPortfolio",
+      "portfolios",
+      "galleryVisible",
+    ]),
     otherMedia() {
       return this.project.media
         .filter((media, index) => {
@@ -84,12 +93,20 @@ export default {
       if (!project) {
         throw createError({
           statusCode: 404,
-          message: "not found",
+          message: `${projectName} Project not found`,
           fatal: true,
         });
       }
       return project;
     },
+    projectIndex() {
+      return this.portfolios.findIndex(
+        (portfolio) => portfolio.name === this.project.name
+      );
+    },
+  },
+  methods: {
+    ...mapActions(useProjectsStore, ["showGallery"]),
   },
 };
 </script>

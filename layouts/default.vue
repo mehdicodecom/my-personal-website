@@ -12,9 +12,6 @@
       :home-page="true"
       :slide-auto-play="homeProjectsSwiper.autoPlay"
     />
-
-    <!-- <Gallery :project="projects[activeProject]" />
-    <div class="fixed bg-black/80 absolute w-full h-full z-80"></div> -->
     <AppFooter />
   </div>
 </template>

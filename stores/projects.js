@@ -13,7 +13,7 @@ export default defineStore("projects", {
             title: "Home Page",
             src: "/projects/metriland/fullpage.png",
             transition: "10s",
-            autoScroll: true,
+            scroll: true,
           },
           {
             type: "img",
@@ -498,6 +498,12 @@ export default defineStore("projects", {
         related_experience_id: 3,
       },
     ],
+    galleryVisible: false,
+    darkLayerVisible: false,
+    activeProjectGallery: 0,
+    activeMedia: 0,
+    imgScrollDown: false,
+    videoPlaying: false,
   }),
   getters: {
     getPortfolios: (state) => {
@@ -518,11 +524,50 @@ export default defineStore("projects", {
     },
     getPortfolio: (state) => {
       return (name) => {
-        console.log(name);
         return state.portfolios.find(
           (portfolio) => portfolio.name.toLowerCase() === name.toLowerCase()
         );
       };
+    },
+  },
+  actions: {
+    showGallery(projectIndex, activeMedia = null) {
+      this.activeProjectGallery = projectIndex;
+      this.darkLayerVisible = true;
+      this.galleryVisible = true;
+      if (activeMedia) this.activeMedia = activeMedia;
+    },
+    hideGallery() {
+      this.darkLayerVisible = false;
+      this.galleryVisible = false;
+      this.activeProjectGallery = 0;
+      this.activeMedia = 0;
+      this.resetGallery();
+    },
+    nextMedia() {
+      this.resetGallery();
+      let mediaLength = this.portfolios[this.activeProjectGallery].media.length;
+      if (this.activeMedia === mediaLength - 1) this.activeMedia = 0;
+      else this.activeMedia++;
+    },
+    prevMedia() {
+      this.resetGallery();
+      let mediaLength = this.portfolios[this.activeProjectGallery].media.length;
+      if (this.activeMedia === 0) this.activeMedia = mediaLength - 1;
+      else this.activeMedia--;
+    },
+    resetGallery() {
+      this.imgScrollDown = false;
+      this.videoPlaying = false;
+    },
+    toggleImgScroll() {
+      this.imgScrollDown = !this.imgScrollDown;
+    },
+    toggleVideo(video) {
+      if (this.videoPlaying) video.pause();
+      else video.play();
+
+      this.videoPlaying = !this.videoPlaying;
     },
   },
 });

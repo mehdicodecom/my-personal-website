@@ -35,7 +35,7 @@
         :autoplay="slideAutoPlay"
       >
         <SwiperSlide
-          v-for="project in projects"
+          v-for="(project, index) in projects"
           :class="[
             'relative bg-dark rounded-lg flex flex-col gap-6 py-8 pr-18 pl-18 justify-center items-center',
             homePage ? 'shadow-lg' : 'border border-neutral-700',
@@ -47,6 +47,7 @@
           >
           </nuxt-link>
           <screen
+            @click="showGallery(index)"
             class="relative z-50 w-140"
             :media="project.media[project.mainMedia]"
           />
@@ -136,7 +137,7 @@
     </div>
     <section class="flex flex-col gap-6 mt-10">
       <div
-        v-for="project in projects"
+        v-for="(project, index) in projects"
         class="relative bg-dark rounded-lg flex gap-26 py-8 pr-18 pl-18 shadow-lg"
       >
         <nuxt-link
@@ -145,6 +146,7 @@
         >
         </nuxt-link>
         <screen
+          @click="showGallery(index)"
           class="relative z-50 w-140"
           :media="project.media[project.mainMedia]"
         />
@@ -185,9 +187,14 @@
       </div>
     </section>
   </section>
+  <transition name="fadeScale">
+    <Gallery v-if="galleryVisible" :project="projects[activeProjectGallery]" />
+  </transition>
 </template>
 
 <script>
+import { mapState, mapActions } from "pinia";
+import useProjectsStore from "@/stores/projects";
 export default {
   props: {
     showDetailsButtom: { default: true },
@@ -242,7 +249,18 @@ export default {
       prevDisabled: true,
     };
   },
+  computed: {
+    ...mapState(useProjectsStore, [
+      "galleryVisible",
+      "darkLayerVisible",
+      "activeProjectGallery",
+    ]),
+    test() {
+      console.log(this.projects[this.activeProjectGallery]);
+    },
+  },
   methods: {
+    ...mapActions(useProjectsStore, ["showGallery"]),
     nextSlide() {
       if (!this.nextDisabled) {
         this.$refs.swiperSlide.next();

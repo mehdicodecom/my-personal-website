@@ -6,6 +6,35 @@
   box-sizing: border-box;
   outline: none;
 }
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fadeScale-enter-active,
+.fadeScale-leave-active {
+  transition: all 0.5s;
+}
+
+.fadeScale-enter-from,
+.fadeScale-leave-to {
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .viewport {
   position: absolute;
   bottom: 0;
@@ -131,10 +160,6 @@ td {
   background: white;
   animation: circle-loading 1.5s linear forwards;
 }
-.showup {
-  animation: showup 4s ease-in-out normal;
-  animation-delay: 2s;
-}
 
 .updown {
   animation: updown 1.8s ease-in-out infinite forwards alternate;
@@ -147,20 +172,6 @@ td {
 
   100% {
     transform: translateY(13%);
-  }
-}
-
-@keyframes showup {
-  0% {
-    transform: translateY(0%);
-  }
-
-  40%,
-  60% {
-    transform: translateY(-30%);
-  }
-  100% {
-    transform: translateY(0%);
   }
 }
 
