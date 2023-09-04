@@ -16,7 +16,12 @@
     "nuxt": "^3.6.2"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
     "nuxt-swiper": "^1.2.0",
+    "pinia": "^2.1.6",
     "unocss": "^0.54.1"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }

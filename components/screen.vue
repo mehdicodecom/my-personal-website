@@ -2,12 +2,30 @@
   <div>
     <div class="mac">
       <div class="display">
-        <div class="screen">
-          <img
-            :src="`/imgs/projects/${project.img}`"
-            alt=""
-            class="w-full h-full rounded-lg"
-          />
+        <div class="screen" :style="{ height: screenHeight }">
+          <div
+            :class="['relative viewport group', { scrollToEnd: scroll }]"
+            :style="[
+              {
+                backgroundImage:
+                  media?.type === 'img' ? `url(${media?.src})` : 'none',
+              },
+              { '--transitionSpeed': media?.transition },
+            ]"
+          >
+            <video
+              class="absolute h-full w-full rounded-lg object-fill"
+              v-if="media?.type === 'video'"
+              :src="media?.src"
+              controlsList="nodownload"
+            ></video>
+            <zoom v-if="zoom" />
+            <!-- <img
+              :src="`/imgs/projects/${project.img}`"
+              alt=""
+              class="w-full h-full rounded-lg"
+            /> -->
+          </div>
         </div>
         <span class="label">MacBook Pro</span>
       </div>
@@ -29,7 +47,14 @@ export default {
     onlyScreen: {
       default: false,
     },
-    project: {},
+    zoom: {
+      default: true,
+    },
+    media: {},
+    scroll: false,
+    screenHeight: {
+      default: "18.6rem",
+    },
   },
 };
 </script>
@@ -48,11 +73,24 @@ export default {
 
 .screen {
   position: relative;
-  padding: 12px 10px 18px;
   width: 100%;
-  height: auto;
-  /* width: 560px;
-  height: 300px; */
+  /* width: 560px; */
+}
+.viewport {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: 12px 10px 22px;
+  background: #333;
+  transition: background-position var(--transitionSpeed) linear;
+  background-position: 0 0;
+  background-size: 100% auto;
+  border-radius: 0.5rem;
+}
+.viewport.scrollToEnd {
+  background-position: 100% 100%;
 }
 .label {
   position: absolute;

@@ -10,7 +10,7 @@
       </h2>
 
       <nuxt-link
-        :to="{ path: '/' }"
+        :to="{ path: '/portfolios' }"
         class="flex items-center gap-1 text-lg text-main-orange font-bold"
       >
         View More Projects
@@ -30,6 +30,7 @@
         :navigation="true"
         :space-between="slideSpaceBetween"
         @slideChange="SwitchSlideNavStates"
+        :breakpoints="breakpoints"
         :loop="false"
         :autoplay="slideAutoPlay"
       >
@@ -45,7 +46,10 @@
             class="absolute z-40 w-full h-full"
           >
           </nuxt-link>
-          <screen class="w-140" :project="project" />
+          <screen
+            class="relative z-50 w-140"
+            :media="project.media[project.mainMedia]"
+          />
           <section
             class="flex flex-col gap-2 mt-2 flex-wrap items-center justify-center"
           >
@@ -68,7 +72,7 @@
 
             <nuxt-link
               v-if="showDetailsButtom"
-              :to="{ path: '/' }"
+              :to="{ path: `/project/${project.name}` }"
               class="relative z-50 bg-main-orange w-full flex items-center justify-center font-medium text-lg h-12 rounded-md mt-8 hover:bg-main-orange/80"
               >More Details</nuxt-link
             >
@@ -135,9 +139,15 @@
         v-for="project in projects"
         class="relative bg-dark rounded-lg flex gap-26 py-8 pr-18 pl-18 shadow-lg"
       >
-        <nuxt-link :to="{ path: '/' }" class="absolute z-30 w-full h-full">
+        <nuxt-link
+          :to="{ path: `/project/${project.name}` }"
+          class="absolute z-30 w-full h-full"
+        >
         </nuxt-link>
-        <screen class="w-140" :project="project" />
+        <screen
+          class="relative z-50 w-140"
+          :media="project.media[project.mainMedia]"
+        />
         <section class="flex flex-col gap-2 mt-2 flex-wrap items-start">
           <div class="loading textLoading inline-block">
             <span class="inline-block font-medium text-2xl">
@@ -197,6 +207,33 @@ export default {
     projects: {},
     currentSlideNum: {
       default: 1,
+    },
+    breakpoints: {
+      default: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+
+        800: {
+          slidesPerView: 1.2,
+          spaceBetween: 12,
+        },
+        900: {
+          slidesPerView: 1.4,
+          spaceBetween: 15,
+        },
+        1200: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        1600: {
+          slidesPerView: 2.2,
+        },
+        1900: {
+          slidesPerView: 2.5,
+        },
+      },
     },
   },
   data() {

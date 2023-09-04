@@ -137,7 +137,7 @@
           <p class="mt-8 font-bold text-main-cyan">
             Related Projects:
             <span class="text-sm text-white/80"
-              >({{ experience.related_projects?.length }} Projects)</span
+              >({{ getPortfolios(null, experience.id)?.length }} Projects)</span
             >
           </p>
 
@@ -146,7 +146,8 @@
             :show-details-buttom="false"
             :slides-per-view="2"
             :about-page="true"
-            :projects="experience.related_projects"
+            :projects="getPortfolios(null, experience.id)"
+            :breakpoints="related_projects_breakpoints"
           />
         </div>
       </div>
@@ -195,9 +196,31 @@
 </template>
 
 <script>
+import { mapState } from "pinia";
+import useProjectsStore from "@/stores/projects";
 export default {
   data() {
     return {
+      related_projects_breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        900: {
+          slidesPerView: 1.2,
+          spaceBetween: 15,
+        },
+        1200: {
+          slidesPerView: 1.5,
+          spaceBetween: 20,
+        },
+        1600: {
+          slidesPerView: 1.8,
+        },
+        1900: {
+          slidesPerView: 2,
+        },
+      },
       skills: [
         {
           title: "Languages",
@@ -220,6 +243,7 @@ export default {
       ],
       experiences: [
         {
+          id: 1,
           company: "Ayandeh Bank",
           role: "Front-End Developer",
           bio: "Worked Hybrid with Ayandeh Bank. Using Jira for agile & GitLab for CI/CD",
@@ -234,60 +258,10 @@ export default {
             "Implemented socket-based communications for notiﬁcation system & chat. 80% of users wanted real-time updates.",
             "Had excellent communications with back-end developers for debugging issues & calling APIs. for example, sensitive data gets encoded on API calls in both ways to prevent MITM attacks. ",
           ],
-          related_projects: [
-            {
-              name: "FinnoTex",
-              title: "Trading CryptoCurrencies",
-              description:
-                "This platform (FinnoTex) has many features like advanced trading and OTC trading.",
-              img: "finnotex.png",
-              used: [
-                "html",
-                "css",
-                "js",
-                "nuxt",
-                "vue",
-
-                "tradingview",
-                "responsive",
-              ],
-            },
-            {
-              name: "FinnoBot",
-              title: "Automatic Trading",
-              description:
-                "Buy automatic trading bots and connect to ur trading accounts like binance and get profit with it",
-              img: "finnobot.jpg",
-              used: [
-                "html",
-                "css",
-                "js",
-                "nuxt",
-                "vue",
-                "tradingview",
-                "responsive",
-              ],
-            },
-            {
-              name: "Rotana",
-              title: "Bank Tokens Trading System",
-              description:
-                "This platform was meant to be used on banks for trading special tokens",
-              img: "rotana.png",
-              used: [
-                "html",
-                "css",
-                "js",
-                "nuxt",
-                "vue",
-                "tailwind",
-                "responsive",
-              ],
-            },
-          ],
           showDetails: false,
         },
         {
+          id: 2,
           company: "Freelance - Metriland, 4Sou & other companies",
           role: "Full-Stack Web Developmer ",
           bio: "Worked on multiple projects during freelancing & free time",
@@ -299,34 +273,10 @@ export default {
             "Used PHP MVC architecture for Back-end, to develop two times easier & cleaner than development with pure PHP.",
             "Developed an advanced online ordering system for the Namichap, So users could customize their orders with multiple options.",
           ],
-          related_projects: [
-            {
-              name: "Metriland",
-              title: "Tokenizing Realstates",
-              description:
-                "MetriLand offers investment on realstates by tokens, even with small budget you can get profit",
-              img: "metriland/home.png",
-              used: ["html", "css", "js", "nuxt", "vue", "pinia", "unocss"],
-            },
-            {
-              name: "4Sou",
-              title: "Job Searching for immigrants",
-              description:
-                "4sou was a large app with multiple languages support for immigrants to find their dream jobs",
-              img: "4sou-English.png",
-              used: ["html", "css", "js", "sass", "nuxt", "vue"],
-            },
-            {
-              name: "Andisheh",
-              title: "Online Library",
-              description: "Full of different books to read online",
-              img: "andishe-library.png",
-              used: ["html", "css", "js", "sass"],
-            },
-          ],
           showDetails: false,
         },
         {
+          id: 3,
           company: "Cactus ICT Center",
           role: "Web Developer & SEO Expert",
           bio: "Cactus ICT center is a web development company, most websites was based on WordPress CMS with some customizations",
@@ -337,24 +287,6 @@ export default {
             "Taught WordPress to co-workers & launched more than 10 diﬀerent websites with WordPress.",
             "Translated & Redesigned more than 5 advanced templates for customers. ",
             "Increased companies customers & traﬃc by 50% by doing search optimization for the websites",
-          ],
-          related_projects: [
-            {
-              name: "KavanPergas",
-              title: "Introduce Cloud Generator",
-              description:
-                "Cloud Generator for weddings and ceminars with ice and water",
-              img: "kavanpergas.jpg",
-              used: ["html", "css", "js"],
-            },
-            {
-              name: "SoundsLand",
-              title: "Music App",
-              description:
-                "With many futures to find any type of music you want, you can search based on country as well",
-              img: "soundsland.jpg",
-              used: ["html", "css", "js"],
-            },
           ],
           showDetails: false,
         },
@@ -374,6 +306,9 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    ...mapState(useProjectsStore, ["getPortfolios"]),
   },
 };
 </script>

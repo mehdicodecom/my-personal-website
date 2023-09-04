@@ -36,47 +36,75 @@
         </li>
       </ul>
     </div>
-
     <div class="grid grid-cols-4 grid-rows-3 gap-4 mt-8">
       <screen
         class="group relative col-span-3 row-span-3"
-        :project="project"
+        :media="project.media[project.mainMedia]"
+        screen-height="33.5rem"
         :only-screen="true"
       />
-      <img src="/imgs/projects/finnotex.png" alt="" class="rounded-lg" />
-
-      <img src="/imgs/projects/finnobot.jpg" alt="" class="rounded-lg" />
       <div
-        class="bg-dark-200 rounded-lg flex items-center justify-center text-3xl"
+        class="relative group row-span-1 h-42 overflow-hidden rounded-xl"
+        v-for="media in otherMedia"
       >
-        +2
+        <img :src="media.src" alt="" class="min-h-full" />
+        <zoom />
+      </div>
+
+      <div
+        v-if="project.media.length - 3 > 0"
+        class="bg-dark-200 row-span-1 trans3ms rounded-lg flex items-center justify-center text-3xl cursor-pointer hover:bg-dark-900"
+      >
+        +{{ project.media.length - 3 }}
       </div>
     </div>
-    <!-- {{ $route.params.project }} -->
+
+    <div class="mt-12 text-xl">
+      More description of the projects will be added later
+    </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "pinia";
+import useProjectsStore from "@/stores/projects";
 export default {
-  data() {
-    return {
-      project: {
-        name: "Metriland",
-        title: "Tokenizing Realstates",
-        description:
-          "MetriLand offers investment on realstates by tokens, even with small budget you can get profit",
-        img: "metriland/home.png",
-        media: [
-          {
-            type: "img",
-            src: "/imgs/metriland/home.png",
-          },
-        ],
-        used: ["html", "css", "js", "nuxt", "vue", "pinia", "unocss"],
-      },
-    };
+  computed: {
+    ...mapState(useProjectsStore, ["getPortfolio"]),
+    otherMedia() {
+      return this.project.media
+        .filter((media, index) => {
+          return index !== this.project.mainMedia;
+        })
+        .splice(0, 2);
+    },
+    project() {
+      let projectName = this.$route.params.project;
+      let project = this.getPortfolio(projectName);
+      if (!project) {
+        throw createError({
+          statusCode: 404,
+          message: "not found",
+          fatal: true,
+        });
+      }
+      return project;
+    },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.gallery {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: #333;
+  transition: background-position var(--transitionSpeed) linear;
+  background-position: 0 0;
+  background-size: 100% auto;
+  border-radius: 0.5rem;
+}
+</style>

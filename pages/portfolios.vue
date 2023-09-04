@@ -1,7 +1,7 @@
 <template>
   <div>
     <Projects
-      :projects="projects"
+      :projects="getPortfolios()"
       :portfolios-page="true"
       :headline="true"
       :slide-auto-play="homeProjectsSwiper.autoPlay"
@@ -10,9 +10,26 @@
 </template>
 
 <script>
+import { mapState } from "pinia";
+import useProjectsStore from "@/stores/projects";
 export default {
   data() {
     return {
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        770: {
+          slidesPerView: 2,
+          spaceBetween: 50,
+        },
+
+        771: {
+          slidesPerView: 4,
+          spaceBetween: 30,
+        },
+      },
       homeProjectsSwiper: {
         slidesPerView: 2,
         autoPlay: {
@@ -21,66 +38,10 @@ export default {
           pauseOnMouseEnter: true,
         },
       },
-      projects: [
-        {
-          name: "Metriland",
-          title: "Tokenizing Realstates",
-          description:
-            "MetriLand offers investment on realstates by tokens, even with small budget you can get profit",
-          img: "metriland/home.png",
-          used: ["html", "css", "js", "nuxt", "vue", "pinia", "unocss"],
-        },
-        {
-          name: "FinnoTex",
-          title: "Trading CryptoCurrencies",
-          description:
-            "This platform (FinnoTex) has many features like advanced trading and OTC trading.",
-          img: "finnotex.png",
-          used: [
-            "html",
-            "css",
-            "js",
-            "nuxt",
-            "vue",
-
-            "tradingview",
-            "responsive",
-          ],
-        },
-        {
-          name: "FinnoBot",
-          title: "Automatic Trading",
-          description:
-            "Buy automatic trading bots and connect to ur trading accounts like binance and get profit with it",
-          img: "finnobot.jpg",
-          used: [
-            "html",
-            "css",
-            "js",
-            "nuxt",
-            "vue",
-            "tradingview",
-            "responsive",
-          ],
-        },
-        {
-          name: "Rotana",
-          title: "Bank Tokens Trading System",
-          description:
-            "This platform was meant to be used on banks for trading special tokens",
-          img: "rotana.png",
-          used: ["html", "css", "js", "nuxt", "vue", "tailwind", "responsive"],
-        },
-        {
-          name: "4Sou",
-          title: "Job Searching for immigrants",
-          description:
-            "4sou was a large app with multiple languages support for immigrants to find their dream jobs",
-          img: "4sou-English.png",
-          used: ["html", "css", "js", "sass", "nuxt", "vue"],
-        },
-      ],
     };
+  },
+  computed: {
+    ...mapState(useProjectsStore, ["getPortfolios"]),
   },
 };
 </script>
