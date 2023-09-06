@@ -161,6 +161,11 @@
         <span class="relative inline-block z-20">Education </span>
       </div>
     </div>
+
+    <transition name="fadeScale">
+      <Gallery v-if="galleryVisible" :project="getPortfolio(activeProjectID)" />
+    </transition>
+
     <div class="mt-8 flex flex-col gap-6">
       <div
         v-for="edu in educations"
@@ -308,7 +313,12 @@ export default {
     };
   },
   computed: {
-    ...mapState(useProjectsStore, ["getPortfolios"]),
+    ...mapState(useProjectsStore, [
+      "getPortfolios",
+      "galleryVisible",
+      "activeProjectID",
+      "getPortfolio",
+    ]),
   },
 };
 </script>

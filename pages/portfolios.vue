@@ -6,6 +6,9 @@
       :headline="true"
       :slide-auto-play="homeProjectsSwiper.autoPlay"
     />
+    <transition name="fadeScale">
+      <Gallery v-if="galleryVisible" :project="getPortfolio(activeProjectID)" />
+    </transition>
   </div>
 </template>
 
@@ -41,7 +44,12 @@ export default {
     };
   },
   computed: {
-    ...mapState(useProjectsStore, ["getPortfolios"]),
+    ...mapState(useProjectsStore, [
+      "getPortfolios",
+      "galleryVisible",
+      "activeProjectID",
+      "getPortfolio",
+    ]),
   },
 };
 </script>

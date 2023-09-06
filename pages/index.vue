@@ -10,10 +10,24 @@
 
     <DetailsSec />
   </div>
+
+  <transition name="fadeScale">
+    <Gallery v-if="galleryVisible" :project="getPortfolio(activeProjectID)" />
+  </transition>
 </template>
 
 <script>
-export default {};
+import { mapState } from "pinia";
+import useProjectsStore from "@/stores/projects";
+export default {
+  computed: {
+    ...mapState(useProjectsStore, [
+      "galleryVisible",
+      "activeProjectID",
+      "getPortfolio",
+    ]),
+  },
+};
 </script>
 
 <style scoped>

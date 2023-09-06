@@ -37,14 +37,14 @@
     </div>
     <div class="grid grid-cols-4 grid-rows-3 gap-4 mt-8">
       <screen
-        @click="showGallery(projectIndex)"
+        @click="showGallery(project.id)"
         class="group relative col-span-3 row-span-3"
         :media="project.media[project.mainMedia]"
         screen-height="33.5rem"
         :only-screen="true"
       />
       <div
-        @click="showGallery(projectIndex, mediaIndex + 1)"
+        @click="showGallery(project.id, mediaIndex + 1)"
         class="relative group row-span-1 h-42 overflow-hidden rounded-xl"
         v-for="(media, mediaIndex) in otherMedia"
       >
@@ -53,7 +53,7 @@
       </div>
 
       <div
-        @click="showGallery(projectIndex, 3)"
+        @click="showGallery(project.id, 3)"
         v-if="project.media.length - 3 > 0"
         class="bg-dark-200 row-span-1 trans3ms rounded-lg flex items-center justify-center text-3xl cursor-pointer hover:bg-dark-900"
       >
@@ -89,7 +89,7 @@ export default {
     },
     project() {
       let projectName = this.$route.params.project;
-      let project = this.getPortfolio(projectName);
+      let project = this.getPortfolio(null, projectName);
       if (!project) {
         throw createError({
           statusCode: 404,
@@ -98,11 +98,6 @@ export default {
         });
       }
       return project;
-    },
-    projectIndex() {
-      return this.portfolios.findIndex(
-        (portfolio) => portfolio.name === this.project.name
-      );
     },
   },
   methods: {

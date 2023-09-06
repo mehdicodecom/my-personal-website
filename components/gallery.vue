@@ -1,5 +1,7 @@
 <template>
-  <div class="fixed top-0 h-screen overflow-auto w-full z-90 grid bg-black/80">
+  <div
+    class="fixed top-0 left-0 h-screen overflow-auto w-full z-90 grid bg-black/80"
+  >
     <div class="bg-dark/60 h-18 flex">
       <div
         @click="prevMedia"
@@ -76,7 +78,7 @@
     <screen
       ref="screen"
       class="relative w-8/12 mx-auto my-4"
-      :media="project.media[activeMedia]"
+      :media="project.media[activeMediaIndex]"
       screen-height="40rem"
       :only-screen="true"
       :zoom="false"
@@ -100,12 +102,12 @@ export default {
   },
   computed: {
     ...mapState(useProjectsStore, [
-      "activeMedia",
+      "activeMediaIndex",
       "imgScrollDown",
       "videoPlaying",
     ]),
     currentMedia() {
-      return this.project.media[this.activeMedia];
+      return this.project.media[this.activeMediaIndex];
     },
   },
   methods: {

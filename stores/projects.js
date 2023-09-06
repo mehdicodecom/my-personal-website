@@ -3,6 +3,7 @@ export default defineStore("projects", {
   state: () => ({
     portfolios: [
       {
+        id: 1,
         name: "Metriland",
         title: "Tokenizing Realstates",
         description:
@@ -48,6 +49,7 @@ export default defineStore("projects", {
         related_experience_id: 2,
       },
       {
+        id: 2,
         name: "FinnoTex",
         title: "Trading CryptoCurrencies",
         description:
@@ -113,6 +115,7 @@ export default defineStore("projects", {
         related_experience_id: 1,
       },
       {
+        id: 3,
         name: "FinnoBot",
         title: "Automatic Trading",
         description:
@@ -134,6 +137,7 @@ export default defineStore("projects", {
         related_experience_id: 1,
       },
       {
+        id: 4,
         name: "Rotana",
         title: "Bank Tokens Trading System",
         description:
@@ -206,6 +210,7 @@ export default defineStore("projects", {
         related_experience_id: 1,
       },
       {
+        id: 5,
         name: "4Sou",
         title: "Job Searching for immigrants",
         description:
@@ -263,6 +268,7 @@ export default defineStore("projects", {
         related_experience_id: 2,
       },
       {
+        id: 6,
         name: "Andisheh",
         title: "Online Library",
         description: "Full of different books to read online",
@@ -320,6 +326,7 @@ export default defineStore("projects", {
         related_experience_id: 2,
       },
       {
+        id: 7,
         name: "MakanChap",
         title: "Printing services",
         description:
@@ -351,6 +358,7 @@ export default defineStore("projects", {
         related_experience_id: 2,
       },
       {
+        id: 8,
         name: "Delijan",
         title: "Products for baby safety",
         description:
@@ -402,6 +410,7 @@ export default defineStore("projects", {
         related_experience_id: 2,
       },
       {
+        id: 9,
         name: "SoundsLand",
         title: "Find your favorite music",
         description: "New Music website with powerful search engine for musics",
@@ -442,6 +451,7 @@ export default defineStore("projects", {
         related_experience_id: 3,
       },
       {
+        id: 10,
         name: "KavanPergas",
         title: "Artificial Ice Cloud Generator",
         description:
@@ -477,6 +487,7 @@ export default defineStore("projects", {
         related_experience_id: 3,
       },
       {
+        id: 11,
         name: "WordPress",
         title: "Projects",
         description:
@@ -499,9 +510,8 @@ export default defineStore("projects", {
       },
     ],
     galleryVisible: false,
-    darkLayerVisible: false,
-    activeProjectGallery: 0,
-    activeMedia: 0,
+    activeProjectID: 0,
+    activeMediaIndex: 0,
     imgScrollDown: false,
     videoPlaying: false,
   }),
@@ -523,42 +533,45 @@ export default defineStore("projects", {
       };
     },
     getPortfolio: (state) => {
-      return (name) => {
-        return state.portfolios.find(
-          (portfolio) => portfolio.name.toLowerCase() === name.toLowerCase()
-        );
+      return (id, name) => {
+        if (name) {
+          return state.portfolios.find(
+            (portfolio) => portfolio.name.toLowerCase() === name.toLowerCase()
+          );
+        } else if (id) {
+          return state.portfolios.find((portfolio) => portfolio.id === id);
+        }
       };
     },
     portfolioMediaLength(state) {
-      return state.portfolios[state.activeProjectGallery].media.length;
+      return this.getPortfolio(state.activeProjectID).media.length;
     },
   },
   actions: {
-    showGallery(projectIndex, activeMedia = null) {
-      this.activeProjectGallery = projectIndex;
-      this.darkLayerVisible = true;
+    showGallery(projectID, activeMedia) {
+      console.log(projectID);
+      this.activeProjectID = projectID;
       this.galleryVisible = true;
-      if (activeMedia) this.activeMedia = activeMedia;
+      if (activeMedia) this.activeMediaIndex = activeMedia;
     },
     hideGallery() {
-      this.darkLayerVisible = false;
       this.galleryVisible = false;
-      this.activeProjectGallery = 0;
-      this.activeMedia = 0;
+      this.activeProjectID = this.portfolios[0].id;
+      this.activeMediaIndex = 0;
       this.resetGallery();
     },
     nextMedia() {
       this.resetGallery();
-      if (this.activeMedia === this.portfolioMediaLength - 1)
-        this.activeMedia = 0;
-      else this.activeMedia++;
+      if (this.activeMediaIndex === this.portfolioMediaLength - 1)
+        this.activeMediaIndex = 0;
+      else this.activeMediaIndex++;
       this.resetScroll();
     },
     prevMedia() {
       this.resetGallery();
-      if (this.activeMedia === 0)
-        this.activeMedia = this.portfolioMediaLength - 1;
-      else this.activeMedia--;
+      if (this.activeMediaIndex === 0)
+        this.activeMediaIndex = this.portfolioMediaLength - 1;
+      else this.activeMediaIndex--;
       this.resetScroll();
     },
     resetGallery() {
@@ -566,8 +579,9 @@ export default defineStore("projects", {
       this.videoPlaying = false;
     },
     resetScroll() {
-      let currentMedia =
-        this.portfolios[this.activeProjectGallery].media[this.activeMedia];
+      let currentMedia = this.getPortfolio(this.activeProjectID).media[
+        this.activeMediaIndex
+      ];
       let currentMediaTransition = currentMedia.transition;
       currentMedia.transition = "0s";
       setTimeout(() => {
