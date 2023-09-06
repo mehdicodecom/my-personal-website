@@ -3,7 +3,12 @@
     <Title>Mehdi Rafiei | Front-end Developer | Home</Title>
   </Head>
 
-  <div class="showup flex px-40 justify-between 2xl:mt-60 xl:mt-46">
+  <div
+    :class="[
+      'flex px-40 justify-between 2xl:mt-60 xl:mt-46',
+      { showup: showupLoadTime === 0 },
+    ]"
+  >
     <Home-HelloWorld />
 
     <Home-Circular />
@@ -17,8 +22,9 @@
 </template>
 
 <script>
-import { mapState } from "pinia";
+import { mapState, mapWritableState } from "pinia";
 import useProjectsStore from "@/stores/projects";
+import useMainStore from "@/stores/main";
 export default {
   computed: {
     ...mapState(useProjectsStore, [
@@ -26,6 +32,10 @@ export default {
       "activeProjectID",
       "getPortfolio",
     ]),
+    ...mapWritableState(useMainStore, ["showupLoadTime"]),
+  },
+  beforeMount() {
+    if (this.showupLoadTime < 3) this.showupLoadTime++;
   },
 };
 </script>

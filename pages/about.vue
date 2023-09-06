@@ -1,5 +1,5 @@
 <template>
-  <div class="relative px-46 mx-auto">
+  <div class="relative px-46 mx-auto w-full">
     <div class="relative mt-40 text-3xl font-bold">
       <span
         class="updown inline-block absolute -top-1 -left-2.5 w-14 h-14 bg-main-orange rounded-full"

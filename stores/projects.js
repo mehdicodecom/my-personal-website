@@ -58,13 +58,20 @@ export default defineStore("projects", {
           {
             type: "video",
             src: "/projects/finnotex/finnotex.mp4",
-            title: "Video of almost all sections",
+            title: "Demo",
           },
           {
             type: "img",
-            src: "/projects/finnotex/home.png",
-            title: "Home Page Light Version",
-            transition: "4s",
+            src: "/projects/finnotex/otc.png",
+            title: "OTC Trading Light Page",
+            transition: "3s",
+            scroll: true,
+          },
+          {
+            type: "img",
+            src: "/projects/finnotex/trade.png",
+            title: "Advanced Trading Light Page",
+            transition: "3s",
             scroll: true,
           },
           {
@@ -81,24 +88,11 @@ export default defineStore("projects", {
             transition: "4s",
             scroll: true,
           },
-          {
-            type: "img",
-            src: "/projects/finnotex/otc.png",
-            title: "OTC Trading Light Page",
-            transition: "3s",
-            scroll: true,
-          },
+
           {
             type: "img",
             src: "/projects/finnotex/otc-dark.png",
             title: "OTC Trading Dark Page",
-            transition: "3s",
-            scroll: true,
-          },
-          {
-            type: "img",
-            src: "/projects/finnotex/trade.png",
-            title: "Advanced Trading Light Page",
             transition: "3s",
             scroll: true,
           },
@@ -123,13 +117,43 @@ export default defineStore("projects", {
         media: [
           {
             type: "video",
-            title: "Video of different sections",
+            title: "Demo",
             src: "/projects/finnobot/video.mp4",
           },
           {
             type: "img",
-            title: "Header of Home Page",
-            src: "/projects/finnobot/home-header.jpg",
+            title: "Light Version",
+            src: "/projects/finnobot/light.jpg",
+          },
+          {
+            type: "img",
+            title: "Create Bot",
+            src: "/projects/finnobot/createbot.jpg",
+          },
+          {
+            type: "img",
+            title: "Dashboard - List of created bots",
+            src: "/projects/finnobot/dashboard.jpg",
+          },
+          {
+            type: "img",
+            title: "Register Page",
+            src: "/projects/finnobot/register.jpg",
+          },
+          {
+            type: "img",
+            title: "Login Page",
+            src: "/projects/finnobot/login.jpg",
+          },
+          {
+            type: "img",
+            title: "OTP - 2 factor authentication code",
+            src: "/projects/finnobot/otp.jpg",
+          },
+          {
+            type: "img",
+            title: "Contact us page",
+            src: "/projects/finnobot/contact.jpg",
           },
         ],
         mainMedia: 0,
@@ -145,13 +169,19 @@ export default defineStore("projects", {
         media: [
           {
             type: "video",
-            title: "Project video",
+            title: "Demo",
             src: "/projects/rotana/video.mp4",
           },
           {
             type: "img",
-            title: "Home Page",
-            src: "/projects/rotana/home.png",
+            title: "Legal user buying token step five",
+            src: "/projects/rotana/legal-buy-5.png",
+          },
+          {
+            type: "img",
+            title:
+              "Added section in buying token - online Ayandeh Bank receipt coded",
+            src: "/projects/rotana/online-receipt.png",
           },
           {
             type: "img",
@@ -165,20 +195,15 @@ export default defineStore("projects", {
           },
           {
             type: "img",
+            title: "Home Page",
+            src: "/projects/rotana/home.png",
+          },
+          {
+            type: "img",
             title: "Legal user buying token step three",
             src: "/projects/rotana/legal-buy-3.png",
           },
-          {
-            type: "img",
-            title:
-              "Added section in buying token - online Ayandeh Bank receipt coded",
-            src: "/projects/rotana/online-receipt.png",
-          },
-          {
-            type: "img",
-            title: "Legal user buying token step five",
-            src: "/projects/rotana/legal-buy-5.png",
-          },
+
           {
             type: "img",
             title: "Banker Dashboard",
@@ -224,6 +249,16 @@ export default defineStore("projects", {
           },
           {
             type: "img",
+            title: "Admin Panel in english",
+            src: "/projects/4sou/dashboard-english.png",
+          },
+          {
+            type: "img",
+            title: "Panel home page slider settings",
+            src: "/projects/4sou/panel.png",
+          },
+          {
+            type: "img",
             title: "Home Page in English",
             src: "/projects/4sou/4sou-English.png",
           },
@@ -242,21 +277,13 @@ export default defineStore("projects", {
             title: "Home Page in Arabic",
             src: "/projects/4sou/4sou-arabic.png",
           },
-          {
-            type: "img",
-            title: "Admin Panel in english",
-            src: "/projects/4sou/dashboard-english.png",
-          },
+
           {
             type: "img",
             title: "Legal user buying token step five",
             src: "/projects/4sou/dashboard-persian.png",
           },
-          {
-            type: "img",
-            title: "Panel home page slider settings",
-            src: "/projects/4sou/panel.png",
-          },
+
           {
             type: "img",
             title: "Panel Video",

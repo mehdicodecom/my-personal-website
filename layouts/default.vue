@@ -1,9 +1,10 @@
 <template>
   <div class="flex flex-col min-h-screen bg-main-dark">
     <coloredCodes />
-    <div class="min-h-screen">
+    <div class="flex flex-col min-h-screen">
       <AppHeader />
       <slot />
+      <AppFooter v-if="$route.path === '/contact_me'" />
     </div>
     <Projects
       v-if="$route.path === '/'"
@@ -12,7 +13,7 @@
       :home-page="true"
       :slide-auto-play="homeProjectsSwiper.autoPlay"
     />
-    <AppFooter />
+    <AppFooter v-if="$route.path !== '/contact_me'" />
   </div>
 </template>
 

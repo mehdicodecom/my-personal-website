@@ -8,6 +8,9 @@ export default defineConfig({
     "text-code-green",
     "text-code-orange",
     "text-code-gray",
+    "bg-socials-linkedin",
+    "bg-socials-github",
+    "bg-socials-telegram",
   ],
   transformers: [transformerVariantGroup()],
   theme: {

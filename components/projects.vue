@@ -1,6 +1,10 @@
 <template>
   <section
-    :class="['relative flex-1', { 'showup pl-40 mb-20': homePage }]"
+    :class="[
+      'relative flex-1',
+      { 'pl-40 mb-20': homePage },
+      { showup: homePage && showupLoadTime <= 1 },
+    ]"
     v-if="!portfoliosPage"
   >
     <div class="flex items-center justify-between mr-10" v-if="headline">
@@ -192,8 +196,9 @@
 </template>
 
 <script>
-import { mapActions } from "pinia";
+import { mapActions, mapState } from "pinia";
 import useProjectsStore from "@/stores/projects";
+import useMainStore from "@/stores/main";
 export default {
   props: {
     showDetailsButtom: { default: true },
@@ -247,6 +252,9 @@ export default {
       nextDisabled: false,
       prevDisabled: true,
     };
+  },
+  computed: {
+    ...mapState(useMainStore, ["showupLoadTime"]),
   },
   methods: {
     ...mapActions(useProjectsStore, ["showGallery"]),
