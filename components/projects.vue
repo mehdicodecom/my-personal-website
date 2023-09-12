@@ -2,7 +2,7 @@
   <section
     :class="[
       'relative flex-1',
-      { 'xl:pl-40 lg:pl-34 xs:pl-14 xs:mt-20 mb-8 ': homePage },
+      { 'xl:pl-40 lg:pl-34 xs:pl-14 xs:(pl-6 mt-30) mb-8 ': homePage },
     ]"
     v-if="!portfoliosPage"
   >
@@ -18,8 +18,8 @@
         :to="{ path: '/portfolios' }"
         class="flex items-center gap-1 text-lg text-main-orange font-bold"
       >
-        View More Projects
-
+        <span class="sm:block xs:(hidden)">View More Projects</span>
+        <span class="sm:hidden xs:(block)">View More</span>
         <svg :class="['relative w-10 h-10 ']">
           <use :href="'/imgs/icons.svg' + `#arrow`"></use>
         </svg>
@@ -29,25 +29,25 @@
       :class="[
         'flex w-full',
         { 'mr-10 mt-4 mb-8': aboutPage },
-        { 'my-10': homePage },
+        { 'sm:(my-10) xs:(mt-4 mb-6)': homePage },
       ]"
     >
       <swipeCarousel
         @slide-start="sliderChanged"
-        @slide-end="slideEnd"
         :ref="`slider${currentSliderNum}`"
         :breakpoints="breakpoints"
+        snap-align="start"
         v-bind="settings"
         class="w-full"
       >
         <swipeSlide
           v-for="project in projects"
           :key="project.id"
-          class="relative border-12 border-transparent"
+          class="relative border-r-20 border-transparent"
         >
           <div
             :class="[
-              'flex flex-col gap-6 justify-center items-center bg-dark rounded-lg py-8 pr-15 pl-15',
+              'flex flex-col gap-6 justify-center items-center bg-dark rounded-lg py-8 sm:(pr-15 pl-15) xs:(pr-4 pl-4)',
               homePage ? 'shadow-lg' : 'border border-neutral-700',
             ]"
           >
@@ -60,7 +60,7 @@
             </a>
             <screen
               @click="showGallery(project.id)"
-              class="relative z-50 md:w-140 sm:w-130"
+              class="relative z-50 md:w-140 sm:w-130 xs:w-100"
               :media="project.media[project.mainMedia]"
             />
             <section
@@ -243,10 +243,7 @@ export default {
   },
   data() {
     return {
-      settings: {
-        itemsToShow: 2.47,
-        snapAlign: "center",
-      },
+      width: null,
       nextDisabled: false,
       prevDisabled: true,
     };
@@ -254,6 +251,37 @@ export default {
   computed: {
     currentSlider() {
       return this.$refs[`slider${this.currentSliderNum}`];
+    },
+    settings() {
+      if (process.client) {
+        let width = window.innerWidth;
+        let breakpoint = 1900;
+        switch (true) {
+          case width >= 1600 && width < 1900: {
+            breakpoint = 1600;
+            break;
+          }
+          case width >= 1400 && width < 1600: {
+            breakpoint = 1400;
+            break;
+          }
+          case width >= 1200 && width < 1400: {
+            breakpoint = 1200;
+            break;
+          }
+          case width >= 900 && width < 1200: {
+            breakpoint = 900;
+            break;
+          }
+          case width >= 320 && width < 900: {
+            breakpoint = 320;
+            break;
+          }
+        }
+        return {
+          itemsToShow: this.breakpoints[breakpoint].itemsToShow,
+        };
+      }
     },
   },
   methods: {
@@ -270,16 +298,12 @@ export default {
         this.currentSlider.next();
     },
     sliderChanged() {
-      console.log("scrollstart");
+      let maxSlide = this.currentSlider.data.maxSlide.value;
       setTimeout(() => {
         this.prevDisabled = this.currentSlider.data.currentSlide.value === 0;
         this.nextDisabled =
-          this.currentSlider.data.currentSlide.value ===
-          this.currentSlider.data.maxSlide.value;
+          this.currentSlider.data.currentSlide.value === maxSlide;
       }, 50);
-    },
-    slideEnd() {
-      console.log("scrollend");
     },
     goToLink(link) {
       this.$router.push({ path: link });

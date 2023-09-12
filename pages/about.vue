@@ -216,6 +216,9 @@ export default {
         1200: {
           itemsToShow: 1.5,
         },
+        1400: {
+          itemsToShow: 1.6,
+        },
         1600: {
           itemsToShow: 1.8,
         },

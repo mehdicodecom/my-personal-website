@@ -20,11 +20,18 @@
                 { 'xs:(text-main-orange)': index === activeMenu },
               ]"
             >
-              <svg class="relative w-8 h-8">
+              <svg
+                :class="[
+                  'relative trans3ms w-8 h-8',
+                  { 'xs:(w-10 h-10)': index !== activeMenu },
+                ]"
+              >
                 <use :href="'/imgs/icons.svg' + `#${menu.icon}`"></use>
               </svg>
 
-              <span>{{ menu.title }}</span>
+              <span :class="[{ 'xs:hidden': index !== activeMenu }]">{{
+                menu.title
+              }}</span>
             </nuxt-link>
           </div>
           <span

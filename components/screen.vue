@@ -36,14 +36,16 @@
         </div>
         <span class="label">MacBook Pro</span>
       </div>
-      <div class="keys" v-if="!onlyScreen">
-        <div class="board"></div>
-        <div class="touchpad"></div>
+      <div class="sm:block xs:hidden">
+        <div class="keys" v-if="!onlyScreen">
+          <div class="board"></div>
+          <div class="touchpad"></div>
+        </div>
+        <div class="comp" v-if="!onlyScreen">
+          <div class="notch"></div>
+        </div>
+        <div class="compBottom" v-if="!onlyScreen"></div>
       </div>
-      <div class="comp" v-if="!onlyScreen">
-        <div class="notch"></div>
-      </div>
-      <div class="compBottom" v-if="!onlyScreen"></div>
     </div>
   </div>
 </template>
@@ -97,7 +99,7 @@ export default {
   left: 0;
   right: 0;
   top: 0;
-  margin: 12px 10px 22px;
+  margin: 12px 2 22px;
   background: #333;
   transition: background-position var(--transitionSpeed) linear;
   background-position: 0 0;

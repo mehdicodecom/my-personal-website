@@ -48,7 +48,18 @@
         class="relative group row-span-1 h-42 overflow-hidden rounded-xl"
         v-for="(media, mediaIndex) in otherMedia"
       >
-        <img :src="media.src" alt="" class="min-h-full" />
+        <img
+          v-if="media?.type === 'img'"
+          :src="media.src"
+          alt=""
+          class="min-h-full"
+        />
+        <video
+          class="min-h-full w-full"
+          v-if="media?.type === 'video'"
+          :src="media?.src"
+          controlsList="nodownload"
+        ></video>
         <zoom />
       </div>
 
