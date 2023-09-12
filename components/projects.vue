@@ -2,15 +2,16 @@
   <section
     :class="[
       'relative flex-1',
-      { 'pl-40 mb-20': homePage },
-      { showup: homePage && showupLoadTime <= 1 },
+      { 'xl:pl-40 lg:pl-34 xs:pl-14 xs:mt-20 mb-8 ': homePage },
     ]"
     v-if="!portfoliosPage"
   >
     <div class="flex items-center justify-between mr-10" v-if="headline">
       <h2 class="relative text-left">
-        <span class="text-5xl tracking-widest">Latest</span>
-        <span class="text-3xl font-bold text-main-orange"> Projects </span>
+        <span class="2xl:text-5xl xs:text-4xl tracking-widest">Latest</span>
+        <span class="2xl:text-3xl xs:text-2xl font-bold text-main-orange">
+          Projects
+        </span>
       </h2>
 
       <nuxt-link
@@ -25,75 +26,76 @@
       </nuxt-link>
     </div>
     <div
-      :class="['flex', { 'mr-10 mt-4 mb-8': aboutPage }, { 'my-10': homePage }]"
+      :class="[
+        'flex w-full',
+        { 'mr-10 mt-4 mb-8': aboutPage },
+        { 'my-10': homePage },
+      ]"
     >
-      <Swiper
-        :class="'sw' + currentSlideNum"
-        :modules="[SwiperAutoplay, SwiperNavigation]"
-        :slides-per-view="slidesPerView"
-        :navigation="true"
-        :space-between="slideSpaceBetween"
-        @slideChange="SwitchSlideNavStates"
+      <swipeCarousel
+        @slide-start="sliderChanged"
+        @slide-end="slideEnd"
+        :ref="`slider${currentSliderNum}`"
         :breakpoints="breakpoints"
-        :loop="false"
-        :autoplay="slideAutoPlay"
+        v-bind="settings"
+        class="w-full"
       >
-        <SwiperSlide
+        <swipeSlide
           v-for="project in projects"
           :key="project.id"
-          :class="[
-            'relative bg-dark rounded-lg flex flex-col gap-6 py-8 pr-18 pl-18 justify-center items-center',
-            homePage ? 'shadow-lg' : 'border border-neutral-700',
-          ]"
+          class="relative border-12 border-transparent"
         >
-          <nuxt-link
-            :to="{ path: `/project/${project.name}` }"
-            class="absolute z-40 w-full h-full"
+          <div
+            :class="[
+              'flex flex-col gap-6 justify-center items-center bg-dark rounded-lg py-8 pr-15 pl-15',
+              homePage ? 'shadow-lg' : 'border border-neutral-700',
+            ]"
           >
-          </nuxt-link>
-          <screen
-            @click="showGallery(project.id)"
-            class="relative z-50 w-140"
-            :media="project.media[project.mainMedia]"
-          />
-          <section
-            class="flex flex-col gap-2 mt-2 flex-wrap items-center justify-center"
-          >
-            <p class="font-medium text-2xl">
-              <span class="text-main-orange">{{ project.name }}</span>
-              {{ project.title }}
-            </p>
-            <p class="text-lg">{{ project.description }}</p>
-
-            <ul class="flex gap-4 mt-6">
-              <li v-for="skill in project.used">
-                <img
-                  :src="`/imgs/skills/${skill}.svg`"
-                  alt=""
-                  class="w-8 h-8"
-                  :title="skill"
-                />
-              </li>
-            </ul>
-
-            <nuxt-link
-              v-if="showDetailsButtom"
-              :to="{ path: `/project/${project.name}` }"
-              class="relative z-50 bg-main-orange w-full flex items-center justify-center font-medium text-lg h-12 rounded-md mt-8 hover:bg-main-orange/80"
-              >More Details</nuxt-link
+            <a
+              @click.prevent="
+                $router.push({ path: `/project/${project.name}` })
+              "
+              class="absolute z-30 w-full h-full cursor-pointer"
             >
-          </section>
-        </SwiperSlide>
-        <SwiperControls
-          ref="swiperSlide"
-          v-if="projects?.length > slidesPerView"
-        />
-      </Swiper>
+            </a>
+            <screen
+              @click="showGallery(project.id)"
+              class="relative z-50 md:w-140 sm:w-130"
+              :media="project.media[project.mainMedia]"
+            />
+            <section
+              class="flex flex-col gap-2 mt-2 flex-wrap items-center justify-center w-full"
+            >
+              <p class="font-medium text-2xl">
+                <span class="text-main-orange">{{ project.name }}</span>
+                {{ project.title }}
+              </p>
+              <p class="text-lg">{{ project.description }}</p>
+
+              <ul class="flex gap-4 mt-6">
+                <li v-for="skill in project.used">
+                  <img
+                    :src="`/imgs/skills/${skill}.svg`"
+                    alt=""
+                    class="w-8 h-8"
+                    :title="skill"
+                  />
+                </li>
+              </ul>
+
+              <nuxt-link
+                v-if="showDetailsButtom"
+                :to="{ path: `/project/${project.name}` }"
+                class="relative z-50 bg-main-orange w-full flex items-center justify-center font-medium text-lg h-12 rounded-md mt-8 hover:bg-main-orange/80"
+              >
+                More Details
+              </nuxt-link>
+            </section>
+          </div>
+        </swipeSlide>
+      </swipeCarousel>
     </div>
-    <div
-      v-if="projects?.length > slidesPerView"
-      :class="['flex justify-center gap-3', { 'mr-10': aboutPage }]"
-    >
+    <div :class="['flex justify-center gap-3', { 'mr-10': aboutPage }]">
       <button
         @click="prevSlide"
         :class="[
@@ -144,7 +146,7 @@
       <div
         v-for="project in projects"
         :key="project.id"
-        class="relative bg-dark rounded-lg flex gap-26 py-8 pr-18 pl-18 shadow-lg"
+        class="relative bg-dark rounded-lg flex gap-26 py-8 pr-16 pl-18 shadow-lg"
       >
         <nuxt-link
           :to="{ path: `/project/${project.name}` }"
@@ -196,9 +198,8 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "pinia";
+import { mapActions } from "pinia";
 import useProjectsStore from "@/stores/projects";
-import useMainStore from "@/stores/main";
 export default {
   props: {
     showDetailsButtom: { default: true },
@@ -207,80 +208,81 @@ export default {
     aboutPage: { default: false },
     portfoliosPage: { default: false },
     slidesPerView: {
-      default: "2.5",
-    },
-    slideSpaceBetween: {
-      default: "32",
+      default: 2.5,
     },
     slideAutoPlay: {
       default: false,
     },
-    projects: {},
-    currentSlideNum: {
+    currentSliderNum: {
       default: 1,
     },
+    projects: {},
     breakpoints: {
       default: {
         320: {
-          slidesPerView: 1,
-          spaceBetween: 10,
+          itemsToShow: 1,
         },
 
-        800: {
-          slidesPerView: 1.2,
-          spaceBetween: 12,
-        },
         900: {
-          slidesPerView: 1.4,
-          spaceBetween: 15,
+          itemsToShow: 1.4,
         },
         1200: {
-          slidesPerView: 2,
-          spaceBetween: 20,
+          itemsToShow: 1.8,
+        },
+        1400: {
+          itemsToShow: 2,
         },
         1600: {
-          slidesPerView: 2.2,
+          itemsToShow: 2.2,
         },
         1900: {
-          slidesPerView: 2.5,
+          itemsToShow: 2.47,
         },
       },
     },
   },
   data() {
     return {
+      settings: {
+        itemsToShow: 2.47,
+        snapAlign: "center",
+      },
       nextDisabled: false,
       prevDisabled: true,
     };
   },
   computed: {
-    ...mapState(useMainStore, ["showupLoadTime"]),
+    currentSlider() {
+      return this.$refs[`slider${this.currentSliderNum}`];
+    },
   },
   methods: {
     ...mapActions(useProjectsStore, ["showGallery"]),
-    nextSlide() {
-      if (!this.nextDisabled) {
-        this.$refs.swiperSlide.next();
-        this.SwitchSlideNavStates();
-      }
-    },
     prevSlide() {
-      if (!this.prevDisabled) {
-        this.$refs.swiperSlide.prev();
-        this.SwitchSlideNavStates();
-      }
+      if (this.currentSlider.data.currentSlide.value !== 0)
+        this.currentSlider.prev();
     },
-
-    SwitchSlideNavStates() {
-      let currentSwlider = `.sw${this.currentSlideNum}`;
-      let nextbtn = document.querySelector(
-        `${currentSwlider} .swiper-button-next`
-      );
-      this.nextDisabled = nextbtn.classList.contains("swiper-button-disabled");
-      let prevbtn = document.querySelector(
-        `${currentSwlider} .swiper-button-prev`
-      );
-      this.prevDisabled = prevbtn.classList.contains("swiper-button-disabled");
+    nextSlide() {
+      if (
+        this.currentSlider.data.currentSlide.value !==
+        this.currentSlider.data.maxSlide.value
+      )
+        this.currentSlider.next();
+    },
+    sliderChanged() {
+      console.log("scrollstart");
+      setTimeout(() => {
+        this.prevDisabled = this.currentSlider.data.currentSlide.value === 0;
+        this.nextDisabled =
+          this.currentSlider.data.currentSlide.value ===
+          this.currentSlider.data.maxSlide.value;
+      }, 50);
+    },
+    slideEnd() {
+      console.log("scrollend");
+    },
+    goToLink(link) {
+      this.$router.push({ path: link });
     },
   },
 };

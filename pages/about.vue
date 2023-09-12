@@ -142,7 +142,7 @@
           </p>
 
           <projects
-            :current-slide-num="index + 1"
+            :current-slider-num="index + 1"
             :show-details-buttom="false"
             :slides-per-view="2"
             :about-page="true"
@@ -208,22 +208,19 @@ export default {
     return {
       related_projects_breakpoints: {
         320: {
-          slidesPerView: 1,
-          spaceBetween: 10,
+          itemsToShow: 1,
         },
         900: {
-          slidesPerView: 1.2,
-          spaceBetween: 15,
+          itemsToShow: 1.2,
         },
         1200: {
-          slidesPerView: 1.5,
-          spaceBetween: 20,
+          itemsToShow: 1.5,
         },
         1600: {
-          slidesPerView: 1.8,
+          itemsToShow: 1.8,
         },
         1900: {
-          slidesPerView: 2,
+          itemsToShow: 2,
         },
       },
       skills: [

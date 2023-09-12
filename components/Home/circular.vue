@@ -1,6 +1,8 @@
 <template>
-  <div class="relative">
-    <div class="circularSec">
+  <div
+    class="relative md:(overflow-initial w-initial h-initial block) xs:(overflow-hidden w-90 h-94 flex items-center justify-center)"
+  >
+    <div class="circularSec relative">
       <div class="circleLoading"></div>
       <div class="circularAnimation">
         <img src="/imgs/Mehdi.png" draggable="false" class="mainImg" alt="" />
@@ -55,6 +57,27 @@ export default {};
   --subCircleDiameter: calc(var(--circleDiameter) + var(--biggerSize) + 3rem);
   width: var(--subCircleDiameter);
   height: var(--subCircleDiameter);
+}
+@media only screen and (min-width: 300px) {
+  .circularSec {
+    --circleDiameter: 12rem;
+    --icon: 20px;
+    --circlesBigger: 2.5rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .circularSec {
+    --circleDiameter: 12rem;
+    --icon: 26px;
+    --circlesBigger: 2.5rem;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .circularSec {
+    --circleDiameter: 11rem;
+    --icon: 22px;
+    --circlesBigger: 2rem;
+  }
 }
 @media only screen and (min-width: 1280px) {
   .circularSec {

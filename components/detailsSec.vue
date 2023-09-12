@@ -1,6 +1,11 @@
 <template>
-  <div class="relative flex flex-wrap w-120">
-    <p v-for="(detail, key) in details" class="w-1/2">
+  <div
+    class="relative flex flex-wrap xl:w-120 lg:(mt-0) md:(w-100 gap-y-4 gap-x-0 justify-start mx-0) sm:(w-180) xs:(w-220 mt-14 gap-4 mx-auto justify-center order-3)"
+  >
+    <p
+      v-for="(detail, key) in details"
+      class="md:(w-1/2 bg-transparent p-0) xs:(w-5/12 bg-dark-400 py-6 px-4)"
+    >
       <span class="block loading textLoading">
         <span class="inline-block font-semibold text-main-orange">
           {{ key }}

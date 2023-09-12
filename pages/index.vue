@@ -4,17 +4,21 @@
   </Head>
 
   <div
-    :class="[
-      'flex px-40 justify-between 2xl:mt-60 xl:mt-46',
-      { showup: showupLoadTime === 0 },
-    ]"
+    class="flex xl:px-40 lg:(px-34 w-full flex-nowrap) md:(w-10/12 mt-36 mx-auto) xs:(w-full px-2 flex-wrap mt-4) justify-between mt-46"
   >
     <Home-HelloWorld />
 
-    <Home-Circular />
+    <Home-Circular class="xs:(order-1 mx-auto)" />
 
     <DetailsSec />
   </div>
+
+  <Projects
+    class="lg:mt-36 sm:mt-26"
+    :projects="getPortfolios(8)"
+    :headline="true"
+    :home-page="true"
+  />
 
   <transition name="fadeScale">
     <Gallery v-if="galleryVisible" :project="getPortfolio(activeProjectID)" />
@@ -22,20 +26,16 @@
 </template>
 
 <script>
-import { mapState, mapWritableState } from "pinia";
+import { mapState } from "pinia";
 import useProjectsStore from "@/stores/projects";
-import useMainStore from "@/stores/main";
 export default {
   computed: {
     ...mapState(useProjectsStore, [
       "galleryVisible",
       "activeProjectID",
       "getPortfolio",
+      "getPortfolios",
     ]),
-    ...mapWritableState(useMainStore, ["showupLoadTime"]),
-  },
-  beforeMount() {
-    if (this.showupLoadTime < 3) this.showupLoadTime++;
   },
 };
 </script>
