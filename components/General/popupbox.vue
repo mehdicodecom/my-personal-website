@@ -1,13 +1,13 @@
 <template>
   <div>
     <div
-      class="fixed top-0 left-0 w-full h-full bg-black/80 cursor-pointer"
+      class="fixed top-0 left-0 w-full h-full bg-black/80 cursor-pointer z-80"
       @click="visible = false"
     ></div>
 
     <div
       :class="[
-        'fixed flex top-1/2 -translate-y-1/2 flex-col justify-center items-center text-center md:w-130 sm:w-120 xs:w-90 left-0 right-0 mx-auto bg-dark-800 rounded-3xl border-t-16 px-12 py-12',
+        'fixed z-90 flex top-1/2 -translate-y-1/2 flex-col justify-center items-center text-center md:w-130 sm:w-120 xs:w-90 left-0 right-0 mx-auto bg-dark-800 rounded-3xl border-t-16 px-12 py-12',
         state === 'success' ? 'border-main-green' : 'border-red-500',
       ]"
     >
