@@ -1,33 +1,44 @@
 <template>
-  <div class="relative px-46 mx-auto w-full">
-    <div class="relative mt-40 text-3xl font-bold">
+  <div
+    class="relative xl:px-24 lg:(px-18 w-11/12) mx-auto md:px-16 sm:px-14 xs:px-12 xs:w-full"
+  >
+    <div
+      class="relative xl:mt-40 lg:mt-26 md:mt-20 xs:mt-16 text-3xl font-bold"
+    >
       <span
         class="updown inline-block absolute -top-1 -left-2.5 w-14 h-14 bg-main-orange rounded-full"
       ></span>
       <div class="loading textLoading inline-block">
-        <span class="relative inline-block z-20">About Me</span>
+        <span class="relative inline-block">About Me</span>
       </div>
     </div>
 
-    <div class="flex justify-between items-start">
-      <div>
-        <div class="loading textLoading mt-6">
-          <p class="w-200 text-lg">
-            With over six years of expertise in web development, I possess a
-            keen ability to envision designs through the lens of the audience
-            and craft exceptional user experiences. Recognizing that the front
-            end serves as the initial point of contact for users, I am committed
-            to delivering top-notch user interfaces that contribute
-            significantly to the success of businesses.
-          </p>
+    <div class="flex items-start md:flex-row xs:flex-col">
+      <div class="flex-1 sm:(order-1 mr-10) xs:order-2">
+        <div class="flex items-start gap-6">
+          <div class="loading textLoading mt-6 inline-block">
+            <p class="xl:w-200 lg:w-160 xs:w-full text-lg">
+              With over six years of expertise in web development, I possess a
+              keen ability to envision designs through the lens of the audience
+              and craft exceptional user experiences. Recognizing that the front
+              end serves as the initial point of contact for users, I am
+              committed to delivering top-notch user interfaces that contribute
+              significantly to the success of businesses.
+            </p>
+          </div>
+          <img
+            src="/imgs/about/mehdi.jpg"
+            alt=""
+            class="md:hidden sm:(inline-block max-w-50) xs:hidden rounded-md shadow-lg"
+          />
         </div>
 
-        <div class="relative mt-20 text-2xl font-bold">
+        <div class="relative lg:mt-20 md:mt-14 xs:mt-12 text-2xl font-bold">
           <span
             class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
           ></span>
           <div class="loading textLoading inline-block">
-            <span class="relative inline-block z-20">Skills</span>
+            <span class="relative inline-block">Skills</span>
           </div>
         </div>
 
@@ -36,7 +47,7 @@
             <div class="loading textLoading">
               <div class="block">
                 <span
-                  class="text-xl inline-block font-medium text-main-orange min-w-28"
+                  class="text-xl inline-block font-medium text-main-orange min-w-28 sm:inline-block xs:block"
                 >
                   {{ skill.title }}:
                 </span>
@@ -50,16 +61,16 @@
       <img
         src="/imgs/about/mehdi.jpg"
         alt=""
-        class="w-86 rounded-md shadow-lg"
+        class="md:(max-w-86 inline-block) sm:hidden xs:(mt-8 w-60 mx-auto) rounded-md shadow-lg order-1"
       />
     </div>
 
-    <div class="relative mt-40 text-2xl font-bold">
+    <div class="relative xl:mt-40 xs:mt-30 text-2xl font-bold">
       <span
         class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
       ></span>
       <div class="loading textLoading inline-block">
-        <span class="relative inline-block z-20"
+        <span class="relative inline-block"
           >Experiences <span class="text-lg">(3 Items)</span></span
         >
       </div>
@@ -70,65 +81,71 @@
         :class="[
           'bg-dark py-8 px-6 border border-zinc-700 rounded-md flex gap-4 overflow-hidden',
           experience.showDetails
-            ? 'transMaxHeightIn max-h-300'
-            : 'transMaxHeightOut max-h-40',
+            ? 'transMaxHeightIn lg:max-h-310 md:max-h-340 sm:max-h-360 xs:max-h-460'
+            : 'transMaxHeightOut lg:max-h-40 md:(max-h-34) sm:max-h-30 xs:max-h-46',
         ]"
         v-for="(experience, index) in experiences"
       >
         <span
-          class="relative z-20 inline-block min-w-8 h-8 bg-main-orange rounded-full flex items-center justify-center"
+          class="md:relative xs:absolute inline-block min-w-8 h-8 bg-main-orange rounded-full flex items-center justify-center"
         >
           <span
             class="inline-block w-7 h-7 bg-main-orange border-7 border-dark rounded-full"
           ></span>
         </span>
 
-        <div class="w-[calc(100%-2rem)]">
-          <div class="flex justify-between items-center">
-            <div>
-              <h3 class="text-xl text-main-orange font-medium">
-                {{ experience.company }}
-                <span class="text-white">({{ experience.role }})</span>
-              </h3>
-
-              <p class="mt-2 text-lg">{{ experience.bio }}</p>
-
-              <p class="mt-1 text-white/60">
-                {{ experience.startDate }} - {{ experience.endDate }} ·
-                {{ experience.duration }}
-              </p>
-            </div>
-
+        <div class="md:w-[calc(100%-2rem)] xs:w-full">
+          <div class="">
             <div
-              :class="[
-                'mr-10 trans3ms flex gap-2 items-center cursor-pointer',
-                experience.showDetails ? 'text-red' : 'text-main-green',
-              ]"
-              @click="experience.showDetails = !experience.showDetails"
+              class="flex justify-between items-start sm:flex-row xs:flex-col"
             >
-              <svg class="w-8 h-8 text-white-3 select-none">
-                <use
-                  :href="`/imgs/icons.svg#eye_${
-                    experience.showDetails ? 'close' : 'open'
-                  }`"
-                ></use>
-              </svg>
-              <p class="text-lg font-bold">
-                {{
-                  experience.showDetails ? "Hide Details" : "Show More Details"
-                }}
-              </p>
+              <h3
+                class="md:w-9/12 sm:w-8/12 xs:w-full text-xl text-main-orange font-medium"
+              >
+                <span class="md:ml-0 xs:ml-12">{{ experience.company }}</span>
+                <span
+                  class="text-white lg:(inline-block mb-0 mt-0 ml-2) sm:mb-5 xs:(block mt-3)"
+                  >({{ experience.role }})</span
+                >
+              </h3>
+              <div
+                :class="[
+                  'relative trans3ms flex gap-2 items-center cursor-pointer lg:(top-8) md:(top-5 mb-0 mr-6) xs:(top-2 min-w-36 mb-12)',
+                  experience.showDetails ? 'text-red' : 'text-main-green',
+                ]"
+                @click="experience.showDetails = !experience.showDetails"
+              >
+                <svg class="w-8 h-8 text-white-3 select-none">
+                  <use
+                    :href="`/imgs/icons.svg#eye_${
+                      experience.showDetails ? 'close' : 'open'
+                    }`"
+                  ></use>
+                </svg>
+                <p class="text-lg font-bold">
+                  {{ experience.showDetails ? "Hide Details" : "Show Details" }}
+                </p>
+              </div>
             </div>
+
+            <p :class="['mt-2 text-lg', experience.showDetails]">
+              {{ experience.bio }}
+            </p>
+
+            <p :class="['mt-1 text-white/60', experience.showDetails]">
+              {{ experience.startDate }} - {{ experience.endDate }} ·
+              {{ experience.duration }}
+            </p>
           </div>
 
           <p class="mt-8 font-bold text-main-green">Some of tasks:</p>
-          <ul class="flex flex-col gap-2 mt-2 text-white/80">
+          <ul class="flex flex-col gap-2 mt-2 text-white/80 w-11/12">
             <li
               v-for="task in experience.tasks"
               class="flex items-center gap-2"
             >
               <span
-                class="inline-block w-2 h-2 bg-stone-400 rounded-full"
+                class="inline-block min-w-2 min-h-2 bg-stone-400 rounded-full"
               ></span>
               <p>{{ task }}</p>
             </li>
@@ -158,7 +175,7 @@
         class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
       ></span>
       <div class="loading textLoading inline-block">
-        <span class="relative inline-block z-20">Education </span>
+        <span class="relative inline-block">Education </span>
       </div>
     </div>
 
@@ -178,14 +195,16 @@
         <div>
           <h3 class="text-xl text-main-orange font-medium">
             {{ edu.college }}
-            <span class="text-white">({{ edu.degree }})</span>
+            <span class="text-white md:inline-block xs:block"
+              >({{ edu.degree }})</span
+            >
           </h3>
 
           <p class="mt-1 text-white/60">
             {{ edu.startYear }} - {{ edu.endYear }}
           </p>
 
-          <ul class="flex gap-6 mt-3 text-white/80">
+          <ul class="flex gap-6 mt-3 text-white/80 md:flex-row xs:flex-col">
             <li><p class="text-main-green font-bold">Courses:</p></li>
             <li v-for="subject in edu.subjects" class="flex items-center gap-2">
               <span

@@ -2,7 +2,7 @@
   <div>
     <div class="mac">
       <div class="display">
-        <div class="screen" :style="{ height: screenHeight }">
+        <div :class="['screen', screenHeight]">
           <div
             :class="['relative viewport group', { scrollToEnd: scroll }]"
             :style="[
@@ -36,7 +36,7 @@
         </div>
         <span class="label">MacBook Pro</span>
       </div>
-      <div class="sm:block xs:hidden">
+      <div :class="aboutPage ? 'md:block xs:hidden' : 'sm:block xs:hidden'">
         <div class="keys" v-if="!onlyScreen">
           <div class="board"></div>
           <div class="touchpad"></div>
@@ -55,6 +55,9 @@ import { mapWritableState } from "pinia";
 import useProjectsStore from "@/stores/projects";
 export default {
   props: {
+    aboutPage: {
+      default: false,
+    },
     onlyScreen: {
       default: false,
     },
@@ -64,7 +67,7 @@ export default {
     media: {},
     scroll: false,
     screenHeight: {
-      default: "18.6rem",
+      default: "h-74",
     },
     videoControls: {
       default: false,

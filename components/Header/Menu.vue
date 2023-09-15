@@ -23,13 +23,13 @@
               <svg
                 :class="[
                   'relative trans3ms w-8 h-8',
-                  { 'xs:(w-10 h-10)': index !== activeMenu },
+                  { 'md:(w-8 h-8) xs:(w-10 h-10)': index === activeMenu },
                 ]"
               >
                 <use :href="'/imgs/icons.svg' + `#${menu.icon}`"></use>
               </svg>
 
-              <span :class="[{ 'xs:hidden': index !== activeMenu }]">{{
+              <span :class="[{ 'sm:block xs:hidden': index !== activeMenu }]">{{
                 menu.title
               }}</span>
             </nuxt-link>
@@ -81,6 +81,7 @@ export default {
       this.menus.forEach((menu, index) => {
         if (route === menu.path) activeIndex = index;
       });
+      if (activeIndex === 0 && route !== "/") return null;
       return activeIndex;
     },
   },

@@ -47,8 +47,11 @@
         >
           <div
             :class="[
-              'flex flex-col gap-6 justify-center items-center bg-dark rounded-lg py-8 sm:(pr-15 pl-15) xs:(pr-4 pl-4)',
-              homePage ? 'shadow-lg' : 'border border-neutral-700',
+              'flex flex-col gap-6 justify-center items-center bg-dark rounded-lg py-8',
+              homePage
+                ? 'shadow-lg sm:(pr-15 pl-15) xs:(pr-4 pl-4)'
+                : 'border border-neutral-700',
+              { 'xs:(pr-4 pl-4)': aboutPage },
             ]"
           >
             <a
@@ -60,7 +63,12 @@
             </a>
             <screen
               @click="showGallery(project.id)"
-              class="relative z-50 md:w-140 sm:w-130 xs:w-100"
+              :class="[
+                'relative z-50',
+                { 'md:w-140 sm:w-116 xs:w-60': aboutPage },
+                { 'md:w-140 sm:w-130 xs:w-100': homePage },
+              ]"
+              :about-page="true"
               :media="project.media[project.mainMedia]"
             />
             <section
@@ -130,7 +138,10 @@
       </button>
     </div>
   </section>
-  <section class="pl-42 pr-40 mt-26" v-else>
+  <section
+    class="xl:(mt-26 pl-24 pr-22) lg:(pl-17 pr-14 w-11/12 mx-auto) sm:(pl-16 pr-14) xs:(px-10 mt-16 w-full)"
+    v-else
+  >
     <div class="relative text-3xl font-bold">
       <span
         class="updown inline-block absolute -top-1 -left-2.5 w-14 h-14 bg-main-orange rounded-full"
@@ -146,7 +157,7 @@
       <div
         v-for="project in projects"
         :key="project.id"
-        class="relative bg-dark rounded-lg flex gap-26 py-8 pr-16 pl-18 shadow-lg"
+        class="relative bg-dark rounded-lg flex lg:(flex-row gap-26) md:(pr-16 pl-18) shadow-lg xs:(py-8 pr-4 pl-4 flex-col gap-4 items-center)"
       >
         <nuxt-link
           :to="{ path: `/project/${project.name}` }"
@@ -155,18 +166,24 @@
         </nuxt-link>
         <screen
           @click="showGallery(project.id)"
-          class="relative z-50 w-140"
+          class="relative z-50 xl:min-w-140 lg:min-w-120 md:(w-140 mx-auto) sm:w-110 xs:(w-100)"
           :media="project.media[project.mainMedia]"
         />
-        <section class="flex flex-col gap-2 mt-2 flex-wrap items-start">
+        <section
+          class="flex flex-col gap-2 mt-2 flex-wrap items-start lg:items-start xs:(items-center)"
+        >
           <div class="loading textLoading inline-block">
-            <span class="inline-block font-medium text-2xl">
+            <span
+              class="inline-block font-medium text-2xl lg:text-left xs:text-center"
+            >
               <span class="text-main-orange mr-2">{{ project.name }}</span>
               <span>{{ project.title }}</span>
             </span>
           </div>
           <div class="loading textLoading inline-block">
-            <p class="text-lg">{{ project.description }}</p>
+            <p class="text-lg lg:text-left xs:text-center">
+              {{ project.description }}
+            </p>
           </div>
 
           <div class="loading textLoading inline-block">

@@ -1,10 +1,10 @@
 <template>
   <div
-    class="relative bg-dark rounded-lg flex flex-col items-center py-10 px-22 border border-neutral-700 ml-42 mr-40 mt-12"
+    class="relative bg-dark rounded-lg flex flex-col items-center py-10 border border-neutral-700 xl:(ml-42 mr-40 px-22) lg:(ml-30 mr-30 px-18) md:(px-14 mt-30) sm:(px-8 mx-12 mt-30) xs:(px-6 mx-8 mt-24)"
   >
     <nuxt-link
       :to="{ path: '/portfolios' }"
-      class="absolute left-22 top-10 flex items-center gap-3"
+      class="absolute flex items-center gap-3 xl:(left-0 -top-16) xs:(left-0 -top-16)"
     >
       <button class="bg-dark-100 rounded-full">
         <svg :class="['rotate-180 w-12 h-12 text-main-orange']">
@@ -14,13 +14,13 @@
       <span class="text-main-orange font-bold text-lg">Portfolios</span>
     </nuxt-link>
     <div class="loading textLoading inline-block">
-      <span class="inline-block font-medium text-3xl">
+      <span class="inline-block font-medium text-3xl text-center">
         <span class="text-main-orange mr-2">{{ project.name }}</span>
         <span>{{ project.title }}</span>
       </span>
     </div>
     <div class="loading textLoading inline-block mt-2">
-      <p class="text-lg">{{ project.description }}</p>
+      <p class="text-lg text-center">{{ project.description }}</p>
     </div>
 
     <div class="loading textLoading inline-block mt-4">
@@ -35,12 +35,14 @@
         </li>
       </ul>
     </div>
-    <div class="grid grid-cols-4 grid-rows-3 gap-4 mt-8">
+    <div
+      class="grid lg:grid-cols-4 sm:(grid-cols-3 grid-rows-3) xs:(grid-rows-4 grid-cols-2) gap-4 mt-8"
+    >
       <screen
         @click="showGallery(project.id)"
-        class="group relative col-span-3 row-span-3"
+        class="group relative sm:(col-span-3 row-span-3) xs:(col-span-2 row-span-4)"
         :media="project.media[project.mainMedia]"
-        screen-height="33.5rem"
+        screen-height="lg:h-134 md:h-126 sm:h-100 xs:h-86"
         :only-screen="true"
       />
       <div
@@ -66,13 +68,13 @@
       <div
         @click="showGallery(project.id, 3)"
         v-if="project.media.length - 3 > 0"
-        class="bg-dark-200 row-span-1 trans3ms rounded-lg flex items-center justify-center text-3xl cursor-pointer hover:bg-dark-900"
+        class="bg-dark-200 sm:(row-span-1 col-span-1 h-initial) xs:(col-span-2 h-50) trans3ms rounded-lg flex items-center justify-center text-3xl cursor-pointer hover:bg-dark-900"
       >
         +{{ project.media.length - 3 }}
       </div>
     </div>
 
-    <div class="mt-12 text-xl">
+    <div class="mt-12 text-xl text-center">
       More description of the projects will be added later
     </div>
     <transition name="fadeScale">

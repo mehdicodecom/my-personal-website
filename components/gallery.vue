@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-0 left-0 h-screen overflow-auto w-full z-90 grid bg-black/80"
+    class="fixed top-0 left-0 h-screen overflow-auto w-full z-90 flex flex-col bg-black/80"
   >
     <div class="bg-dark/60 h-18 flex">
       <div
@@ -12,24 +12,27 @@
           <use :href="'/imgs/icons.svg#arrow'"></use>
         </svg>
       </div>
-      <div
-        class="h-full flex-1 flex gap-3 items-center justify-center cursor-pointer"
-      >
+      <div class="h-full flex-1 flex gap-3 items-center justify-center">
         <svg
           v-if="currentMedia.type === 'img'"
-          class="relative w-6 h-6 text-main-orange"
+          class="relative w-6 h-6 text-main-orange lg:inline-block xs:hidden"
         >
           <use :href="'/imgs/icons.svg#img'"></use>
         </svg>
-        <svg v-else class="relative w-8 h-8 text-main-orange">
+        <svg
+          v-else
+          class="relative w-8 h-8 text-main-orange lg:inline-block xs:hidden"
+        >
           <use :href="'/imgs/icons.svg#video'"></use>
         </svg>
-        <h2 class="text-xl">{{ project.name }} {{ currentMedia.title }}</h2>
+        <h2 class="text-xl lg:inline-block xs:hidden">
+          {{ project.name }} {{ currentMedia.title }}
+        </h2>
 
         <div
           @click="toggleImgScroll"
           v-if="currentMedia.type === 'img' && currentMedia.scroll"
-          class="inline-block trans3ms h-10 bg-dark-100 rounded-lg flex items-center pl-1 pr-2 gap-1 text-main-orange hover:(font-bold bg-dark-100/80 shadow-lg)"
+          class="cursor-pointer inline-block trans3ms h-10 bg-dark-100 rounded-lg flex items-center pl-1 pr-2 gap-1 text-main-orange hover:(font-bold bg-dark-100/80 shadow-lg)"
         >
           <svg
             :class="[
@@ -46,7 +49,7 @@
         <div
           @click="toggleVideo($refs.screen.$refs.video)"
           v-if="currentMedia.type === 'video'"
-          class="inline-block trans3ms h-10 bg-dark-100 rounded-lg flex items-center px-4 gap-2 text-main-orange hover:(font-bold bg-dark-100/80 shadow-lg)"
+          class="cursor-pointer inline-block trans3ms h-10 bg-dark-100 rounded-lg flex items-center px-4 gap-2 text-main-orange hover:(font-bold bg-dark-100/80 shadow-lg)"
         >
           <svg class="relative w-6 h-6">
             <use
@@ -75,16 +78,34 @@
         </svg>
       </div>
     </div>
-    <screen
-      ref="screen"
-      class="relative w-8/12 mx-auto my-4"
-      :media="project.media[activeMediaIndex]"
-      screen-height="40rem"
-      :only-screen="true"
-      :zoom="false"
-      :scroll="imgScrollDown"
-      :video-controls="true"
-    />
+
+    <div
+      class="items-center gap-2 items-center mt-8 mb-2 justify-center px-6 lg:hidden xs:flex"
+    >
+      <svg
+        v-if="currentMedia.type === 'img'"
+        class="relative w-8 h-8 text-main-orange"
+      >
+        <use :href="'/imgs/icons.svg#img'"></use>
+      </svg>
+      <svg v-else class="relative w-10 h-10 text-main-orange">
+        <use :href="'/imgs/icons.svg#video'"></use>
+      </svg>
+      <h2 class="text-xl">{{ project.name }} {{ currentMedia.title }}</h2>
+    </div>
+
+    <div class="flex lg:(items-center) xs:(mt-4) h-full">
+      <screen
+        ref="screen"
+        class="relative lg:w-8/12 sm:w-10/12 xs:w-11/12 mx-auto my-4 justify-center"
+        :media="project.media[activeMediaIndex]"
+        screen-height="lg:h-160 md:h-140 sm:h-104 xs:h-80"
+        :only-screen="true"
+        :zoom="false"
+        :scroll="imgScrollDown"
+        :video-controls="true"
+      />
+    </div>
   </div>
 </template>
 
