@@ -105,6 +105,7 @@ export default {
   margin: 12px 2 22px;
   background: #333;
   transition: background-position var(--transitionSpeed) linear;
+  background-repeat: no-repeat;
   background-position: 0 0;
   background-size: 100% auto;
   border-radius: 0.5rem;

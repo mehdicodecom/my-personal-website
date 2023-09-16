@@ -1,4 +1,10 @@
 <template>
+  <Head>
+    <Title>
+      Mehdi Rafiei | {{ cachedProjectName }} Project | Front-end Developer
+    </Title>
+  </Head>
+
   <div
     class="relative bg-dark rounded-lg flex flex-col items-center py-10 border border-neutral-700 xl:(ml-42 mr-40 px-22) lg:(ml-30 mr-30 px-18) md:(px-14 mt-30) sm:(px-8 mx-12 mt-30) xs:(px-6 mx-8 mt-24)"
   >
@@ -87,6 +93,11 @@
 import { mapState, mapActions } from "pinia";
 import useProjectsStore from "@/stores/projects";
 export default {
+  data() {
+    return {
+      cachedProjectName: "",
+    };
+  },
   computed: {
     ...mapState(useProjectsStore, [
       "getPortfolio",
@@ -109,12 +120,17 @@ export default {
           message: `${projectName} Project not found`,
           fatal: true,
         });
-      }
+      } else this.cachedProjectName = project.name;
       return project;
     },
   },
   methods: {
     ...mapActions(useProjectsStore, ["showGallery"]),
+    updatePageTitle() {
+      console.log("test");
+
+      document.title = `Mehdi Rafiei | ${this.project.name} | Front-end Developer`;
+    },
   },
 };
 </script>
@@ -128,6 +144,7 @@ export default {
   top: 0;
   background: #333;
   transition: background-position var(--transitionSpeed) linear;
+  background-repeat: no-repeat;
   background-position: 0 0;
   background-size: 100% auto;
   border-radius: 0.5rem;

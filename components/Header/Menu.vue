@@ -2,7 +2,7 @@
   <!-- Start Menu -->
 
   <nav
-    class="flex md:(static bg-transparent h-initial bottom-initial w-initial) xs:(fixed bottom-0 h-24 bg-dark-100 left-0 w-screen)"
+    class="flex select-none md:(static bg-transparent h-initial bottom-initial w-initial) xs:(fixed bottom-0 h-24 bg-dark-100 left-0 w-screen)"
   >
     <ul
       class="flex 2xl:gap-14 lg:gap-12 md:(w-initial gap-10) xs:(w-full gap-0) items-center font-semibold"

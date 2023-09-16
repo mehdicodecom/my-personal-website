@@ -166,7 +166,7 @@
         </nuxt-link>
         <screen
           @click="showGallery(project.id)"
-          class="relative z-50 xl:min-w-140 lg:min-w-120 md:(w-140 mx-auto) sm:w-110 xs:(w-100)"
+          class="relative z-50 xl:min-w-140 lg:(min-w-120 mx-initial) md:(w-140 mx-auto) sm:w-110 xs:(w-100)"
           :media="project.media[project.mainMedia]"
         />
         <section

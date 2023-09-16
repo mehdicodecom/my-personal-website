@@ -62,28 +62,28 @@ export default defineStore("projects", {
           },
           {
             type: "img",
-            src: "/projects/finnotex/otc.png",
+            src: "/projects/finnotex/otc.jpg",
             title: "OTC Trading Light Page",
             transition: "3s",
             scroll: true,
           },
           {
             type: "img",
-            src: "/projects/finnotex/trade.png",
+            src: "/projects/finnotex/trade.jpg",
             title: "Advanced Trading Light Page",
             transition: "3s",
             scroll: true,
           },
           {
             type: "img",
-            src: "/projects/finnotex/blog.png",
+            src: "/projects/finnotex/blog.jpg",
             title: "Blog Light Version",
             transition: "4s",
             scroll: true,
           },
           {
             type: "img",
-            src: "/projects/finnotex/home-dark.png",
+            src: "/projects/finnotex/home-dark.jpg",
             title: "Home Page Dark Version",
             transition: "4s",
             scroll: true,
@@ -91,14 +91,14 @@ export default defineStore("projects", {
 
           {
             type: "img",
-            src: "/projects/finnotex/otc-dark.png",
+            src: "/projects/finnotex/otc-dark.jpg",
             title: "OTC Trading Dark Page",
             transition: "3s",
             scroll: true,
           },
           {
             type: "img",
-            src: "/projects/finnotex/trade-dark.png",
+            src: "/projects/finnotex/trade-dark.jpg",
             title: "Advanced Trading Dark Page",
             transition: "3s",
             scroll: true,
@@ -250,38 +250,38 @@ export default defineStore("projects", {
           {
             type: "img",
             title: "Admin Panel in english",
-            src: "/projects/4sou/dashboard-english.png",
+            src: "/projects/4sou/dashboard-english.jpg",
           },
           {
             type: "img",
             title: "Panel home page slider settings",
-            src: "/projects/4sou/panel.png",
+            src: "/projects/4sou/panel.jpg",
           },
           {
             type: "img",
             title: "Home Page in English",
-            src: "/projects/4sou/4sou-English.png",
+            src: "/projects/4sou/4sou-English.jpg",
           },
           {
             type: "img",
             title: "Home Page in Germany",
-            src: "/projects/4sou/4sou-germany.png",
+            src: "/projects/4sou/4sou-germany.jpg",
           },
           {
             type: "img",
             title: "Home Page in Persian",
-            src: "/projects/4sou/4sou-persian.png",
+            src: "/projects/4sou/4sou-persian.jpg",
           },
           {
             type: "img",
             title: "Home Page in Arabic",
-            src: "/projects/4sou/4sou-arabic.png",
+            src: "/projects/4sou/4sou-arabic.jpg",
           },
 
           {
             type: "img",
             title: "Legal user buying token step five",
-            src: "/projects/4sou/dashboard-persian.png",
+            src: "/projects/4sou/dashboard-persian.jpg",
           },
 
           {
@@ -394,7 +394,7 @@ export default defineStore("projects", {
           {
             type: "img",
             title: "Home page",
-            src: "/projects/delijan/home-full.png",
+            src: "/projects/delijan/home-full.jpg",
           },
           {
             type: "img",
@@ -404,7 +404,7 @@ export default defineStore("projects", {
           {
             type: "img",
             title: "Services page",
-            src: "/projects/delijan/services-page.png",
+            src: "/projects/delijan/services-page.jpg",
           },
           {
             type: "img",
@@ -419,17 +419,17 @@ export default defineStore("projects", {
           {
             type: "img",
             title: "English version of products page",
-            src: "/projects/delijan/products-en.png",
+            src: "/projects/delijan/products-en.jpg",
           },
           {
             type: "img",
             title: "Admin Panel - editing gallery section of product",
-            src: "/projects/delijan/product-gallery-admin.png",
+            src: "/projects/delijan/product-gallery-admin.jpg",
           },
           {
             type: "img",
             title: "Admin Panel - editing product details",
-            src: "/projects/delijan/edit-product-admin.png",
+            src: "/projects/delijan/edit-product-admin.jpg",
           },
         ],
         mainMedia: 0,

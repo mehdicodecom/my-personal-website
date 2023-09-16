@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>Mehdi Rafiei | Front-end Developer | Home</Title>
+    <Title>Mehdi Rafiei | Home | Front-end Developer</Title>
   </Head>
 
   <div

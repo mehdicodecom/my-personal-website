@@ -1,4 +1,8 @@
 <template>
+  <Head>
+    <Title>Mehdi Rafiei | Portfolios | Front-end Developer</Title>
+  </Head>
+
   <div>
     <Projects
       :projects="getPortfolios()"

@@ -1,4 +1,7 @@
 <template>
+  <Head>
+    <Title>Mehdi Rafiei | Contact Me | Front-end Developer</Title>
+  </Head>
   <div
     class="relative flex xl:(pl-24 pr-22) lg:(pl-17 pr-14 w-11/12 mx-auto) md:(mt-24 flex-row) sm:(mt-20 pl-16 pr-14) xs:(flex-col px-8 mt-16 w-full)"
   >
@@ -146,13 +149,13 @@
       </div>
 
       <div class="flex justify-center">
-        <button
-          type="submit"
+        <a
+          @click.prevent="sendMail"
           :class="[
             'inline-flex trans3ms md:mt-8 xs:mt-4 items-center justify-center py-3 h-12 w-50 rounded-lg',
             sending
               ? 'bg-main-orange/60 cursor-not-allowed'
-              : 'bg-main-orange hover:(bg-main-orange/80)',
+              : 'bg-main-orange hover:(bg-main-orange/80) cursor-pointer',
           ]"
         >
           <svg class="w-5 h-5 text-white-2" v-if="!sending">
@@ -198,7 +201,8 @@
           <span class="text-white">{{
             sending ? "Sending..." : "Send Message"
           }}</span>
-        </button>
+        </a>
+        <button type="submit" class="hidden"></button>
       </div>
     </form>
 
@@ -256,20 +260,21 @@ export default {
     async sendMail() {
       if (this.validateForm()) {
         this.sending = true;
-        await this.$mail
-          .send({
-            from: this.sender.mail,
-            subject: this.sender.subject,
-            text: `
-        Name: ${this.sender.name}
-        Subject: ${this.sender.subject}
-        Mail: ${this.sender.mail}
-        Tel: ${this.sender.tel}
+        const formData = new FormData();
+        formData.append("name", this.sender.name);
+        formData.append("subject", this.sender.subject);
+        formData.append("mail", this.sender.mail);
+        formData.append("tel", this.sender.tel);
+        formData.append("message", this.sender.message);
 
-        Message: ${this.sender.message}
-        `,
-          })
-          .then(() => {
+        try {
+          const response = await fetch("/mail/", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (response.ok) {
+            console.log(response);
             this.visible = true;
             this.state = "success";
             this.title = "Yeah Hoo!!";
@@ -282,21 +287,27 @@ export default {
               tel: "",
               message: "",
             };
-          })
-          .catch(() => {
+          } else {
             this.visible = true;
             this.state = "error";
             this.title = "Oooops!!";
             this.message =
-              "Your message didn't sent correctly, Please Try Again";
-          });
+              "Your message did not send correctly. Please try again.";
+          }
+        } catch (error) {
+          this.visible = true;
+          this.state = "error";
+          this.title = "Oooops!!";
+          this.message = "An error occurred while sending the message.";
+        }
+
         this.sending = false;
       } else {
         this.visible = true;
         this.state = "error";
         this.title = "Form Validation Error!!";
         this.message =
-          "Check you filled inputs correctly, Phone number must be with country code for example (+989300432875)";
+          "Check that you have filled in the inputs correctly. Phone number must include the country code (e.g., +989300432875).";
       }
     },
     validateForm() {

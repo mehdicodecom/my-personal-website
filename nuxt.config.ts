@@ -1,6 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // devtools: { enabled: true },
+  ssr: "server",
+  target: "static",
+  experimental: {
+    payloadExtraction: false,
+  },
   app: {
     head: {
       title: "Mehdi Rafiei | Front-end Developer",
@@ -14,21 +19,8 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/css/main.css"],
-  modules: ["@pinia/nuxt", "@unocss/nuxt", "vue3-carousel-nuxt", "nuxt-mail"],
+  modules: ["@pinia/nuxt", "@unocss/nuxt", "vue3-carousel-nuxt"],
   carousel: {
     prefix: "swipe",
-  },
-  mail: {
-    message: {
-      to: "testperson@gmail.com",
-    },
-    smtp: {
-      host: "fakemail.com",
-      port: 465,
-      auth: {
-        user: "fakeusername",
-        pass: "fakepass",
-      },
-    },
   },
 });

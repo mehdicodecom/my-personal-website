@@ -1,4 +1,7 @@
 <template>
+  <Head>
+    <Title>Mehdi Rafiei | About me | Front-end Developer</Title>
+  </Head>
   <div
     class="relative xl:px-24 lg:(px-18 w-11/12) mx-auto md:px-16 sm:px-14 xs:px-12 xs:w-full"
   >
@@ -61,7 +64,7 @@
       <img
         src="/imgs/about/mehdi.jpg"
         alt=""
-        class="md:(max-w-86 inline-block) sm:hidden xs:(mt-8 w-60 mx-auto) rounded-md shadow-lg order-1"
+        class="md:(w-86 inline-block) sm:hidden xs:(mt-8 w-60 mx-auto) rounded-md shadow-lg order-1"
       />
     </div>
 
