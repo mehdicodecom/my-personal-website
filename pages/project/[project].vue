@@ -46,14 +46,14 @@
     >
       <screen
         @click="showGallery(project.id)"
-        class="group relative sm:(col-span-3 row-span-3) xs:(col-span-2 row-span-4)"
+        class="group relative sm:(col-span-3 row-span-3) xs:(col-span-2 row-span-4) w-full"
         :media="project.media[project.mainMedia]"
         screen-height="lg:h-134 md:h-126 sm:h-100 xs:h-86"
         :only-screen="true"
       />
       <div
         @click="showGallery(project.id, mediaIndex + 1)"
-        class="relative group row-span-1 h-42 overflow-hidden rounded-xl"
+        class="relative group row-span-1 w-full h-42 overflow-hidden rounded-xl"
         v-for="(media, mediaIndex) in otherMedia"
       >
         <img

@@ -47,8 +47,8 @@
 
         <ul class="flex flex-col gap-4 mt-8">
           <li class="" v-for="skill in skills">
-            <div class="loading textLoading">
-              <div class="block">
+            <div class="loading textLoading inline-block">
+              <div class="inline-block">
                 <span
                   class="text-xl inline-block font-medium text-main-orange min-w-28 sm:inline-block xs:block"
                 >
@@ -265,7 +265,8 @@ export default {
         },
         {
           title: "Tools & etc",
-          items: "HTMl, CSS, JavaScript (EcmaScript), JSON",
+          items:
+            "Jira, Version Control (Git, Github), Figma, XD, Emmet, ESLint, Prettier, NPM, Yarn, Docker, PM2",
         },
       ],
       experiences: [
