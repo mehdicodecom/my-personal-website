@@ -28,12 +28,12 @@ export default {
   data() {
     return {
       details: {
+        Stack: "Vue, Nuxt, Python",
+        "Completed Projects": "+10",
         Birthdate: "1998/07/11 (25 Yr)",
-        Address: "Tehran, Iran",
         Experience: "Over 6 years",
         Interest: "Front, AI, Automation",
         Email: "info@mehdicode.com",
-        Phone: "+989300432875",
       },
     };
   },

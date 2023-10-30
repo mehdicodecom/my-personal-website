@@ -221,14 +221,14 @@ export default {
     return {
       contacts: [
         { type: "mail", value: "info@mehdicode.com" },
-        {
-          type: "phone",
-          value: "+989300432875",
-        },
-        {
-          type: "location",
-          value: "Iran/Tehran",
-        },
+        // {
+        //   type: "phone",
+        //   value: "+989300432875",
+        // },
+        // {
+        //   type: "location",
+        //   value: "Iran/Tehran",
+        // },
       ],
       sender: {
         name: "",
