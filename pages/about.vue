@@ -1,7 +1,6 @@
 <template>
-  <Head>
-    <Title>Mehdi Rafiei | About me | Front-end Developer</Title>
-  </Head>
+  <Title>Mehdi Rafiei | About me | Front-end Developer</Title>
+
   <div
     class="relative xl:px-24 lg:(px-18 w-11/12) mx-auto md:px-16 sm:px-14 xs:px-12 xs:w-full"
   >

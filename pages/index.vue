@@ -1,7 +1,5 @@
 <template>
-  <Head>
-    <Title>Mehdi Rafiei | Home | Front-end Developer</Title>
-  </Head>
+  <Title>Mehdi Rafiei | Home | Front-end Developer</Title>
 
   <div
     class="flex xl:px-40 lg:(px-34 w-full flex-nowrap) md:(w-10/12 mt-36 mx-auto) xs:(w-full px-2 flex-wrap mt-4) justify-between mt-46"

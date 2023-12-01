@@ -1,7 +1,5 @@
 <template>
-  <Head>
-    <Title>Mehdi Rafiei | Portfolios | Front-end Developer</Title>
-  </Head>
+  <Title>Mehdi Rafiei | Portfolios | Front-end Developer</Title>
 
   <div>
     <Projects

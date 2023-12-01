@@ -1,7 +1,6 @@
 <template>
-  <Head>
-    <Title>Mehdi Rafiei | Contact Me | Front-end Developer</Title>
-  </Head>
+  <Title>Mehdi Rafiei | Contact Me | Front-end Developer</Title>
+
   <div
     class="relative flex xl:(pl-24 pr-22) lg:(pl-17 pr-14 w-11/12 mx-auto) md:(mt-24 flex-row) sm:(mt-20 pl-16 pr-14) xs:(flex-col px-8 mt-16 w-full)"
   >
