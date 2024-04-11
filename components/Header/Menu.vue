@@ -57,8 +57,8 @@ export default {
             <nuxt-link
               :to="{ path: menu.path }"
               :class="[
-                `h-full flex items-center md:(flex-row gap-2.5 text-white) xs:(flex-col gap-1.5 justify-center)`,
-                { 'xs:(text-main-orange)': index === activeMenu },
+                `h-full flex items-center md:(flex-row gap-2.5 text-white) xs:(flex-col gap-1.5 justify-center) hover:text-main-orange`,
+                { 'xs:(!text-main-orange)': index === activeMenu },
               ]"
             >
               <svg
