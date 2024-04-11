@@ -1,6 +1,47 @@
+<script>
+export default {
+  data() {
+    return {
+      menus: [
+        {
+          title: "Home",
+          icon: "home",
+          path: "/",
+        },
+        {
+          title: "About Me",
+          icon: "user",
+          path: "/about",
+        },
+        {
+          title: "Portfolios",
+          icon: "folder",
+          path: "/portfolios",
+        },
+        {
+          title: "Contact Me",
+          icon: "contact",
+          path: "/contact-me",
+        },
+      ],
+    };
+  },
+  computed: {
+    activeMenu() {
+      let route = this.$route.path;
+      let activeIndex = 0;
+      this.menus.forEach((menu, index) => {
+        if (route === menu.path) activeIndex = index;
+      });
+      if (activeIndex === 0 && route !== "/") return null;
+      return activeIndex;
+    },
+  },
+};
+</script>
+
 <template>
   <!-- Start Menu -->
-
   <nav
     class="flex select-none md:(static bg-transparent h-initial bottom-initial w-initial) xs:(fixed bottom-0 h-24 bg-dark-100 left-0 w-screen)"
   >
@@ -45,47 +86,5 @@
 
   <!-- End Menu -->
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      menus: [
-        {
-          title: "Home",
-          icon: "home",
-          path: "/",
-        },
-        {
-          title: "About Me",
-          icon: "user",
-          path: "/about",
-        },
-        {
-          title: "Portfolios",
-          icon: "folder",
-          path: "/portfolios",
-        },
-        {
-          title: "Contact Me",
-          icon: "contact",
-          path: "/contact_me",
-        },
-      ],
-    };
-  },
-  computed: {
-    activeMenu() {
-      let route = this.$route.path;
-      let activeIndex = 0;
-      this.menus.forEach((menu, index) => {
-        if (route === menu.path) activeIndex = index;
-      });
-      if (activeIndex === 0 && route !== "/") return null;
-      return activeIndex;
-    },
-  },
-};
-</script>
 
 <style scoped></style>

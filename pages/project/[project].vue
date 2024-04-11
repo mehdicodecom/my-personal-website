@@ -42,7 +42,7 @@
     <div
       class="grid lg:grid-cols-4 sm:(grid-cols-3 grid-rows-3) xs:(grid-rows-4 grid-cols-2) gap-4 mt-8"
     >
-      <screen
+      <Shared-Screen
         @click="showGallery(project.id)"
         class="group relative sm:(col-span-3 row-span-3) xs:(col-span-2 row-span-4) w-full"
         :media="project.media[project.mainMedia]"
@@ -66,7 +66,7 @@
           :src="media?.src"
           controlsList="nodownload"
         ></video>
-        <zoom />
+        <Shared-Zoom />
       </div>
 
       <div
@@ -82,7 +82,7 @@
       More description of the projects will be added later
     </div>
     <transition name="fadeScale">
-      <Gallery v-if="galleryVisible" :project="project" />
+      <Shared-Gallery v-if="galleryVisible" :project="project" />
     </transition>
   </div>
 </template>

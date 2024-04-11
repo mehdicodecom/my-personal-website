@@ -8,10 +8,10 @@
 
     <Home-Circular class="xs:(order-1 mx-auto)" />
 
-    <DetailsSec />
+    <Home-Details />
   </div>
 
-  <Projects
+  <Shared-Projects
     class="lg:mt-36 sm:mt-26"
     :projects="getPortfolios(8)"
     :headline="true"
@@ -19,7 +19,10 @@
   />
 
   <transition name="fadeScale">
-    <Gallery v-if="galleryVisible" :project="getPortfolio(activeProjectID)" />
+    <Shared-Gallery
+      v-if="galleryVisible"
+      :project="getPortfolio(activeProjectID)"
+    />
   </transition>
 </template>
 
@@ -37,8 +40,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-. {
-}
-</style>

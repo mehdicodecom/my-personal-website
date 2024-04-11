@@ -26,7 +26,7 @@
               :controls="videoControls"
               controlsList="nodownload"
             ></video>
-            <zoom v-if="zoom" />
+            <Shared-Zoom v-if="zoom" />
             <!-- <img
               :src="`/imgs/projects/${project.img}`"
               alt=""

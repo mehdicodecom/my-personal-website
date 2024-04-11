@@ -160,7 +160,7 @@
             >
           </p>
 
-          <projects
+          <Shared-Projects
             :current-slider-num="index + 1"
             :show-details-buttom="false"
             :slides-per-view="2"
@@ -182,7 +182,10 @@
     </div>
 
     <transition name="fadeScale">
-      <Gallery v-if="galleryVisible" :project="getPortfolio(activeProjectID)" />
+      <Shared-Gallery
+        v-if="galleryVisible"
+        :project="getPortfolio(activeProjectID)"
+      />
     </transition>
 
     <div class="mt-8 flex flex-col gap-6">

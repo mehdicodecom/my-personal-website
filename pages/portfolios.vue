@@ -2,14 +2,17 @@
   <Title>Mehdi Rafiei | Portfolios | Front-end Developer</Title>
 
   <div>
-    <Projects
+    <Shared-Projects
       :projects="getPortfolios()"
       :portfolios-page="true"
       :headline="true"
       :slide-auto-play="homeProjectsSwiper.autoPlay"
     />
     <transition name="fadeScale">
-      <Gallery v-if="galleryVisible" :project="getPortfolio(activeProjectID)" />
+      <Shared-Gallery
+        v-if="galleryVisible"
+        :project="getPortfolio(activeProjectID)"
+      />
     </transition>
   </div>
 </template>

@@ -95,7 +95,7 @@
     </div>
 
     <div class="flex lg:(items-center) xs:(mt-4) h-full">
-      <screen
+      <Shared-Screen
         ref="screen"
         class="relative lg:w-8/12 sm:w-10/12 xs:w-11/12 mx-auto my-4 justify-center"
         :media="project.media[activeMediaIndex]"
