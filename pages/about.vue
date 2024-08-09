@@ -140,7 +140,7 @@
             </p>
           </div>
 
-          <p class="mt-8 font-bold text-main-green">Some of tasks:</p>
+          <p class="mt-10 font-bold text-main-green">Some of tasks:</p>
           <ul class="flex flex-col gap-2 mt-2 text-white/80 w-11/12">
             <li
                 v-for="task in experience.tasks"
