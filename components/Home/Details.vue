@@ -28,9 +28,9 @@ export default {
   data() {
     return {
       details: {
-        Stack: "Vue, Nuxt, Python",
+        Stack: "Vue, Nuxt, Tailwind",
         "Completed Projects": "+10",
-        Birthdate: "1998/07/11 (25 Yr)",
+        Birthdate: "1998/07/11 (26 Yr)",
         Experience: "Over 6 years",
         Interest: "Front, AI, Automation",
         Email: "info@mehdicode.com",
