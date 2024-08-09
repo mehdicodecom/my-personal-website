@@ -78,10 +78,10 @@
       </div>
     </div>
 
-    <div class="mt-8 flex flex-col gap-6">
+    <div class=" mt-8 flex flex-col gap-6">
       <div
           :class="[
-          'bg-dark py-8 px-6 border border-zinc-700 rounded-md flex gap-4 overflow-hidden',
+          'relative bg-dark py-8 xs:(py-6) px-6 border border-zinc-700 rounded-md flex gap-4 overflow-hidden',
           experience.showDetails
             ? 'transMaxHeightIn lg:max-h-310 md:max-h-340 sm:max-h-360 xs:max-h-460'
             : 'transMaxHeightOut lg:max-h-40 md:(max-h-34) sm:max-h-30 xs:max-h-46',
@@ -97,22 +97,22 @@
         </span>
 
         <div class="md:w-[calc(100%-2rem)] xs:w-full">
-          <div class="">
+          <div>
             <div
-                class="flex justify-between items-start sm:flex-row xs:flex-col"
+                class="w-full flex justify-between items-start sm:flex-row xs:flex-col"
             >
               <h3
                   class="md:w-9/12 sm:w-8/12 xs:w-full text-xl text-main-orange font-medium"
               >
                 <span class="md:ml-0 xs:ml-12">{{ experience.company }}</span>
                 <span
-                    class="text-white lg:(inline-block mb-0 mt-0 ml-2) sm:mb-5 xs:(block mt-3)"
+                    class="text-white lg:(inline-block mb-0 mt-0 ml-2) sm:mb-5 xs:(block mt-4)"
                 >({{ experience.role }})</span
                 >
               </h3>
               <div
                   :class="[
-                  'relative trans3ms flex gap-2 items-center cursor-pointer lg:(top-8) md:(top-5 mb-0 mr-6) xs:(top-2 min-w-36 mb-12)',
+                  'trans3ms flex gap-2 items-center cursor-pointer md:(absolute top-9 right-8 mb-0) xs:(relative top-2 min-w-36 mb-12)',
                   experience.showDetails ? 'text-red' : 'text-main-green',
                 ]"
                   @click="experience.showDetails = !experience.showDetails"
@@ -303,12 +303,12 @@ export default {
           endDate: "Feb 2024",
           duration: "6 mos",
           tasks: [
-            "Designed all pages Responsively with Cross-Browser Compatibility so 100% of users can view pages perfectly in any device",
-            "Added multi language support for ﬁnnotex.com increased traﬃcs by 50%. Almost 70% of users prefer native language.",
-            "Completed theme switch feature because at least 80% of users prefer to choose a theme between Dark & Light. ",
-            "Developed PWA Features like oﬄine mode, caching & web apps & got 50% more traﬃc & number of users raised 20% .",
-            "Implemented socket-based communications for notiﬁcation system & chat. 80% of users wanted real-time updates.",
-            "Had excellent communications with back-end developers for debugging issues & calling APIs. for example, sensitive data gets encoded on API calls in both ways to prevent MITM attacks. ",
+            "Completed development of official website of mega with Nuxt 3, which had so many animation requirements, page transitions & extra.",
+            "Created custom multi carousel component to use different places of the app without using external libraries.",
+            "Implemented auto exporting multiple pdfs around each one filled with dynamic data from API, into single compressed ZIP file. Via some libraries like JS Zip",
+            "Designed a custom admin panel with Prime Vue for 1 of the products",
+            "Presented some tutorials about writing tests for projects to front end team. Introducing Unit, Integration, Snapshot, E2E testing to coworkers.",
+            "Improved code quality by refactoring components, removing redundancies, and optimizing structure for improved maintainability and readability.",
           ],
           showDetails: false,
         },
@@ -347,7 +347,7 @@ export default {
         },
         {
           id: 2,
-          company: "Freelance - Metriland, 4Sou & other companies",
+          company: "Freelance - Contract projects",
           role: "Full-Stack Web Developmer ",
           bio: "Worked on multiple projects during freelancing & free time",
           startDate: "Jul 2017",
