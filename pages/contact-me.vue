@@ -206,7 +206,7 @@
     </form>
 
     <transition name="fade">
-      <General-Popupbox v-if="visible" @tryagain="tryagain" @done="done" />
+      <General-PopupBox v-if="visible" @tryagain="tryagain" @done="done" />
     </transition>
   </div>
 </template>
@@ -267,13 +267,13 @@ export default {
         formData.append("message", this.sender.message);
 
         try {
-          const response = await fetch("/mail/", {
+          const response = await fetch("https://mehdicode.com/mail/", {
             method: "POST",
             body: formData,
           });
 
           if (response.ok) {
-            console.log(response);
+            console.log("yeah", response);
             this.visible = true;
             this.state = "success";
             this.title = "Yeah Hoo!!";
