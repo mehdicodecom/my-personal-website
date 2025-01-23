@@ -10,8 +10,8 @@ export default {
         },
         {
           title: "Blog",
-          icon: "folder",
-          path: "/portfolios",
+          icon: "blog",
+          path: "/blog",
         },
         {
           title: "Portfolios",
@@ -51,7 +51,7 @@ export default {
       class="flex select-none md:(static bg-transparent h-initial bottom-initial w-initial) xs:(fixed bottom-0 h-24 bg-dark-100 left-0 w-screen)"
   >
     <ul
-        class="flex 2xl:gap-14 lg:gap-12 md:(w-initial gap-10) xs:(w-full gap-0) items-center font-semibold"
+        class="flex 2xl:gap-12 lg:gap-8 md:(w-initial gap-10) xs:(w-full gap-0) items-center font-semibold"
     >
       <li
           v-for="(menu, index) in menus"
@@ -68,8 +68,7 @@ export default {
             >
               <svg
                   :class="[
-                  'relative trans3ms w-8 h-8',
-                  { 'md:(w-8 h-8) xs:(w-10 h-10)': index === activeMenu },
+                  'relative trans3ms w-6 h-6',
                 ]"
               >
                 <use :href="'/imgs/icons.svg' + `#${menu.icon}`"></use>
@@ -82,7 +81,7 @@ export default {
           </div>
           <span
               v-if="index === activeMenu"
-              class="xs:(hidden) md:(block) w-full bg-main-orange h-1 rounded-lg absolute left-0 right-0 mx-auto mt-1.5"
+              class="xs:(hidden) md:(block) w-full bg-main-orange h-[2px] rounded-lg absolute left-0 right-0 mx-auto mt-1.5"
           ></span>
         </div>
       </li>

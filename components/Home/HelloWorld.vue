@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative flex flex-col gap-6 lg:(gap-4 w-initial) md:(w-1/2 mt-0 order-1 items-start) xs:(w-full order-2 mt-4 items-center)"
+    class="relative flex flex-col min-w-120 gap-6 lg:(gap-4 items-center) md:( mt-0 items-start) xs:( mt-4 items-center)"
   >
     <div class="loading textLoading">
       <p class="inline-block 2xl:text-3xl xl:text-2xl xs:text-2xl font-normal">

@@ -89,9 +89,9 @@ export default {};
 
 @media only screen and (min-width: 1550px) {
   .circularSec {
-    --circleDiameter: 14rem;
-    --icon: 30px;
-    --circlesBigger: 3rem;
+    --circleDiameter: 10rem;
+    --icon: 24px;
+    --circlesBigger: 2.5rem;
   }
 }
 .circle {

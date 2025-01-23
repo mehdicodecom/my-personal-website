@@ -1,7 +1,7 @@
 <template>
   <!-- Start Header -->
   <header
-    class="relative z-60 flex items-center bg-transparent xl:px-20 lg:(mt-6 px-14 w-11/12 mx-auto) sm:( px-12) xs:(mt-8 px-8 w-full)"
+    class="relative z-60 flex items-center bg-transparent xl:px-20 lg:(mt-6 px-14 w-11/12 mx-auto) sm:(px-12) xs:(mt-8 px-8 w-full)"
   >
     <Header-Logo />
 
