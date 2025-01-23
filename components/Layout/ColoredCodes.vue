@@ -6,7 +6,7 @@
     <p
       v-for="code in coloredCodes"
       v-html="code"
-      class="text-gray/50 text-xl -scale-100"
+      class="text-gray/50 text-lg -scale-100"
     ></p>
   </div>
   <!-- End Colored Codes Background -->
