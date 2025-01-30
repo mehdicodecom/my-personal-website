@@ -4,9 +4,7 @@
   >
     <div class="loading textLoading">
       <p class="inline-block 2xl:text-3xl xl:text-2xl xs:text-2xl font-normal">
-        <span class="text-main-cyan">&lt;</span>
         <span class="text-main-green">HELLO WORLD</span>
-        <span class="text-main-cyan">/&gt</span>
       </p>
     </div>
 

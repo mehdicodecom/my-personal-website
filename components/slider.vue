@@ -5,7 +5,10 @@
         :grabCursor="true"
         :centeredSlides="true"
         :slidesPerView="1.5"
-        :autoplay="false"
+        :autoplay="{
+          delay:5000,
+          disableOnInteraction: true,
+        }"
         :speed="1200"
         :coverflowEffect="{
           rotate: 50,
@@ -77,12 +80,12 @@ export default {
           slidesPerView: 3
         },
         1500: {
-          slidesPerView: 3.6
+          slidesPerView: 3.8
         }
       },
       posts: [
         {
-          img: "javascript.webp",
+          img: "js.jpg",
           title: "The Art of Writing Clean and Maintainable JavaScript Code",
           categories: ['programming', 'frontend', 'javascript'],
           description:
