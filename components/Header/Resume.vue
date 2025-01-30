@@ -3,7 +3,7 @@
   <a
     :href="resumeLink"
     :download="download"
-    class="flex gap-2 items-center h-12 w-40 transition duration-200 hover:bg-main-orange bg-main-orange/80 justify-center rounded-md ml-auto"
+    class="flex gap-2 items-center h-12 w-40 transition duration-200 hover:bg-main-orange bg-main-orange/80 justify-center rounded-md"
   >
     <svg class="relative w-6 h-6">
       <use :href="'/imgs/icons.svg#pdf'"></use>

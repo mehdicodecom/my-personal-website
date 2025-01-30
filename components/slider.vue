@@ -11,7 +11,7 @@
         }"
         :speed="1200"
         :coverflowEffect="{
-          rotate: 50,
+          rotate: 45,
           stretch: 0,
           depth: 100,
           modifier: 1,

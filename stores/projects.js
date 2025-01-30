@@ -45,7 +45,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "nuxt", "vue", "pinia", "unocss"],
+        used: [ "nuxt", "pinia", "unocss"],
         related_experience_id: 2,
       },
       {
@@ -104,7 +104,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "nuxt", "vue", "tradingview", ],
+        used: [ "nuxt", "tradingview", ],
         related_experience_id: 1,
       },
       {
@@ -156,7 +156,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "nuxt", "vue", "tradingview", ],
+        used: [ "nuxt", "tradingview", ],
         related_experience_id: 1,
       },
       {
@@ -234,7 +234,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "nuxt", "vue", "tailwind", ],
+        used: [ "nuxt", "tailwind", ],
         related_experience_id: 1,
       },
       {
@@ -308,7 +308,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "sass", "nuxt", "vue"],
+        used: [ "sass", "nuxt"],
         related_experience_id: 2,
       },
       {

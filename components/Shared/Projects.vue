@@ -117,7 +117,7 @@ export default {
   <section
     :class="[
       'relative flex-1',
-      { 'xl:pl-40 lg:pl-34 xs:pl-14 xs:(pl-6 mt-30) mb-8 ': homePage },
+      { 'xl:px-12 lg:pl-34 xs:pl-14 xs:(pl-6 mt-30) mb-8 ': homePage },
     ]"
     v-if="!portfoliosPage"
   >
