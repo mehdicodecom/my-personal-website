@@ -206,51 +206,11 @@ export default {
                 </li>
               </ul>
 
-              <nuxt-link
-                v-if="showDetailsButtom"
-                :to="{ path: `/project/${project.name}` }"
-                class="relative z-50 bg-main-orange w-full flex items-center justify-center font-medium text-lg h-12 rounded-md mt-8 hover:bg-main-orange/80"
-              >
-                More Details
-              </nuxt-link>
+
             </section>
           </div>
         </swipeSlide>
       </swipeCarousel>
-    </div>
-    <div :class="['flex justify-center gap-3', { 'mr-10': aboutPage }]">
-      <button
-        @click="prevSlide"
-        :class="[
-          'bg-dark-100 rounded-full',
-          { 'cursor-not-allowed': prevDisabled },
-        ]"
-      >
-        <svg
-          :class="[
-            'relative w-14 h-14 transform rotate-180',
-            prevDisabled ? ' text-stone-500' : 'text-orange',
-          ]"
-        >
-          <use :href="'/imgs/icons.svg' + `#arrow`"></use>
-        </svg>
-      </button>
-      <button
-        @click="nextSlide"
-        :class="[
-          'bg-dark-100 rounded-full',
-          { 'cursor-not-allowed': nextDisabled },
-        ]"
-      >
-        <svg
-          :class="[
-            'relative w-14 h-14',
-            nextDisabled ? 'text-stone-500' : 'text-orange',
-          ]"
-        >
-          <use :href="'/imgs/icons.svg' + `#arrow`"></use>
-        </svg>
-      </button>
     </div>
   </section>
   <section

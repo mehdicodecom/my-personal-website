@@ -23,7 +23,7 @@
         :pagination="true"
         :modules="modules"
         class="mySwiper"
-        :initial-slide="3"
+        :initial-slide="2"
         @swiper="onSwiper"
         @slideChange="onSlideChange"
     >
@@ -80,7 +80,7 @@ export default {
           slidesPerView: 3
         },
         1500: {
-          slidesPerView: 3.8
+          slidesPerView: 4.1
         }
       },
       posts: [

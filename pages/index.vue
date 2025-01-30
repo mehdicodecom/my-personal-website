@@ -2,11 +2,11 @@
   <Title>Mehdi Rafiei | Home | Front-end Developer</Title>
 
   <div
-    class="flex xl:px-40 lg:(px-34 justify-center text-center items-center) md:(w-10/12 mt-10 mx-auto) xs:(w-full px-2 flex-wrap mt-4) justify-between mt-46"
+    class="flex lg:(justify-center text-center items-center) md:(w-10/12 mt-10 mx-auto) xs:(w-full px-2 flex-wrap mt-4) justify-between mt-46"
   >
     <Home-HelloWorld />
   </div>
-  <div class="flex mt-14 xl:px-16 w-11/12 mx-auto">
+  <div class="flex mt-10 w-full mx-auto">
     <Slider />
   </div>
 

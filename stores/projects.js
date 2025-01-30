@@ -45,7 +45,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: ["html", "css", "js", "nuxt", "vue", "pinia", "unocss"],
+        used: [ "nuxt", "vue", "pinia", "unocss"],
         related_experience_id: 2,
       },
       {
@@ -104,7 +104,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: ["html", "css", "js", "nuxt", "vue", "tradingview", "responsive"],
+        used: [ "nuxt", "vue", "tradingview", ],
         related_experience_id: 1,
       },
       {
@@ -156,7 +156,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: ["html", "css", "js", "nuxt", "vue", "tradingview", "responsive"],
+        used: [ "nuxt", "vue", "tradingview", ],
         related_experience_id: 1,
       },
       {
@@ -234,7 +234,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: ["html", "css", "js", "nuxt", "vue", "tailwind", "responsive"],
+        used: [ "nuxt", "vue", "tailwind", ],
         related_experience_id: 1,
       },
       {
@@ -308,7 +308,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: ["html", "css", "js", "sass", "nuxt", "vue"],
+        used: [ "sass", "nuxt", "vue"],
         related_experience_id: 2,
       },
       {
@@ -373,7 +373,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: ["html", "css", "js", "sass", "responsive"],
+        used: [ "sass", ],
         related_experience_id: 2,
       },
       {
@@ -405,7 +405,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: ["html", "css", "js", "jquery", "php", "responsive"],
+        used: [ "jquery", "php", ],
         related_experience_id: 2,
       },
       {
@@ -465,7 +465,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: ["html", "css", "js", "jquery", "php", "responsive"],
+        used: [ "jquery", "php", ],
         related_experience_id: 2,
       },
       {
@@ -514,7 +514,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: ["html", "css", "js", "jquery"],
+        used: [ "jquery"],
         related_experience_id: 3,
       },
       {
@@ -550,7 +550,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 1,
-        used: ["html", "css", "js", "jquery", "wordpress"],
+        used: [ "jquery", "wordpress"],
         related_experience_id: 3,
       },
       {
@@ -576,7 +576,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 1,
-        used: ["html", "css", "js", "wordpress", "responsive"],
+        used: [ "wordpress", ],
         related_experience_id: 3,
       },
     ],
