@@ -6,7 +6,7 @@
   >
     <Home-HelloWorld />
   </div>
-  <div class="flex mt-10 xl:px-16 w-11/12 mx-auto">
+  <div class="flex mt-14 xl:px-16 w-11/12 mx-auto">
     <Slider />
   </div>
 
