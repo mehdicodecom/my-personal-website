@@ -1,13 +1,14 @@
 <script>
-import { mapActions } from "pinia";
+import {mapActions} from "pinia";
 import useProjectsStore from "@/stores/projects";
+
 export default {
   props: {
-    showDetailsButtom: { default: true },
-    headline: { default: false },
-    homePage: { default: false },
-    aboutPage: { default: false },
-    portfoliosPage: { default: false },
+    showDetailsButtom: {default: true},
+    headline: {default: false},
+    homePage: {default: false},
+    aboutPage: {default: false},
+    portfoliosPage: {default: false},
     slidesPerView: {
       default: 2.5,
     },
@@ -37,7 +38,7 @@ export default {
           itemsToShow: 2.2,
         },
         1900: {
-          itemsToShow: 2.47,
+          itemsToShow: 2.5,
         },
       },
     },
@@ -93,8 +94,8 @@ export default {
     },
     nextSlide() {
       if (
-        this.currentSlider.data.currentSlide.value !==
-        this.currentSlider.data.maxSlide.value
+          this.currentSlider.data.currentSlide.value !==
+          this.currentSlider.data.maxSlide.value
       )
         this.currentSlider.next();
     },
@@ -103,11 +104,11 @@ export default {
       setTimeout(() => {
         this.prevDisabled = this.currentSlider.data.currentSlide.value === 0;
         this.nextDisabled =
-          this.currentSlider.data.currentSlide.value === maxSlide;
+            this.currentSlider.data.currentSlide.value === maxSlide;
       }, 50);
     },
     goToLink(link) {
-      this.$router.push({ path: link });
+      this.$router.push({path: link});
     },
   },
 };
@@ -115,11 +116,11 @@ export default {
 
 <template>
   <section
-    :class="[
+      :class="[
       'relative flex-1',
-      { 'xl:px-12 lg:pl-34 xs:pl-14 xs:(pl-6 mt-30) mb-8 ': homePage },
+      { 'xl:px-20 lg:pl-34 xs:pl-14 xs:(pl-6 mt-30) mb-8 ': homePage },
     ]"
-    v-if="!portfoliosPage"
+      v-if="!portfoliosPage"
   >
     <div class="flex items-center justify-between mr-10" v-if="headline">
       <h2 class="relative text-left">
@@ -130,8 +131,8 @@ export default {
       </h2>
 
       <nuxt-link
-        :to="{ path: '/portfolios' }"
-        class="flex items-center gap-1 text-lg transition duration-200 text-main-orange/80 hover:text-main-orange font-bold"
+          :to="{ path: '/portfolios' }"
+          class="flex items-center gap-1 text-lg transition duration-200 text-main-orange/80 hover:text-main-orange font-bold"
       >
         <span class="sm:block xs:(hidden)">View More Projects</span>
         <span class="sm:hidden xs:(block)">View More</span>
@@ -141,115 +142,137 @@ export default {
       </nuxt-link>
     </div>
     <div
-      :class="[
-        'flex w-full',
+        :class="[
+        'relative flex flex-wrap w-full',
         { 'mr-10 mt-4 mb-8': aboutPage },
         { 'sm:(my-10) xs:(mt-4 mb-6)': homePage },
       ]"
     >
       <swipeCarousel
-        @slide-start="sliderChanged"
-        :ref="`slider${currentSliderNum}`"
-        :breakpoints="breakpoints"
-        snap-align="start"
-        v-bind="settings"
-        class="w-full"
+          @slide-start="sliderChanged"
+          :ref="`slider${currentSliderNum}`"
+          :breakpoints="breakpoints"
+          snap-align="start"
+          v-bind="settings"
+          class="w-full "
       >
         <swipeSlide
-          v-for="project in projects"
-          :key="project.id"
-          class="relative border-r-20 border-transparent"
+            v-for="project in projects"
+            :key="project.id"
+            class="relative border-r-20 border-transparent"
         >
           <div
-            :class="[
-              'flex flex-col gap-6 justify-center items-center bg-dark rounded-lg py-8',
+              :class="[
+              'flex flex-col gap-4 justify-center items-center bg-dark rounded-lg py-5',
               homePage
-                ? 'shadow-lg sm:(pr-15 pl-15) xs:(pr-4 pl-4)'
+                ? 'shadow-lg sm:(px-16) xs:(px-4)'
                 : 'border border-neutral-700',
               { 'xs:(pr-4 pl-4)': aboutPage },
             ]"
           >
             <a
-              @click.prevent="
+                @click.prevent="
                 $router.push({ path: `/project/${project.name}` })
               "
-              class="absolute z-30 w-full h-full cursor-pointer"
+                class="absolute z-30 w-full h-full cursor-pointer"
             >
             </a>
             <Shared-Screen
-              @click="showGallery(project.id)"
-              :class="[
+                @click="showGallery(project.id)"
+                :class="[
                 'relative z-50',
                 { 'md:w-140 sm:w-116 xs:w-60': aboutPage },
                 { 'md:w-140 sm:w-130 xs:w-100': homePage },
               ]"
-              :about-page="true"
-              :media="project.media[project.mainMedia]"
+                :about-page="true"
+                :media="project.media[project.mainMedia]"
             />
             <section
-              class="flex flex-col gap-2 mt-2 flex-wrap items-center justify-center w-full"
+                class="flex flex-col gap-2 flex-wrap items-center justify-center w-full"
             >
               <p class="font-medium text-2xl">
                 <span class="text-main-orange">{{ project.name }}</span>
                 {{ project.title }}
               </p>
-              <p class="text-lg">{{ project.description }}</p>
-
-              <ul class="flex gap-4 mt-6">
-                <li v-for="skill in project.used">
-                  <img
-                    :src="`/imgs/skills/${skill}.svg`"
-                    alt=""
-                    class="w-8 h-8"
-                    :title="skill"
-                  />
-                </li>
-              </ul>
-
-
+              <p class="opacity-70">{{ project.description }}</p>
             </section>
           </div>
         </swipeSlide>
       </swipeCarousel>
+      <div class="flex gap-6 w-full justify-center mt-4 items-center">
+        <button
+            @click="prevSlide"
+            :class="[
+          ' lg:(absolute -left-7 bg-opacity-50 top-1/2 transform -translate-y-1/2) bg-opacity-90 bg-dark-50 transition duration-200 rounded-full',
+          prevDisabled ? 'cursor-not-allowed' : 'hover:bg-opacity-100'
+        ]"
+        >
+          <svg
+              :class="[
+            'relative w-14 h-14 transform rotate-180',
+            prevDisabled ? ' text-stone-500' : 'text-orange',
+          ]"
+          >
+            <use :href="'/imgs/icons.svg' + `#arrow`"></use>
+          </svg>
+        </button>
+
+        <button
+            @click="nextSlide"
+            :class="[
+          'lg:(absolute -right-7 bg-opacity-50 top-1/2 transform -translate-y-1/2) bg-opacity-90 bg-dark-50 bg-opacity-50 transition duration-200 rounded-full',
+          nextDisabled ? 'cursor-not-allowed' : 'hover:bg-opacity-100',
+        ]"
+        >
+          <svg
+              :class="[
+            'relative w-14 h-14',
+            nextDisabled ? 'text-stone-500' : 'text-orange',
+          ]"
+          >
+            <use :href="'/imgs/icons.svg' + `#arrow`"></use>
+          </svg>
+        </button>
+      </div>
     </div>
   </section>
   <section
-    class="xl:(mt-26 pl-24 pr-22) lg:(pl-17 pr-14 w-11/12 mx-auto) sm:(pl-16 pr-14) xs:(px-10 mt-16 w-full)"
-    v-else
+      class="xl:(mt-26 pl-24 pr-22) lg:(pl-17 pr-14 w-11/12 mx-auto) sm:(pl-16 pr-14) xs:(px-10 mt-16 w-full)"
+      v-else
   >
     <div class="relative text-3xl font-bold">
       <span
-        class="updown inline-block absolute -top-1 -left-2.5 w-14 h-14 bg-main-orange rounded-full"
+          class="updown inline-block absolute -top-1 -left-2.5 w-14 h-14 bg-main-orange rounded-full"
       ></span>
       <div class="loading textLoading inline-block">
         <span class="relative inline-block z-20"
-          >Projects
+        >Projects
           <span class="text-lg">({{ projects?.length }} items)</span></span
         >
       </div>
     </div>
     <section class="flex flex-col gap-6 mt-10">
       <div
-        v-for="project in projects"
-        :key="project.id"
-        class="relative bg-dark rounded-lg flex lg:(flex-row gap-26) md:(pr-16 pl-18) shadow-lg xs:(py-8 pr-4 pl-4 flex-col gap-4 items-center)"
+          v-for="project in projects"
+          :key="project.id"
+          class="relative bg-dark rounded-lg flex lg:(flex-row gap-26) md:(pr-16 pl-18) shadow-lg xs:(py-8 pr-4 pl-4 flex-col gap-4 items-center)"
       >
         <nuxt-link
-          :to="{ path: `/project/${project.name}` }"
-          class="absolute z-30 w-full h-full"
+            :to="{ path: `/project/${project.name}` }"
+            class="absolute z-30 w-full h-full"
         >
         </nuxt-link>
         <Shared-Screen
-          @click="showGallery(project.id)"
-          class="relative z-50 xl:min-w-140 lg:(min-w-120 mx-initial) md:(w-140 mx-auto) sm:w-110 xs:(w-100)"
-          :media="project.media[project.mainMedia]"
+            @click="showGallery(project.id)"
+            class="relative z-50 xl:min-w-140 lg:(min-w-120 mx-initial) md:(w-140 mx-auto) sm:w-110 xs:(w-100)"
+            :media="project.media[project.mainMedia]"
         />
         <section
-          class="flex flex-col gap-2 mt-2 flex-wrap items-start lg:items-start xs:(items-center)"
+            class="flex flex-col gap-2 mt-2 flex-wrap items-start lg:items-start xs:(items-center)"
         >
           <div class="loading textLoading inline-block">
             <span
-              class="inline-block font-medium text-2xl lg:text-left xs:text-center"
+                class="inline-block font-medium text-2xl lg:text-left xs:text-center"
             >
               <span class="text-main-orange mr-2">{{ project.name }}</span>
               <span>{{ project.title }}</span>
@@ -268,20 +291,21 @@ export default {
             <ul class="flex gap-4 mt-2">
               <li v-for="skill in project.used">
                 <img
-                  :src="`/imgs/skills/${skill}.svg`"
-                  alt=""
-                  class="w-8 h-8"
-                  :title="skill"
+                    :src="`/imgs/skills/${skill}.svg`"
+                    alt=""
+                    class="w-8 h-8"
+                    :title="skill"
                 />
               </li>
             </ul>
           </div>
 
           <nuxt-link
-            v-if="showDetailsButtom"
-            :to="{ path: `/project/${project.name}` }"
-            class="relative z-40 bg-main-orange w-80 flex items-center justify-center font-medium text-lg h-12 rounded-md mt-8 hover:bg-main-orange/80"
-            >More Details</nuxt-link
+              v-if="showDetailsButtom"
+              :to="{ path: `/project/${project.name}` }"
+              class="relative z-40 bg-main-orange w-80 flex items-center justify-center font-medium text-lg h-12 rounded-md mt-8 hover:bg-main-orange/80"
+          >More Details
+          </nuxt-link
           >
         </section>
       </div>
@@ -289,6 +313,7 @@ export default {
   </section>
 </template>
 <style>
-. {
+.carousel__viewport {
+  border-radius: 8px;
 }
 </style>

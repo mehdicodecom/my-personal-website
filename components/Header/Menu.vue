@@ -48,7 +48,7 @@ export default {
 <template>
   <!-- Start Menu -->
   <nav
-      class="flex select-none md:(static bg-transparent h-initial bottom-initial w-initial) xs:(fixed bottom-0 h-24 bg-dark-100 left-0 w-screen)"
+      class="flex select-none md:(static bg-transparent h-initial bottom-initial w-initial) xs:(fixed bottom-0 h-24 bg-dark-300 left-0 w-screen rounded-t-2xl)"
   >
     <ul
         class="flex 2xl:gap-12 lg:gap-8 md:(w-initial gap-10) xs:(w-full gap-0) items-center font-semibold"
@@ -68,13 +68,14 @@ export default {
             >
               <svg
                   :class="[
-                  'relative trans3ms w-6 h-6',
+                  'relative trans3ms md:(w-6 h-6) w-8 h-8',
+                  index !== activeMenu && 'opacity-90'
                 ]"
               >
                 <use :href="'/imgs/icons.svg' + `#${menu.icon}`"></use>
               </svg>
 
-              <span :class="[{ 'sm:block xs:hidden': index !== activeMenu }]">{{
+              <span :class="[{ 'sm:block xs:(opacity-70 text-sm)': index !== activeMenu }]">{{
                   menu.title
                 }}</span>
             </nuxt-link>
