@@ -118,7 +118,7 @@ export default {
   <section
       :class="[
       'relative flex-1',
-      { 'xl:px-20 lg:pl-34 xs:pl-14 xs:(pl-6 mt-30) mb-8 ': homePage },
+      { 'xl:px-20 lg:pl-34 xs:pl-14 xs:(pl-6 mt-30)': homePage },
     ]"
       v-if="!portfoliosPage"
   >
@@ -199,7 +199,7 @@ export default {
           </div>
         </swipeSlide>
       </swipeCarousel>
-      <div class="flex gap-6 w-full justify-center mt-4 items-center">
+      <div class="flex gap-6 w-full justify-center mt-8 items-center md:mt-0">
         <button
             @click="prevSlide"
             :class="[

@@ -17,6 +17,7 @@
           modifier: 1,
           slideShadows: true,
         }"
+        :loop="true"
         :breakpoints="breakpoints"
         :observe="true"
         :observe-parents="true"

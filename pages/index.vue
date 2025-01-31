@@ -2,7 +2,7 @@
   <Title>Mehdi Rafiei | Home | Front-end Developer</Title>
 
   <div
-    class="flex lg:(justify-center text-center items-center) md:(w-10/12 mt-8 mx-auto) xs:(w-full px-2 flex-wrap mt-4) justify-between mt-46"
+    class="flex lg:(justify-center text-center items-center) mt-8"
   >
     <Home-HelloWorld />
   </div>
