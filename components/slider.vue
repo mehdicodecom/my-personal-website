@@ -24,7 +24,7 @@
         :pagination="true"
         :modules="modules"
         class="mySwiper"
-        :initial-slide="2"
+        :initial-slide="0"
         @swiper="onSwiper"
         @slideChange="onSlideChange"
     >
@@ -37,7 +37,7 @@
               <use href="/imgs/icons.svg#clock"></use>
             </svg>
 
-            <span class="text-sm">{{ post.date}}</span>
+            <span class="text-sm">{{ post.date }}</span>
           </div>
           <div
               class="absolute inline-flex justify-center items-center w-14 h-14 rounded-full bg-black bg-opacity-70 top-1/2 transition duration-400 transform opacity-0 -translate-y-30 scale-150 right-0 left-0 mx-auto group-hover:(-translate-y-1/2 opacity-100 scale-100)">
@@ -72,7 +72,7 @@ export default {
   },
   data() {
     return {
-      activeIndex: 3,
+      activeIndex: 0,
       breakpoints: {
         650: {
           slidesPerView: 2
@@ -85,22 +85,6 @@ export default {
         }
       },
       posts: [
-        {
-          img: "js.jpg",
-          title: "The Art of Writing Clean and Maintainable JavaScript Code",
-          categories: ['programming', 'frontend', 'javascript'],
-          description:
-              `Writing clean and maintainable JavaScript code is essential for building scalable, bug-free applications. In this article, we'll explore best practices, design patterns, and techniques that will help you write code that's easy to understand, test, and maintain over time. Whether you're a beginner or an experienced developer, mastering these principles will improve the quality and longevity of your projects.`,
-          date: 'January 29, 2025',
-        },
-        {
-          img: "programming.jpg",
-          title: "From Good to Great: Developer Growth Tips",
-          categories: ['programming'],
-          description: `
-          Becoming a great developer isn’t just about writing code—it’s about thinking critically, solving problems efficiently, and continuously improving. In this article, we’ll explore key habits, mindset shifts, and practical strategies that can help you level up your development skills and stand out in the tech world. 🚀`,
-          date: 'January 29, 2025',
-        },
         {
           img: "react.jpg",
           title: "From Zero to React Hero: A Beginner's Guide",
@@ -131,6 +115,22 @@ export default {
           categories: ['programming', 'ai', 'frontend'],
           description:
               `React and Vue are two of the most popular front-end frameworks, each offering unique strengths. In this article, we’ll compare them based on performance, ease of use, and community support, helping you decide which is best for your next web project.`,
+          date: 'January 29, 2025',
+        },
+        {
+          img: "js.jpg",
+          title: "The Art of Writing Clean and Maintainable JavaScript Code",
+          categories: ['programming', 'frontend', 'javascript'],
+          description:
+              `Writing clean and maintainable JavaScript code is essential for building scalable, bug-free applications. In this article, we'll explore best practices, design patterns, and techniques that will help you write code that's easy to understand, test, and maintain over time. Whether you're a beginner or an experienced developer, mastering these principles will improve the quality and longevity of your projects.`,
+          date: 'January 29, 2025',
+        },
+        {
+          img: "programming.jpg",
+          title: "From Good to Great: Developer Growth Tips",
+          categories: ['programming'],
+          description: `
+          Becoming a great developer isn’t just about writing code—it’s about thinking critically, solving problems efficiently, and continuously improving. In this article, we’ll explore key habits, mindset shifts, and practical strategies that can help you level up your development skills and stand out in the tech world. 🚀`,
           date: 'January 29, 2025',
         },
       ],

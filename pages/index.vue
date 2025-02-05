@@ -11,7 +11,7 @@
   </div>
 
   <Shared-Projects
-    class="lg:mt-20 sm:mt-26"
+    class="lg:pt-28 sm:pt-26 xl:px-20 overflow-hidden w-full lg:pl-34 xs:pl-14 xs:(pl-6 pt-30)"
     :projects="getPortfolios(8)"
     :headline="true"
     :home-page="true"

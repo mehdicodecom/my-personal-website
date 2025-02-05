@@ -2,10 +2,10 @@
   <Title>Mehdi Rafiei | About me | Front-end Developer</Title>
 
   <div
-      class="relative xl:px-24 lg:(px-18 w-11/12) mx-auto md:px-16 sm:px-14 xs:px-12 xs:w-full"
+      class="relative xl:px-22 lg:(px-18 w-full) mx-auto md:px-16 sm:px-14 xs:px-12 xs:w-full"
   >
     <div
-        class="relative xl:mt-40 lg:mt-26 md:mt-20 xs:mt-16 text-3xl font-bold"
+        class="relative xl:mt-16 lg:mt-26 md:mt-20 xs:mt-16 text-3xl font-bold"
     >
       <span
           class="updown inline-block absolute -top-1 -left-2.5 w-14 h-14 bg-main-orange rounded-full"
@@ -67,7 +67,7 @@
       />
     </div>
 
-    <div class="relative xl:mt-40 xs:mt-30 text-2xl font-bold">
+    <div class="relative xl:mt-20 xs:mt-30 text-2xl font-bold">
       <span
           class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
       ></span>
@@ -165,7 +165,7 @@
             <Shared-Projects
                 :current-slider-num="index + 1"
                 :show-details-buttom="false"
-                :slides-per-view="2"
+                :slides-per-view="3"
                 :about-page="true"
                 :projects="getPortfolios(null, experience.id)"
                 :breakpoints="related_projects_breakpoints"
@@ -251,7 +251,7 @@ export default {
           itemsToShow: 1.8,
         },
         1900: {
-          itemsToShow: 2,
+          itemsToShow: 3,
         },
       },
       skills: [

@@ -38,7 +38,7 @@ export default {
           itemsToShow: 2.2,
         },
         1900: {
-          itemsToShow: 2.5,
+          itemsToShow: 3,
         },
       },
     },
@@ -116,16 +116,16 @@ export default {
 
 <template>
   <section
-      :class="[
-      'relative flex-1',
-      { 'xl:px-20 lg:pl-34 xs:pl-14 xs:(pl-6 mt-30)': homePage },
-    ]"
+      class="relative flex-1"
       v-if="!portfoliosPage"
   >
     <div class="flex items-center justify-between mr-10" v-if="headline">
       <h2 class="relative text-left">
-        <span class="2xl:text-5xl xs:text-4xl tracking-widest">Latest</span>
-        <span class="2xl:text-3xl xs:text-2xl font-bold text-main-orange">
+              <span
+                  class="updown inline-block absolute -top-1 -left-2.5 w-14 h-14 bg-main-orange rounded-full"
+              ></span>
+        <span class="loading 2xl:text-5xl xs:text-4xl tracking">Latest</span>
+        <span class="loading 2xl:text-4xl xs:text-2xl font-bold text-main-orange">
           Projects
         </span>
       </h2>
@@ -163,11 +163,7 @@ export default {
         >
           <div
               :class="[
-              'flex flex-col gap-4 justify-center items-center bg-dark rounded-lg py-5',
-              homePage
-                ? 'shadow-lg sm:(px-16) xs:(px-4)'
-                : 'border border-neutral-700',
-              { 'xs:(pr-4 pl-4)': aboutPage },
+              'flex flex-col gap-4 justify-center items-center rounded-lg py-5',
             ]"
           >
             <a
@@ -181,14 +177,15 @@ export default {
                 @click="showGallery(project.id)"
                 :class="[
                 'relative z-50',
-                { 'md:w-140 sm:w-116 xs:w-60': aboutPage },
-                { 'md:w-140 sm:w-130 xs:w-100': homePage },
+                { 'md:w-110 sm:w-130 xs:w-100': aboutPage },
+                { 'md:w-110 sm:w-130 xs:w-100': homePage },
               ]"
                 :about-page="true"
+                screen-height="h-60"
                 :media="project.media[project.mainMedia]"
             />
             <section
-                class="flex flex-col gap-2 flex-wrap items-center justify-center w-full"
+                class="flex flex-col gap-2 flex-wrap items-center justify-center w-full px-12"
             >
               <p class="font-medium text-2xl">
                 <span class="text-main-orange">{{ project.name }}</span>
@@ -203,8 +200,8 @@ export default {
         <button
             @click="prevSlide"
             :class="[
-          ' lg:(absolute -left-7 bg-opacity-50 top-1/2 transform -translate-y-1/2) bg-opacity-90 bg-dark-50 transition duration-200 rounded-full',
-          prevDisabled ? 'cursor-not-allowed' : 'hover:bg-opacity-100'
+          ' lg:(absolute -left-6 top-1/2 transform -translate-y-1/2)  bg-dark-50 transition duration-200 rounded-full',
+          prevDisabled ? 'bg-opacity-60 cursor-not-allowed' : 'bg-opacity-90 hover:bg-opacity-100'
         ]"
         >
           <svg
@@ -220,8 +217,9 @@ export default {
         <button
             @click="nextSlide"
             :class="[
-          'lg:(absolute -right-7 bg-opacity-50 top-1/2 transform -translate-y-1/2) bg-opacity-90 bg-dark-50 bg-opacity-50 transition duration-200 rounded-full',
+          'lg:(absolute right-0 bg-opacity-90 top-1/2 transform -translate-y-1/2) bg-opacity-90 bg-dark-50 bg-opacity-50 transition duration-200 rounded-full',
           nextDisabled ? 'cursor-not-allowed' : 'hover:bg-opacity-100',
+
         ]"
         >
           <svg
