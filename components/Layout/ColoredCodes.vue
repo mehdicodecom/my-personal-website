@@ -42,7 +42,7 @@ export default {
 
         <birthdate year="1998" month="july" day="11" />
 
-        <skills :list="['NUXT', 'Vue', 'React', 'Next', 'Javascript']" />
+        <skills :list="['NUXT', 'Vue', 'React', 'Next', 'Javascript','Responsive Design', 'i18n', 'TypeScript]" />
 
         <contactDetails :list="['info@mehdicode.com', 'linkedin.com/in/merafiee', 'github.com/mehdicodecom']" />
         `,

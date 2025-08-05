@@ -36,7 +36,7 @@ a {
 }
 
 .marqueeY {
-  animation: marqueeY 6s linear infinite;
+  animation: marqueeY 8s linear infinite;
 }
 
 @keyframes marqueeY {

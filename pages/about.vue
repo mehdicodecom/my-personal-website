@@ -2,13 +2,13 @@
   <Title>Mehdi Rafiei | About me | Front-end Developer</Title>
 
   <div
-      class="relative xl:px-22 lg:(px-18 w-full) mx-auto md:px-16 sm:px-14 xs:px-12 xs:w-full"
+    class="relative xl:px-22 lg:(px-18 w-full) mx-auto md:px-16 sm:px-14 xs:px-12 xs:w-full"
   >
     <div
-        class="relative xl:mt-16 lg:mt-26 md:mt-20 xs:mt-16 text-3xl font-bold"
+      class="relative xl:mt-16 lg:mt-26 md:mt-20 xs:mt-16 text-3xl font-bold"
     >
       <span
-          class="updown inline-block absolute -top-1 -left-2.5 w-14 h-14 bg-main-orange rounded-full"
+        class="updown inline-block absolute -top-1 -left-2.5 w-14 h-14 bg-main-orange rounded-full"
       ></span>
       <div class="loading textLoading inline-block">
         <span class="relative inline-block">About Me</span>
@@ -29,15 +29,15 @@
             </p>
           </div>
           <img
-              src="/imgs/about/mehdi.jpg"
-              alt=""
-              class="md:hidden sm:(inline-block max-w-50) xs:hidden rounded-md shadow-lg"
+            src="/imgs/about/mehdi.jpg"
+            alt=""
+            class="md:hidden sm:(inline-block max-w-50) xs:hidden rounded-md shadow-lg"
           />
         </div>
 
         <div class="relative lg:mt-20 md:mt-14 xs:mt-12 text-2xl font-bold">
           <span
-              class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
+            class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
           ></span>
           <div class="loading textLoading inline-block">
             <span class="relative inline-block">Skills</span>
@@ -49,7 +49,7 @@
             <div class="loading textLoading inline-block">
               <div class="inline-block">
                 <span
-                    class="text-xl inline-block font-medium text-main-orange min-w-28 sm:inline-block xs:block"
+                  class="text-xl inline-block font-medium text-main-orange min-w-28 sm:inline-block xs:block"
                 >
                   {{ skill.title }}:
                 </span>
@@ -61,65 +61,68 @@
       </div>
 
       <img
-          src="/imgs/about/mehdi.jpg"
-          alt=""
-          class="md:(w-86 inline-block) sm:hidden xs:(mt-8 w-60 mx-auto) rounded-md shadow-lg order-1"
+        src="/imgs/about/mehdi.jpg"
+        alt=""
+        class="md:(w-86 inline-block) sm:hidden xs:(mt-8 w-60 mx-auto) rounded-md shadow-lg order-1"
       />
     </div>
 
     <div class="relative xl:mt-20 xs:mt-30 text-2xl font-bold">
       <span
-          class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
+        class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
       ></span>
       <div class="loading textLoading inline-block">
         <span class="relative inline-block"
-        >Experiences <span class="text-lg" v-if="experiences.length">({{ experiences.length }} Items)</span></span
+          >Experiences
+          <span class="text-lg" v-if="experiences.length"
+            >({{ experiences.length }} Items)</span
+          ></span
         >
       </div>
     </div>
 
-    <div class=" mt-8 flex flex-col gap-6">
+    <div class="mt-8 flex flex-col gap-6">
       <div
-          :class="[
-          'relative bg-dark py-8 xs:(py-6) px-6 border border-zinc-700 rounded-md flex gap-4 overflow-hidden',
+        :class="[
+          'relative bg-dark/70 py-8 xs:(py-6) px-6 border border-zinc-700 rounded-md flex gap-4 overflow-hidden',
           experience.showDetails
             ? 'transMaxHeightIn lg:max-h-310 md:max-h-340 sm:max-h-360 xs:max-h-460'
             : 'transMaxHeightOut lg:max-h-40 md:(max-h-34) sm:max-h-30 xs:max-h-46',
         ]"
-          v-for="(experience, index) in experiences"
+        v-for="(experience, index) in experiences"
       >
         <span
-            class="md:relative xs:absolute inline-block min-w-8 h-8 bg-main-orange rounded-full flex items-center justify-center"
+          class="md:relative xs:absolute inline-block min-w-8 h-8 bg-main-orange rounded-full flex items-center justify-center"
         >
           <span
-              class="inline-block w-7 h-7 bg-main-orange border-7 border-dark rounded-full"
+            class="inline-block w-7 h-7 bg-main-orange border-7 border-dark rounded-full"
           ></span>
         </span>
 
         <div class="md:w-[calc(100%-2rem)] xs:w-full">
           <div>
             <div
-                class="w-full flex justify-between items-start sm:flex-row xs:flex-col"
+              class="w-full flex justify-between items-start sm:flex-row xs:flex-col"
             >
               <h3
-                  class="md:w-9/12 sm:w-8/12 xs:w-full text-xl text-main-orange font-medium"
+                class="md:w-9/12 sm:w-8/12 xs:w-full text-xl text-main-orange font-medium"
               >
                 <span class="md:ml-0 xs:ml-12">{{ experience.company }}</span>
                 <span
-                    class="text-white lg:(inline-block mb-0 mt-0 ml-2) sm:mb-5 xs:(block mt-4)"
-                >({{ experience.role }})</span
+                  class="text-white lg:(inline-block mb-0 mt-0 ml-2) sm:mb-5 xs:(block mt-4)"
+                  >({{ experience.role }})</span
                 >
               </h3>
               <div
-                  :class="[
+                :class="[
                   'trans3ms flex gap-2 items-center cursor-pointer md:(absolute top-9 right-8 mb-0) xs:(relative top-2 min-w-36 mb-12)',
                   experience.showDetails ? 'text-red' : 'text-main-green',
                 ]"
-                  @click="experience.showDetails = !experience.showDetails"
+                @click="experience.showDetails = !experience.showDetails"
               >
                 <svg class="w-8 h-8 text-white-3 select-none">
                   <use
-                      :href="`/imgs/icons.svg#eye_${
+                    :href="`/imgs/icons.svg#eye_${
                       experience.showDetails ? 'close' : 'open'
                     }`"
                   ></use>
@@ -143,32 +146,34 @@
           <p class="mt-10 font-bold text-main-green">Some of tasks:</p>
           <ul class="flex flex-col gap-2 mt-2 text-white/80 w-11/12">
             <li
-                v-for="task in experience.tasks"
-                class="flex items-center gap-2"
+              v-for="task in experience.tasks"
+              class="flex items-center gap-2"
             >
               <span
-                  class="inline-block min-w-2 min-h-2 bg-stone-400 rounded-full"
+                class="inline-block min-w-2 min-h-2 bg-stone-400 rounded-full"
               ></span>
               <p>{{ task }}</p>
             </li>
           </ul>
 
           <template v-if="getPortfolios(null, experience.id)?.length">
-
             <p class="mt-8 font-bold text-main-cyan">
               Related Projects:
               <span class="text-sm text-white/80"
-              >({{ getPortfolios(null, experience.id)?.length }} Projects)</span
+                >({{
+                  getPortfolios(null, experience.id)?.length
+                }}
+                Projects)</span
               >
             </p>
 
             <Shared-Projects
-                :current-slider-num="index + 1"
-                :show-details-buttom="false"
-                :slides-per-view="3"
-                :about-page="true"
-                :projects="getPortfolios(null, experience.id)"
-                :breakpoints="related_projects_breakpoints"
+              :current-slider-num="index + 1"
+              :show-details-buttom="false"
+              :slides-per-view="3"
+              :about-page="true"
+              :projects="getPortfolios(null, experience.id)"
+              :breakpoints="related_projects_breakpoints"
             />
           </template>
         </div>
@@ -177,7 +182,7 @@
 
     <div class="relative mt-20 text-2xl font-bold">
       <span
-          class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
+        class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
       ></span>
       <div class="loading textLoading inline-block">
         <span class="relative inline-block">Education </span>
@@ -186,15 +191,15 @@
 
     <transition name="fadeScale">
       <Shared-Gallery
-          v-if="galleryVisible"
-          :project="getPortfolio(activeProjectID)"
+        v-if="galleryVisible"
+        :project="getPortfolio(activeProjectID)"
       />
     </transition>
 
     <div class="mt-8 flex flex-col gap-6">
       <div
-          v-for="edu in educations"
-          class="bg-dark py-8 px-6 border border-zinc-700 rounded-md flex gap-4"
+        v-for="edu in educations"
+        class="bg-dark py-8 px-6 border border-zinc-700 rounded-md flex gap-4"
       >
         <svg class="w-10 h-10 text-main-orange select-none">
           <use :href="`/imgs/icons.svg#edu`"></use>
@@ -204,7 +209,7 @@
           <h3 class="text-xl text-main-orange font-medium">
             {{ edu.college }}
             <span class="text-white md:inline-block xs:block"
-            >({{ edu.degree }})</span
+              >({{ edu.degree }})</span
             >
           </h3>
 
@@ -216,7 +221,7 @@
             <li><p class="text-main-green font-bold">Courses:</p></li>
             <li v-for="subject in edu.subjects" class="flex items-center gap-2">
               <span
-                  class="inline-block w-2 h-2 bg-stone-400 rounded-full"
+                class="inline-block w-2 h-2 bg-stone-400 rounded-full"
               ></span>
               <p>{{ subject }}</p>
             </li>
@@ -228,7 +233,7 @@
 </template>
 
 <script>
-import {mapState} from "pinia";
+import { mapState } from "pinia";
 import useProjectsStore from "@/stores/projects";
 
 export default {
@@ -262,17 +267,17 @@ export default {
         {
           title: "Modules",
           items:
-              "Vue, Vuex, Nuxt, SASS, Tailwind, UnoCSS, I18N, Jest, Webpack, WebSocket, jQuery, Bootstrap",
+            "Vue, Vuex, Nuxt, SASS, Tailwind, UnoCSS, I18N, Jest, Webpack, WebSocket, jQuery, Bootstrap",
         },
         {
           title: "Concepts",
           items:
-              "Responsive Design, Restful APIs, UI/UX Design, SEO, Cross-Browser compatibility, PWA, Core web vitals, SPA",
+            "Responsive Design, Restful APIs, UI/UX Design, SEO, Cross-Browser compatibility, PWA, Core web vitals, SPA",
         },
         {
           title: "Tools & etc",
           items:
-              "Version Control (Git, GitHub, GitLab), Jira, Figma, Emmet, ESLint, Prettier, NPM, Yarn, Docker, PM2",
+            "Version Control (Git, GitHub, GitLab), Jira, Figma, Emmet, ESLint, Prettier, NPM, Yarn, Docker, PM2",
         },
       ],
       experiences: [

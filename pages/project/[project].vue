@@ -4,7 +4,7 @@
   </Title>
 
   <div
-    class="relative bg-dark rounded-lg flex flex-col items-center py-10 border border-neutral-700 xl:(ml-42 mr-40 px-22) lg:(ml-30 mr-30 px-18) md:(px-14 mt-30) sm:(px-8 mx-12 mt-30) xs:(px-6 mx-8 mt-24)"
+    class="relative bg-dark/70 rounded-lg flex flex-col items-center py-10 border border-neutral-700 xl:(ml-42 mr-40 px-22) lg:(ml-30 mr-30 px-18) md:(px-14 mt-30) sm:(px-8 mx-12 mt-30) xs:(px-6 mx-8 mt-24)"
   >
     <nuxt-link
       :to="{ path: '/portfolios' }"
