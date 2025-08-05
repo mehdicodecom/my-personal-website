@@ -35,6 +35,19 @@ a {
   opacity: 0;
 }
 
+.marqueeY {
+  animation: marqueeY 6s linear infinite;
+}
+
+@keyframes marqueeY {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
 .viewport {
   position: absolute;
   bottom: 0;

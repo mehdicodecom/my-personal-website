@@ -1,7 +1,7 @@
 <template>
   <!-- Start Colored Codes Background -->
   <div
-    class="px-7 absolute top-0 w-full gap-20 opacity-20 select-none flex flex-col gap-12 vertical-text items-start overflow-hidden"
+    class="fixed marqueeY px-7 absolute top-0 w-full gap-20 opacity-20 select-none flex flex-col gap-12 vertical-text items-start overflow-hidden"
   >
     <p
       v-for="code in coloredCodes"
@@ -18,21 +18,19 @@ export default {
     return {
       elements: `
         <header class="flex items-center">
-          <img src="logo.png" class="w-18" alt="Mehdi Rafiee Logo" />
-          <ul class="flex">
-            <li><nuxt-link href="/">Home</nuxt-link></li>
-            <li><nuxt-link href="/about">About</nuxt-link></li>
-            <li><nuxt-link href="/works"> Portfolio</nuxt-link></li>
-            <li><nuxt-link href="/contact_me"> Contact</nuxt-link></li>
-          </ul>
+          <img src="logo.png" class="w-18" alt="Mehdi Rafiei Persoanl Website Logo" />
+          <Item><nuxt-link href="/">Home</nuxt-link></Item>
+          <Item><nuxt-link href="/about">About</nuxt-link></Item>
+          <Item><nuxt-link href="/works"> Portfolio</nuxt-link></Item>
+          <Item><nuxt-link href="/contact_me"> Contact</nuxt-link></Item>
 
-          <a href="Mehdi_Rafiee-Resume.pdf"> Resume </a>
+          <a href="Mehdi_Rafiee-Resume.pdf" title="Download Mehdi Rafiei Resume (PDF)"> Resume </a>
 
           <themeswitch class="moon">Dark/Light</themeswitch>
           <langswitch class="en">en/fa</langswitch>
         </header>
 
-        <initilizecontent class="content">Hello World</initilizecontent>
+        <initilizecontent class="content">Hello World - I'm Mehdi Rafiei</initilizecontent>
 
         <myname is="Mehdi Rafiei" />
 
@@ -43,6 +41,10 @@ export default {
         <experience years="more than 6" />
 
         <birthdate year="1998" month="july" day="11" />
+
+        <skills :list="['NUXT', 'Vue', 'React', 'Next', 'Javascript']" />
+
+        <contactDetails :list="['info@mehdicode.com', 'linkedin.com/in/merafiee', 'github.com/mehdicodecom']" />
         `,
     };
   },
@@ -97,4 +99,7 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+test {
+}
+</style>
