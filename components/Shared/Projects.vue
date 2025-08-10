@@ -235,7 +235,7 @@ export default {
     </div>
   </section>
   <section
-    class="xl:(mt-26 pl-24 pr-22) lg:(pl-17 pr-14 w-11/12 mx-auto) sm:(pl-16 pr-14) xs:(px-10 mt-16 w-full)"
+    class="xl:(mt-16 pl-24 pr-22) lg:(pl-17 pr-14 ) sm:(pl-16 pr-14) xs:(px-10 mt-16 w-full)"
     v-else
   >
     <div class="relative text-3xl font-bold">
@@ -249,11 +249,11 @@ export default {
         >
       </div>
     </div>
-    <section class="flex flex-col gap-6 mt-10">
+    <section class="grid lg:grid-cols-2 gap-6 mt-10">
       <div
         v-for="project in projects"
         :key="project.id"
-        class="relative bg-dark/70 rounded-lg flex lg:(flex-row gap-26) md:(pr-16 pl-18) shadow-lg xs:(py-8 pr-4 pl-4 flex-col gap-4 items-center)"
+        class="relative bg-dark/70 rounded-lg flex lg:(flex-col gap-8) md:(pr-16 pl-18) shadow-lg xs:(py-8 pr-4 pl-4 flex-col gap-4 items-center)"
       >
         <nuxt-link
           :to="{ path: `/project/${project.name}` }"
@@ -262,11 +262,12 @@ export default {
         </nuxt-link>
         <Shared-Screen
           @click="showGallery(project.id)"
-          class="relative z-50 xl:min-w-140 lg:(min-w-120 mx-initial) md:(w-140 mx-auto) sm:w-110 xs:(w-100)"
           :media="project.media[project.mainMedia]"
+          class="relative z-50 xl:min-w-120 xl:w-140 lg:(min-w-116 w-116 mx-initial) md:(w-140 mx-auto) sm:w-110 xs:(w-86)"
+          screen-height="xl:h-74 lg:h-66 md:h-74 h-70"
         />
         <section
-          class="flex flex-col gap-2 mt-2 flex-wrap items-start lg:items-start xs:(items-center)"
+          class="flex flex-col gap-2 mt-2 flex-wrap items-start lg:items-center xs:(items-center)"
         >
           <div class="loading textLoading inline-block">
             <span
@@ -277,31 +278,31 @@ export default {
             </span>
           </div>
           <div class="loading textLoading inline-block">
-            <p class="text-lg lg:text-left xs:text-center">
+            <p class="text-lg text-center hidden md:block">
               {{ project.description }}
             </p>
           </div>
 
-          <div class="loading textLoading inline-block">
-            <p class="text-main-green font-bold mt-6">Technologies</p>
-          </div>
-          <div class="loading textLoading inline-block">
-            <ul class="flex gap-4 mt-2">
-              <li v-for="skill in project.used">
-                <img
-                  :src="`/imgs/skills/${skill}.svg`"
-                  alt=""
-                  class="w-8 h-8"
-                  :title="skill"
-                />
-              </li>
-            </ul>
-          </div>
+          <!--          <div class="loading textLoading inline-block">-->
+          <!--            <p class="text-main-green font-bold mt-6">Technologies</p>-->
+          <!--          </div>-->
+          <!--          <div class="loading textLoading inline-block">-->
+          <!--            <ul class="flex gap-4 mt-2">-->
+          <!--              <li v-for="skill in project.used">-->
+          <!--                <img-->
+          <!--                  :src="`/imgs/skills/${skill}.svg`"-->
+          <!--                  alt=""-->
+          <!--                  class="w-8 h-8"-->
+          <!--                  :title="skill"-->
+          <!--                />-->
+          <!--              </li>-->
+          <!--            </ul>-->
+          <!--          </div>-->
 
           <nuxt-link
             v-if="showDetailsButtom"
             :to="{ path: `/project/${project.name}` }"
-            class="relative z-40 bg-main-orange w-80 flex items-center justify-center font-medium text-lg h-12 rounded-md mt-8 hover:bg-main-orange/80"
+            class="relative z-40 bg-main-orange w-80 items-center justify-center font-medium text-lg h-12 rounded-md mt-8 hover:bg-main-orange/80 hidden md:flex"
             >More Details
           </nuxt-link>
         </section>
