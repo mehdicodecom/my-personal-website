@@ -2,37 +2,31 @@
   <div
     class="fixed top-0 left-0 h-screen overflow-auto w-full z-90 flex flex-col bg-black/80"
   >
-    <div class="bg-dark/60 h-18 flex">
-      <div
-        @click="prevMedia"
-        v-if="navigation"
-        class="h-full w-20 bg-dark-100 flex items-center justify-center cursor-pointer"
-      >
-        <svg class="relative w-12 h-12 rotate-180 text-main-orange">
-          <use :href="'/imgs/icons.svg#arrow'"></use>
-        </svg>
-      </div>
-      <div class="h-full flex-1 flex gap-3 items-center justify-center">
+    <div class="bg-dark/60 h-24 flex">
+      <div class="h-full flex-1 flex gap-3 items-center justify-center px-4">
         <svg
           v-if="currentMedia.type === 'img'"
-          class="relative w-6 h-6 text-main-orange lg:inline-block xs:hidden"
+          class="relative w-6 h-6 text-main-orange inline-block"
         >
           <use :href="'/imgs/icons.svg#img'"></use>
         </svg>
-        <svg
-          v-else
-          class="relative w-8 h-8 text-main-orange lg:inline-block xs:hidden"
-        >
+        <svg v-else class="relative w-8 h-8 text-main-orange inline-block">
           <use :href="'/imgs/icons.svg#video'"></use>
         </svg>
-        <h2 class="text-xl lg:inline-block xs:hidden">
+        <NuxtLink
+          @click.prevent="
+            hideGallery();
+            $router.push({ path: `/project/${project.name}` });
+          "
+          class="cursor-pointer text-xl lg:inline-block hover:text-main-orange transition"
+        >
           {{ project.name }} {{ currentMedia.title }}
-        </h2>
+        </NuxtLink>
 
         <div
           @click="toggleImgScroll"
           v-if="currentMedia.type === 'img' && currentMedia.scroll"
-          class="cursor-pointer inline-block trans3ms h-10 bg-dark-100 rounded-lg flex items-center pl-1 pr-2 gap-1 text-main-orange hover:(font-bold bg-dark-100/80 shadow-lg)"
+          class="cursor-pointer inline-block trans3ms h-10 text-dark-100 font-semibold rounded-lg flex items-center pl-1 pr-2 bg-main-orange hover:(bg-main-orange/80 shadow-lg)"
         >
           <svg
             :class="[
@@ -49,9 +43,9 @@
         <div
           @click="toggleVideo($refs.screen.$refs.video)"
           v-if="currentMedia.type === 'video'"
-          class="cursor-pointer inline-block trans3ms h-10 bg-dark-100 rounded-lg flex items-center px-4 gap-2 text-main-orange hover:(font-bold bg-dark-100/80 shadow-lg)"
+          class="cursor-pointer inline-block trans3ms h-10 text-dark-100 rounded-lg flex items-center px-4 gap-2 bg-main-orange font-bold hover:(bg-main-orange/80 shadow-lg)"
         >
-          <svg class="relative w-6 h-6">
+          <svg class="relative w-5 h-5">
             <use
               :href="'/imgs/icons.svg' + `#${videoPlaying ? 'pause' : 'play'}`"
             ></use>
@@ -60,41 +54,11 @@
           <p>{{ videoPlaying ? "Pause Video" : "Play Video" }}</p>
         </div>
       </div>
-      <div
-        v-if="navigation"
-        @click="nextMedia"
-        class="h-full w-20 bg-dark-100 flex items-center justify-center cursor-pointer"
-      >
-        <svg class="relative w-12 h-12 text-main-orange">
-          <use :href="'/imgs/icons.svg#arrow'"></use>
-        </svg>
-      </div>
-      <div
-        @click="hideGallery"
-        class="h-full w-20 bg-red-500 flex items-center justify-center cursor-pointer"
-      >
-        <svg class="relative w-6 h-6 text-white">
-          <use :href="'/imgs/icons.svg#close'"></use>
-        </svg>
-      </div>
     </div>
 
     <div
-      class="items-center gap-2 items-center mt-8 mb-2 justify-center px-6 lg:hidden xs:flex"
+      class="relative flex lg:(items-center) xs:(mt-4) lg:h-full lg:pt-0 pt-12"
     >
-      <svg
-        v-if="currentMedia.type === 'img'"
-        class="relative w-8 h-8 text-main-orange"
-      >
-        <use :href="'/imgs/icons.svg#img'"></use>
-      </svg>
-      <svg v-else class="relative w-10 h-10 text-main-orange">
-        <use :href="'/imgs/icons.svg#video'"></use>
-      </svg>
-      <h2 class="text-xl">{{ project.name }} {{ currentMedia.title }}</h2>
-    </div>
-
-    <div class="flex lg:(items-center) xs:(mt-4) h-full">
       <Shared-Screen
         ref="screen"
         class="relative lg:w-8/12 sm:w-10/12 xs:w-11/12 mx-auto my-4 justify-center"
@@ -104,7 +68,39 @@
         :zoom="false"
         :scroll="imgScrollDown"
         :video-controls="true"
-      />
+      >
+        <template v-if="navigation">
+          <div
+            @click="prevMedia"
+            class="group absolute z-20 lg:(-left-26 w-18 h-18) md:(-left-18 w-14 h-14 -left-6) -left-3.5 w-10 h-10 top-1/2 -translate-y-1/2 md:bg-dark-100 bg-main-orange transition md:hover:bg-dark-300 flex items-center justify-center cursor-pointer rounded-full"
+          >
+            <svg
+              class="relative md:(w-14 h-14) w-12 h-12 rotate-180 md:text-white text-dark-100 md:group-hover:text-main-orange transition"
+            >
+              <use :href="'/imgs/icons.svg#arrow'"></use>
+            </svg>
+          </div>
+          <div
+            @click="nextMedia"
+            class="group lg:(-right-26 w-18 h-18) z-20 md:(-right-18 w-14 h-14 -right-6) -right-3.5 w-10 h-10 absolute top-1/2 -translate-y-1/2 rounded-full md:bg-dark-100 bg-main-orange transition md:hover:bg-dark-300 flex items-center justify-center cursor-pointer"
+          >
+            <svg
+              class="relative md:(w-14 h-14) w-12 h-12 md:text-white text-dark-100 md:group-hover:text-main-orange transition"
+            >
+              <use :href="'/imgs/icons.svg#arrow'"></use>
+            </svg>
+          </div>
+        </template>
+
+        <div
+          @click="hideGallery"
+          class="absolute z-20 sm:(w-12 h-12 -right-6 -top-6) w-10 h-10 -right-3.5 mx-auto -top-4 rounded-full bg-red-500 flex items-center justify-center cursor-pointer transition hover:bg-red-600"
+        >
+          <svg class="relative sm:(w-5 h-5) w-5 h-5 text-white">
+            <use :href="'/imgs/icons.svg#close'"></use>
+          </svg>
+        </div>
+      </Shared-Screen>
     </div>
   </div>
 </template>

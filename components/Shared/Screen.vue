@@ -1,5 +1,6 @@
 <template>
   <div>
+    <slot></slot>
     <div class="mac">
       <div class="display">
         <div :class="['screen', screenHeight]">
@@ -34,7 +35,7 @@
             /> -->
           </div>
         </div>
-        <span class="label">MacBook Pro</span>
+        <span class="label sm:inline-block xs:hidden">MehdiCode.com</span>
       </div>
       <div :class="aboutPage ? 'md:block xs:hidden' : 'sm:block xs:hidden'">
         <div class="keys" v-if="!onlyScreen">
@@ -102,11 +103,8 @@ export default {
   left: 0;
   right: 0;
   top: 0;
-  margin: 12px 2 22px;
-  background: #333;
   transition: background-position var(--transitionSpeed) linear;
-  background-repeat: no-repeat;
-  background-position: 0 0;
+  background: #333 no-repeat 0 0;
   background-size: 100% auto;
   border-radius: 0.5rem;
 }
@@ -116,7 +114,7 @@ export default {
 .label {
   position: absolute;
   color: #a7a7a7;
-  font-size: 8px;
+  font-size: 9px;
   font-family: "Signika Negative", sans-serif;
   z-index: 4;
   bottom: 5px;

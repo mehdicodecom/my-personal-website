@@ -1,10 +1,12 @@
 <template>
   <Title>Mehdi Rafiei | Home | Front-end Developer</Title>
 
-  <div class="flex lg:(justify-center text-center items-center) mt-8">
+  <div
+    class="flex lg:(justify-center text-center items-center) mt-8 w-full overflow-hidden"
+  >
     <Home-HelloWorld />
   </div>
-  <div class="flex mt-10 w-full mx-auto">
+  <div class="flex mt-10 w-full overflow-hidden mx-auto">
     <Slider :posts="posts" />
   </div>
 
@@ -31,13 +33,6 @@ export default {
     return {
       posts: [
         {
-          img: "react.jpg",
-          title: "From Zero to React Hero: A Beginner's Guide",
-          categories: ["programming", "frontend", "javascript", "react"],
-          description: `React is one of the most popular JavaScript libraries for building user interfaces, but getting started can be intimidating. In this guide, we’ll walk you through the basics of React, from understanding components to managing state and handling events. By the end, you'll have the foundation you need to start building your own React applications with confidence.`,
-          date: "January 30, 2025",
-        },
-        {
           img: "ai.jpg",
           title: "Enhancing User Experience with AI in Front",
           categories: ["programming", "ai", "frontend"],
@@ -51,12 +46,13 @@ export default {
           description: `Effective teamwork is essential for building successful web applications. In this article, we’ll explore practical tips and strategies for fostering collaboration between front-end, back-end, and full-stack developers. Learn how to communicate better, manage tasks efficiently, and leverage each team member's strengths to create a seamless development process and deliver high-quality projects.`,
           date: "January 29, 2025",
         },
+
         {
-          img: "react-vs-vue.jpg",
-          title: "Battle of the Front-End Frameworks: React vs Vue",
-          categories: ["programming", "ai", "frontend"],
-          description: `React and Vue are two of the most popular front-end frameworks, each offering unique strengths. In this article, we’ll compare them based on performance, ease of use, and community support, helping you decide which is best for your next web project.`,
-          date: "January 29, 2025",
+          img: "react.jpg",
+          title: "From Zero to React Hero: A Beginner's Guide",
+          categories: ["programming", "frontend", "javascript", "react"],
+          description: `React is one of the most popular JavaScript libraries for building user interfaces, but getting started can be intimidating. In this guide, we’ll walk you through the basics of React, from understanding components to managing state and handling events. By the end, you'll have the foundation you need to start building your own React applications with confidence.`,
+          date: "January 30, 2025",
         },
         {
           img: "js.jpg",
@@ -65,6 +61,14 @@ export default {
           description: `Writing clean and maintainable JavaScript code is essential for building scalable, bug-free applications. In this article, we'll explore best practices, design patterns, and techniques that will help you write code that's easy to understand, test, and maintain over time. Whether you're a beginner or an experienced developer, mastering these principles will improve the quality and longevity of your projects.`,
           date: "January 29, 2025",
         },
+        {
+          img: "react-vs-vue.jpg",
+          title: "Battle of the Front-End Frameworks: React vs Vue",
+          categories: ["programming", "ai", "frontend"],
+          description: `React and Vue are two of the most popular front-end frameworks, each offering unique strengths. In this article, we’ll compare them based on performance, ease of use, and community support, helping you decide which is best for your next web project.`,
+          date: "January 29, 2025",
+        },
+
         {
           img: "programming.jpg",
           title: "From Good to Great: Developer Growth Tips",

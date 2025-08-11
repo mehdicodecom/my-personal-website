@@ -125,7 +125,7 @@ export default {
         observe: true,
         observeParents: true,
         pagination: true,
-        initialSlide: 0,
+        initialSlide: 2,
       }),
     },
   },
@@ -151,11 +151,15 @@ export default {
     },
   },
   mounted() {
+    console.log("test", this.swiperInitialized);
     this.$nextTick(() => {
       setTimeout(() => {
         this.swiperInitialized = true;
       }, 50);
     });
+  },
+  beforeDestroy() {
+    this.swiperInitialized = false;
   },
   setup() {
     return {
