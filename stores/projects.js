@@ -1,9 +1,262 @@
 import { defineStore } from "pinia";
+import { v4 as uuidv4 } from "uuid";
 export default defineStore("projects", {
   state: () => ({
     portfolios: [
       {
-        id: 1,
+        id: uuidv4(),
+        name: "Sarmayex",
+        title: "Cryptocurrency OTC Exchange",
+        description:
+          "Sarmayex offers a secure platform for instant OTC trading of over 537 cryptocurrencies, with real-time pricing, staking, 24/7 support & more than 1.5M users.",
+        media: [
+          {
+            type: "img",
+            title: "Home Page",
+            src: "/projects/sarmayex/home.png",
+            scroll: true,
+            transition: "24s",
+          },
+          {
+            type: "video",
+            title: "Full demo video",
+            src: "/projects/sarmayex/sarmayex.mp4",
+          },
+          {
+            type: "img",
+            title: "Live cryptocurrencies prices",
+            src: "/projects/sarmayex/currencies.png",
+            scroll: true,
+            transition: "10s",
+          },
+          {
+            type: "img",
+            title: "Interactive prize wheel",
+            src: "/projects/sarmayex/interactive-luck-wheel.png",
+          },
+          {
+            type: "img",
+            title: "User Dashboard",
+            src: "/projects/sarmayex/dashboard.png",
+            scroll: true,
+            transition: "3s",
+          },
+          {
+            type: "img",
+            title: "Deposit rial",
+            src: "/projects/sarmayex/deposit-rial.png",
+            scroll: true,
+            transition: "2s",
+          },
+          {
+            type: "img",
+            title: "Deposit Crypto (USDT)",
+            src: "/projects/sarmayex/deposit-usdt.png",
+            scroll: true,
+            transition: "2s",
+          },
+          {
+            type: "img",
+            title: "OTC Buy page",
+            src: "/projects/sarmayex/otc.png",
+            scroll: true,
+            transition: "2s",
+          },
+          {
+            type: "img",
+            title: "OTC Sell page",
+            src: "/projects/sarmayex/otc-sell.png",
+            scroll: true,
+            transition: "2s",
+          },
+          {
+            type: "img",
+            title: "Login",
+            src: "/projects/sarmayex/login.png",
+          },
+          {
+            type: "img",
+            title: "User Profile",
+            src: "/projects/sarmayex/profile.png",
+            scroll: true,
+            transition: "2s",
+          },
+          {
+            type: "img",
+            title: "User Wallet",
+            src: "/projects/sarmayex/wallet.png",
+            scroll: true,
+            transition: "2s",
+          },
+          {
+            type: "img",
+            title: "User security settings",
+            src: "/projects/sarmayex/security-settings.png",
+            scroll: true,
+            transition: "4s",
+          },
+          {
+            type: "img",
+            title: "User login",
+            src: "/projects/sarmayex/login.png",
+          },
+        ],
+        mainMedia: 0,
+        used: ["nuxt", "pinia", "unocss"],
+        related_experience_id: 2,
+      },
+      {
+        id: uuidv4(),
+        name: "Iranecar",
+        title: "Vehicle Sales & Leasing Platform",
+        description:
+          "Mega provides a platform for buying and selling new and used vehicles, along with comprehensive leasing services.",
+        media: [
+          {
+            type: "img",
+            title: "Home Page",
+            src: "/projects/iranecar/home.png",
+            scroll: true,
+            transition: "14s",
+          },
+          {
+            type: "video",
+            title: "Full demo video",
+            src: "/projects/iranecar/iranecar.mp4",
+          },
+          {
+            type: "img",
+            title: "Sell vehicles main page",
+            src: "/projects/iranecar/car-sale.png",
+            scroll: true,
+            transition: "6s",
+          },
+          {
+            type: "img",
+            title: "Vehicles List with sales programs",
+            src: "/projects/iranecar/cars.png",
+            scroll: true,
+            transition: "10s",
+          },
+          {
+            type: "img",
+            title: "Compare vehicles page",
+            src: "/projects/iranecar/compare.png",
+            scroll: true,
+            transition: "18s",
+          },
+          {
+            type: "img",
+            title: "Sales programs of specific car",
+            src: "/projects/iranecar/sales-options.png",
+            scroll: true,
+            transition: "6s",
+          },
+          {
+            type: "img",
+            title: "Car details",
+            src: "/projects/iranecar/car-details.png",
+            scroll: true,
+            transition: "10s",
+          },
+          {
+            type: "img",
+            title: "Profile page",
+            src: "/projects/iranecar/profile.png",
+            scroll: true,
+            transition: "4s",
+          },
+          {
+            type: "img",
+            title: "Used cars sales",
+            src: "/projects/iranecar/used-cars.png",
+            scroll: true,
+            transition: "6s",
+          },
+          {
+            type: "img",
+            title: "Login",
+            src: "/projects/iranecar/login.png",
+          },
+          {
+            type: "img",
+            title: "Register",
+            src: "/projects/iranecar/Register.png",
+          },
+        ],
+        mainMedia: 0,
+        used: ["nuxt", "pinia", "unocss"],
+        related_experience_id: 2,
+      },
+      {
+        id: uuidv4(),
+        name: "Mega",
+        title: "Vehicle Sales Information",
+        description:
+          "Mega provides a platform for buying and selling new and used vehicles, along with comprehensive leasing services.",
+        media: [
+          {
+            type: "img",
+            title: "Home Page",
+            src: "/projects/mega/home.png",
+          },
+          {
+            type: "video",
+            title: "Full demo video",
+            src: "/projects/mega/mega.mp4",
+          },
+          {
+            type: "img",
+            title: "Leasing Page",
+            src: "/projects/mega/leasing.png",
+          },
+          {
+            type: "img",
+            title: "Futures Page",
+            src: "/projects/mega/features.png",
+          },
+          {
+            type: "img",
+            title: "First insight page - services",
+            src: "/projects/mega/first-insight.png",
+          },
+          {
+            type: "img",
+            title: "Used vehicles page",
+            src: "/projects/mega/used-cars.png",
+          },
+          {
+            type: "img",
+            title: "Sell vehicles page",
+            src: "/projects/mega/sell-car.png",
+          },
+          {
+            type: "img",
+            title: "Partners page",
+            src: "/projects/mega/partners.png",
+          },
+          {
+            type: "img",
+            title: "Iranecar platform details",
+            src: "/projects/mega/iranecar.png",
+          },
+          {
+            type: "img",
+            title: "Bahman Partner page",
+            src: "/projects/mega/bahman-bot.png",
+          },
+          {
+            type: "img",
+            title: "Contact Us",
+            src: "/projects/mega/contact-us.png",
+          },
+        ],
+        mainMedia: 0,
+        used: ["nuxt", "pinia", "unocss"],
+        related_experience_id: 2,
+      },
+      {
+        id: uuidv4(),
         name: "Metriland",
         title: "Tokenizing Realstates",
         description:
@@ -45,11 +298,11 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "nuxt", "pinia", "unocss"],
+        used: ["nuxt", "pinia", "unocss"],
         related_experience_id: 2,
       },
       {
-        id: 2,
+        id: uuidv4(),
         name: "FinnoTex",
         title: "Trading CryptoCurrencies",
         description:
@@ -104,11 +357,11 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "nuxt", "tradingview", ],
+        used: ["nuxt", "tradingview"],
         related_experience_id: 1,
       },
       {
-        id: 3,
+        id: uuidv4(),
         name: "FinnoBot",
         title: "Automatic Trading",
         description:
@@ -156,11 +409,11 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "nuxt", "tradingview", ],
+        used: ["nuxt", "tradingview"],
         related_experience_id: 1,
       },
       {
-        id: 4,
+        id: uuidv4(),
         name: "Rotana",
         title: "Bank Tokens Trading System",
         description:
@@ -234,11 +487,11 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "nuxt", "tailwind", ],
+        used: ["nuxt", "tailwind"],
         related_experience_id: 1,
       },
       {
-        id: 5,
+        id: uuidv4(),
         name: "4Sou",
         title: "Job Searching for immigrants",
         description:
@@ -308,11 +561,11 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "sass", "nuxt"],
+        used: ["sass", "nuxt"],
         related_experience_id: 2,
       },
       {
-        id: 6,
+        id: uuidv4(),
         name: "Andisheh",
         title: "Online Library",
         description: "Full of different books to read online",
@@ -373,11 +626,11 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "sass", ],
+        used: ["sass"],
         related_experience_id: 2,
       },
       {
-        id: 7,
+        id: uuidv4(),
         name: "MakanChap",
         title: "Printing services",
         description:
@@ -405,11 +658,11 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "jquery", "php", ],
+        used: ["jquery", "php"],
         related_experience_id: 2,
       },
       {
-        id: 8,
+        id: uuidv4(),
         name: "Delijan",
         title: "Products for baby safety",
         description:
@@ -465,11 +718,11 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "jquery", "php", ],
+        used: ["jquery", "php"],
         related_experience_id: 2,
       },
       {
-        id: 9,
+        id: uuidv4(),
         name: "SoundsLand",
         title: "Find your favorite music",
         description: "New Music website with powerful search engine for musics",
@@ -514,11 +767,11 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 0,
-        used: [ "jquery"],
+        used: ["jquery"],
         related_experience_id: 3,
       },
       {
-        id: 10,
+        id: uuidv4(),
         name: "KavanPergas",
         title: "Artificial Ice Cloud Generator",
         description:
@@ -550,11 +803,11 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 1,
-        used: [ "jquery", "wordpress"],
+        used: ["jquery", "wordpress"],
         related_experience_id: 3,
       },
       {
-        id: 11,
+        id: uuidv4(),
         name: "WordPress",
         title: "Projects",
         description:
@@ -576,7 +829,7 @@ export default defineStore("projects", {
           },
         ],
         mainMedia: 1,
-        used: [ "wordpress", ],
+        used: ["wordpress"],
         related_experience_id: 3,
       },
     ],
@@ -592,7 +845,7 @@ export default defineStore("projects", {
         let portfolios = [];
         portfolios = state.portfolios.slice(
           0,
-          howMany || state.portfolios.length
+          howMany || state.portfolios.length,
         );
         if (related_experience_id) {
           portfolios = state.portfolios.filter((portfolio) => {
@@ -607,7 +860,7 @@ export default defineStore("projects", {
       return (id, name) => {
         if (name) {
           return state.portfolios.find(
-            (portfolio) => portfolio.name.toLowerCase() === name.toLowerCase()
+            (portfolio) => portfolio.name.toLowerCase() === name.toLowerCase(),
           );
         } else if (id) {
           return state.portfolios.find((portfolio) => portfolio.id === id);
