@@ -26,7 +26,7 @@
         <div
           @click="toggleImgScroll"
           v-if="currentMedia.type === 'img' && currentMedia.scroll"
-          class="cursor-pointer inline-block trans3ms h-10 text-dark-100 font-semibold rounded-lg flex items-center pl-1 pr-2 bg-main-orange hover:(bg-main-orange/80 shadow-lg)"
+          class="cursor-pointer inline-block trans3ms h-10 min-w-max text-dark-100 font-semibold rounded-lg flex items-center pl-1 pr-2 bg-main-orange hover:(bg-main-orange/80 shadow-lg)"
         >
           <svg
             :class="[
@@ -43,7 +43,7 @@
         <div
           @click="toggleVideo($refs.screen.$refs.video)"
           v-if="currentMedia.type === 'video'"
-          class="cursor-pointer inline-block trans3ms h-10 text-dark-100 rounded-lg flex items-center px-4 gap-2 bg-main-orange font-bold hover:(bg-main-orange/80 shadow-lg)"
+          class="cursor-pointer inline-block trans3ms min-w-max h-10 text-dark-100 rounded-lg flex items-center px-4 gap-2 bg-main-orange font-bold hover:(bg-main-orange/80 shadow-lg)"
         >
           <svg class="relative w-5 h-5">
             <use
@@ -61,9 +61,10 @@
     >
       <Shared-Screen
         ref="screen"
-        class="relative lg:w-8/12 sm:w-10/12 xs:w-11/12 mx-auto my-4 justify-center"
-        :media="project.media[activeMediaIndex]"
-        screen-height="lg:h-160 md:h-140 sm:h-104 xs:h-80"
+        :class="['relative  mx-auto my-4 justify-center',
+        currentMedia.mobile && currentMedia.type !== 'video' ? 'sm:w-[400px] w-[300px]' : 'lg:w-8/12 sm:w-10/12 xs:w-11/12']"
+        :media="currentMedia"
+        :screen-height="currentMedia.mobile && currentMedia.type !== 'video' ? 'lg:h-160 h-[400px]': 'lg:h-160 md:h-140 sm:h-104 xs:h-80'"
         :only-screen="true"
         :zoom="false"
         :scroll="imgScrollDown"
