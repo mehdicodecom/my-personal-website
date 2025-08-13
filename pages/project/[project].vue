@@ -23,7 +23,7 @@
         <span>{{ project.title }}</span>
       </span>
     </div>
-    <div class="loading textLoading inline-block mt-2">
+    <div class="loading sm:w-8/12 mx-auto textLoading inline-block mt-2">
       <p class="text-lg text-center">{{ project.description }}</p>
     </div>
 

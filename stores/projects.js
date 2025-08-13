@@ -6,9 +6,70 @@ export default defineStore("projects", {
         portfolios: [
             {
                 id: uuidv4(),
+                name: "BitBank",
+                title: "Professional Crypto Exchange",
+                description: "BitBank offers secure spot, P2P, futures, and fiat trading, including forex and gold, with real-time data, staking, and 24/7 support.",
+                media: [
+                    {
+                        type: "img",
+                        title: "Dark English landing page",
+                        src: "/projects/bitbank/home-en-dark.png",
+                        scroll: true,
+                        transition: "12s",
+                    },
+                    {
+                        type: "video",
+                        title: "Platform Demo",
+                        src: "/projects/bitbank/bitbank.mp4",
+                        scroll: true,
+                        transition: "2s"
+                    },
+                    {
+                        type: "img",
+                        title: "Trade crypto Page",
+                        src: "/projects/bitbank/trade.png",
+                        scroll: true,
+                        transition: "2s"
+                    },
+                    {
+                        type: "img",
+                        title: "Persian Blog (academy) page (dark)",
+                        src: "/projects/bitbank/academy-dark.png",
+                        scroll: true,
+                        transition: "8s"
+                    },
+                    {
+                        type: "img",
+                        title: "Tutorial Videos (Television section)",
+                        src: "/projects/bitbank/tv-dark.png",
+                        scroll: true,
+                        transition: "8s"
+                    },
+
+                    {
+                        type: "img",
+                        title: "BitCast (podcasts)",
+                        src: "/projects/bitbank/bitcast.png",
+                        scroll: true,
+                        transition: "6s"
+                    },
+                    {
+                        type: "img",
+                        title: "Single Post page (academy) persian",
+                        src: "/projects/bitbank/academy-post-dark.png",
+                        scroll: true,
+                        transition: "18s"
+                    },
+                ],
+                mainMedia: 0,
+                used: ["nuxt", "pinia", "unocss", "tradingview"],
+                related_experience_id: 1
+            },
+            {
+                id: uuidv4(),
                 name: "Sarmayex Market",
-                title: "Advanced Cryptocurrency Trading",
-                description: "Sarmayex Market offers a robust platform for advanced cryptocurrency trading with real-time market data and P2P trading, featuring a user-friendly interface and detailed price analytics.",
+                title: "Advanced Trading",
+                description: "Sarmayex Market offers advanced crypto trading with real-time data, P2P functionality, and user-friendly price analytics.",
                 media: [
                     {
                         type: "img",
@@ -26,7 +87,7 @@ export default defineStore("projects", {
                         type: "video",
                         title: "Market mobile version demo",
                         src: "/projects/sarmayex-market/market-mobile.mp4",
-                        mobile:true,
+                        mobile: true,
                     },
                     {
                         type: "img",
@@ -34,7 +95,7 @@ export default defineStore("projects", {
                         src: "/projects/sarmayex-market/mobile-chart.png",
                         scroll: true,
                         transition: "2s",
-                        mobile:true,
+                        mobile: true,
                     },
                     {
                         type: "img",
@@ -42,7 +103,7 @@ export default defineStore("projects", {
                         src: "/projects/sarmayex-market/sell.png",
                         scroll: true,
                         transition: "2s",
-                        mobile:true,
+                        mobile: true,
                     },
                     {
                         type: "img",
@@ -50,15 +111,15 @@ export default defineStore("projects", {
                         src: "/projects/sarmayex-market/mobile.png",
                         scroll: true,
                         transition: "2s",
-                        mobile:true,
+                        mobile: true,
                     },
-                                        {
+                    {
                         type: "img",
                         title: "Mobile Markets list",
                         src: "/projects/sarmayex-market/markets.png",
                         scroll: true,
                         transition: "2s",
-                        mobile:true,
+                        mobile: true,
                     },
                 ],
                 mainMedia: 0,
@@ -70,7 +131,7 @@ export default defineStore("projects", {
                 name: "Sarmayex",
                 title: "Cryptocurrency OTC Exchange",
                 description:
-                    "Sarmayex offers a secure platform for instant OTC trading of over 537 cryptocurrencies, with real-time pricing, staking, 24/7 support & more than 1.5M users.",
+                    "Sarmayex enables secure OTC trading for 537+ cryptocurrencies with real-time pricing, staking, 24/7 support, and 1.5M+ users.",
                 media: [
                     {
                         type: "img",
@@ -554,6 +615,144 @@ export default defineStore("projects", {
             },
             {
                 id: uuidv4(),
+                name: "Simcard",
+                title: "Bank Card Issuance & Services",
+                description: "Simcard provides seamless bank card issuance, KYC verification, and services like PIN reset, dynamic PIN activation",
+                media: [
+                    {
+                        type: "video",
+                        title: "Platform Demo",
+                        src: "/projects/simcard/simcard.mp4"
+                    },
+                    {
+                        type: "img",
+                        title: "Home Page",
+                        src: "/projects/simcard/simcard.png",
+                        scroll: true,
+                        transition: "2s"
+                    },
+
+                    {
+                        type: "img",
+                        title: "Card Issuance Interface",
+                        src: "/projects/simcard/card-issuance.png",
+                        scroll: true,
+                        transition: "4s"
+                    },
+                    {
+                        type: "img",
+                        title: "Card Issuance (select location)",
+                        src: "/projects/simcard/card-issuance-location.png",
+                        scroll: true,
+                        transition: "4s"
+                    },
+                    {
+                        type: "img",
+                        title: "Card Issuance (select receive date)",
+                        src: "/projects/simcard/card-issuance-time.png",
+                        scroll: true,
+                        transition: "2s"
+                    },
+                    {
+                        type: "img",
+                        title: "Card Issuance (user confirm)",
+                        src: "/projects/simcard/card-issuance-confirm.png",
+                        scroll: true,
+                        transition: "2s"
+                    },
+                    {
+                        type: "img",
+                        title: "Card reissue (select reason)",
+                        src: "/projects/simcard/card-reissue.png",
+                        scroll: true,
+                        transition: "2s"
+                    },
+                    {
+                        type: "img",
+                        title: "Card reissue (select location)",
+                        src: "/projects/simcard/reissue-location.png",
+                        scroll: true,
+                        transition: "2s"
+                    },
+                    {
+                        type: "img",
+                        title: "Card block",
+                        src: "/projects/simcard/card-block.png",
+                        scroll: true,
+                        transition: "2s"
+                    }
+                ],
+                mainMedia: 0,
+                used: ["nuxt", "pinia", "unocss"],
+                related_experience_id: 2
+            },
+            {
+                id: uuidv4(),
+                name: "Andisheh",
+                title: "Online Library",
+                description: "Full of different books to read online",
+                media: [
+                    {
+                        type: "img",
+                        title: "Home page of the library",
+                        src: "/projects/library/andishe-library.jpg",
+                        transition: ".8s",
+                        scroll: true,
+                    },
+                    {
+                        type: "img",
+                        title: "Books page with filters",
+                        src: "/projects/library/books.jpg",
+                        transition: "1s",
+                        scroll: true,
+                    },
+                    {
+                        type: "img",
+                        title: "Single book page",
+                        src: "/projects/library/book-details.jpg",
+                        transition: "4s",
+                        scroll: true,
+                    },
+                    {
+                        type: "img",
+                        title: "User Dashboard - Saved Books",
+                        src: "/projects/library/my-books.jpg",
+                        transition: "1s",
+                        scroll: true,
+                    },
+                    {
+                        type: "img",
+                        title: "Online reading book",
+                        src: "/projects/library/read-book.jpg",
+                        transition: "1s",
+                        scroll: true,
+                    },
+                    {
+                        type: "img",
+                        title: "List of study courses",
+                        src: "/projects/library/list-of-study-courses.jpg",
+                        transition: "1s",
+                        scroll: true,
+                    },
+                    {
+                        type: "img",
+                        title: "All Theses",
+                        src: "/projects/library/all-theses.jpg",
+                        transition: "1s",
+                        scroll: true,
+                    },
+                    {
+                        type: "video",
+                        title: "Library video",
+                        src: "/projects/library/library-video.mp4",
+                    },
+                ],
+                mainMedia: 0,
+                used: ["sass"],
+                related_experience_id: 2,
+            },
+            {
+                id: uuidv4(),
                 name: "4Sou",
                 title: "Job Searching for immigrants",
                 description:
@@ -624,71 +823,6 @@ export default defineStore("projects", {
                 ],
                 mainMedia: 0,
                 used: ["sass", "nuxt"],
-                related_experience_id: 2,
-            },
-            {
-                id: uuidv4(),
-                name: "Andisheh",
-                title: "Online Library",
-                description: "Full of different books to read online",
-                media: [
-                    {
-                        type: "img",
-                        title: "Home page of the library",
-                        src: "/projects/library/andishe-library.jpg",
-                        transition: ".8s",
-                        scroll: true,
-                    },
-                    {
-                        type: "img",
-                        title: "Books page with filters",
-                        src: "/projects/library/books.jpg",
-                        transition: "1s",
-                        scroll: true,
-                    },
-                    {
-                        type: "img",
-                        title: "Single book page",
-                        src: "/projects/library/book-details.jpg",
-                        transition: "4s",
-                        scroll: true,
-                    },
-                    {
-                        type: "img",
-                        title: "User Dashboard - Saved Books",
-                        src: "/projects/library/my-books.jpg",
-                        transition: "1s",
-                        scroll: true,
-                    },
-                    {
-                        type: "img",
-                        title: "Online reading book",
-                        src: "/projects/library/read-book.jpg",
-                        transition: "1s",
-                        scroll: true,
-                    },
-                    {
-                        type: "img",
-                        title: "List of study courses",
-                        src: "/projects/library/list-of-study-courses.jpg",
-                        transition: "1s",
-                        scroll: true,
-                    },
-                    {
-                        type: "img",
-                        title: "All Theses",
-                        src: "/projects/library/all-theses.jpg",
-                        transition: "1s",
-                        scroll: true,
-                    },
-                    {
-                        type: "video",
-                        title: "Library video",
-                        src: "/projects/library/library-video.mp4",
-                    },
-                ],
-                mainMedia: 0,
-                used: ["sass"],
                 related_experience_id: 2,
             },
             {
