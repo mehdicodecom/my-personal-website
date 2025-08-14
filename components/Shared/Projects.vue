@@ -302,12 +302,6 @@ export default {
           <!--            </ul>-->
           <!--          </div>-->
 
-          <nuxt-link
-              v-if="showDetailsButtom"
-              :to="{ path: `/project/${project.name}` }"
-              class="relative z-40 bg-main-orange w-80 items-center justify-center font-medium text-lg h-12 rounded-md mt-8 hover:bg-main-orange/80 hidden md:flex"
-          >More Details
-          </nuxt-link>
         </section>
       </div>
     </section>
