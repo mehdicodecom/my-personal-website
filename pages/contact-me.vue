@@ -206,7 +206,7 @@
     </form>
 
     <transition name="fade">
-      <General-PopupBox v-if="visible" @tryagain="tryagain" @done="done" />
+      <General-Popupbox v-if="visible" @tryagain="tryagain" @done="done" />
     </transition>
   </div>
 </template>
