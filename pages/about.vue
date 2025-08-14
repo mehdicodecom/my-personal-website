@@ -83,13 +83,12 @@
 
     <div class="mt-8 flex flex-col gap-6">
       <div
+          ref="experienceRefs"
           :class="[
-          'relative bg-dark/70 py-8 xs:(py-6) px-6 border border-zinc-700 rounded-md flex gap-4 overflow-hidden',
-          experience.showDetails
-            ? 'transMaxHeightIn lg:max-h-310 md:max-h-340 sm:max-h-360 xs:max-h-460'
-            : 'transMaxHeightOut lg:max-h-40 md:(max-h-34) sm:max-h-30 xs:max-h-46',
-        ]"
+            'transition-max-height duration-400 ease-linear relative bg-dark/70 py-8 xs:(py-6) px-6 border border-zinc-700 rounded-md flex gap-4 overflow-hidden max-h-[160px]'
+          ]"
           v-for="(experience, index) in experiences"
+          :key="experience.id"
       >
         <span
             class="md:relative xs:absolute inline-block min-w-8 h-8 bg-main-orange rounded-full flex items-center justify-center"
@@ -115,10 +114,10 @@
               </h3>
               <div
                   :class="[
-                  'trans3ms flex gap-2 items-center cursor-pointer md:(absolute top-9 right-8 mb-0) xs:(relative top-2 min-w-36 mb-12)',
+                  'transition duration-300 ease-in-out flex gap-2 items-center cursor-pointer md:(absolute top-9 right-8 mb-0) xs:(relative top-2 min-w-36 mb-12)',
                   experience.showDetails ? 'text-red' : 'text-main-green',
                 ]"
-                  @click="experience.showDetails = !experience.showDetails"
+                  @click="toggleDetails(index, experience)"
               >
                 <svg class="w-8 h-8 text-white-3 select-none">
                   <use
@@ -233,8 +232,9 @@
 </template>
 
 <script>
-import {mapState} from "pinia";
+import { mapState } from "pinia";
 import useProjectsStore from "@/stores/projects";
+import gsap from "gsap";
 
 export default {
   data() {
@@ -347,7 +347,7 @@ export default {
           "tasks": [
             "Collaborated in a hybrid Agile environment using Jira and GitLab for streamlined workflows.",
             "Led front-end development for FinnoTex, an advanced trading platform supporting spot, limit, and OTC trading.",
-            "Engineered the front-end for FinnoBot, a subscription-based bot trading platform integrated with Binance, KuCoin, and others, enabling asset allocation, analysis, and-automated orders.",
+            "Engineered the front-end for FinnoBot, a subscription-based bot trading platform integrated with Binance, KuCoin, and others, enabling asset allocation, analysis, and automated orders.",
             "Enhanced security with encrypted API communications and 2FA, reducing security incidents by 30%.",
             "Implemented real-time notifications via WebSocket, increasing user engagement by 20%."
           ],
@@ -409,7 +409,31 @@ export default {
       "getPortfolio",
     ]),
   },
+  methods: {
+    toggleDetails(index, experience) {
+      const element = this.$refs.experienceRefs[index];
+      experience.showDetails = !experience.showDetails;
+
+      if (experience.showDetails) {
+        gsap.to(element, {
+          maxHeight: element.scrollHeight,
+          duration: 0.5,
+          ease: "power2.out",
+        });
+      } else {
+        // Collapse: Animate to a smaller max-height
+        gsap.to(element, {
+          maxHeight: 160, // Adjust to match the collapsed height (approximate)
+          duration: 0.5,
+          ease: "power2.out",
+        });
+      }
+    },
+  },
 };
 </script>
-
-<style scoped></style>
+<style scoped>
+test{
+  
+}
+</style>
