@@ -63,7 +63,7 @@ export default defineStore("projects", {
                 ],
                 mainMedia: 0,
                 used: ["nuxt", "pinia", "unocss", "tradingview"],
-                related_experience_id: 1
+                related_experience_id: 7
             },
             {
                 id: uuidv4(),
@@ -124,7 +124,7 @@ export default defineStore("projects", {
                 ],
                 mainMedia: 0,
                 used: ["nuxt", "pinia", "unocss", "tradingview"],
-                related_experience_id: 1
+                related_experience_id: 6
             },
             {
                 id: uuidv4(),
@@ -226,7 +226,7 @@ export default defineStore("projects", {
                 ],
                 mainMedia: 0,
                 used: ["nuxt", "pinia", "unocss"],
-                related_experience_id: 2,
+                related_experience_id: 6,
             },
             {
                 id: uuidv4(),
@@ -309,7 +309,7 @@ export default defineStore("projects", {
                 ],
                 mainMedia: 0,
                 used: ["nuxt", "pinia", "unocss"],
-                related_experience_id: 2,
+                related_experience_id: 4,
             },
             {
                 id: uuidv4(),
@@ -376,7 +376,7 @@ export default defineStore("projects", {
                 ],
                 mainMedia: 0,
                 used: ["nuxt", "pinia", "unocss"],
-                related_experience_id: 2,
+                related_experience_id: 4,
             },
             {
                 id: uuidv4(),
@@ -422,7 +422,7 @@ export default defineStore("projects", {
                 ],
                 mainMedia: 0,
                 used: ["nuxt", "pinia", "unocss"],
-                related_experience_id: 2,
+                related_experience_id: 1,
             },
             {
                 id: uuidv4(),
@@ -684,7 +684,7 @@ export default defineStore("projects", {
                 ],
                 mainMedia: 0,
                 used: ["nuxt", "pinia", "unocss"],
-                related_experience_id: 2
+                related_experience_id: 7
             },
             {
                 id: uuidv4(),
