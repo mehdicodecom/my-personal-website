@@ -23,24 +23,23 @@
       @slideChange="onSlideChange"
     >
       <swiper-slide
-        v-for="(post, i) in posts"
-        :key="post.img"
+        v-for="(item, i) in items"
+        :key="item.id"
         class="group overflow-hidden"
       >
-        <NuxtLink to="/blog" class="relative">
+        <NuxtLink :to="`/post/${item.slug}`" class="relative">
           <img
             class="rounded-xl w-full h-full transition duration-800 group-hover:(scale-110)"
-            :src="`/imgs/blog/${post.img}`"
-            alt="test"
+            :src="`/imgs/blog/${item.img}`"
+            alt=""
           />
-
           <div
             class="absolute text-white top-3 left-3 flex items-center gap-2 bg-black bg-opacity-20 rounded-lg p-1"
           >
             <svg class="w-5 h-5 select-none">
               <use href="/imgs/icons.svg#clock"></use>
             </svg>
-            <span class="text-sm">{{ post.date }}</span>
+            <span class="text-sm">{{ item.date }}</span>
           </div>
           <div
             class="absolute inline-flex justify-center items-center w-14 h-14 rounded-full bg-black bg-opacity-70 top-1/2 transition duration-400 transform opacity-0 -translate-y-30 scale-150 right-0 left-0 mx-auto group-hover:(-translate-y-1/2 opacity-100 scale-100)"
@@ -53,9 +52,9 @@
             class="p-4 transition duration-200 pb-8 flex flex-col gap-2 backdrop-blur-[6px] bg-black w-full absolute bottom-0 rounded-xl bg-opacity-15 group-hover:bg-opacity-70"
             :class="activeIndex === i && 'bg-opacity-50'"
           >
-            <h2 class="text-lg text-gray-100">{{ post.title }}</h2>
+            <h2 class="text-lg text-gray-100">{{ item.title }}</h2>
             <p class="text-gray-100 text-md opacity-70">
-              {{ truncatedDescription(post.description) }}
+              {{ truncatedDescription(item.description) }}
             </p>
           </div>
         </NuxtLink>
@@ -82,16 +81,17 @@ export default {
     SwiperSlide,
   },
   props: {
-    posts: {
+    items: {
       type: Array,
       required: true,
-      validator: (posts) =>
-        posts.every(
-          (post) =>
-            typeof post.img === "string" &&
-            typeof post.title === "string" &&
-            typeof post.description === "string" &&
-            typeof post.date === "string",
+      validator: (items) =>
+        items.every(
+          (item) =>
+            typeof item.img === "string" &&
+            typeof item.title === "string" &&
+            typeof item.description === "string" &&
+            typeof item.date === "string" &&
+            typeof item.slug === "string"
         ),
     },
     breakpoints: {
@@ -151,7 +151,6 @@ export default {
     },
   },
   mounted() {
-    console.log("test", this.swiperInitialized);
     this.$nextTick(() => {
       setTimeout(() => {
         this.swiperInitialized = true;
