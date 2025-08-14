@@ -15,27 +15,23 @@
       </div>
     </div>
 
-    <div class="flex items-start md:flex-row xs:flex-col">
+    <div >
       <div class="flex-1 sm:(order-1 mr-10) xs:order-2">
         <div class="flex items-start gap-6">
-          <div class="loading textLoading mt-6 inline-block">
-            <p class="xl:w-200 lg:w-160 xs:w-full text-lg">
-              With over six years of expertise in web development, I possess a
-              keen ability to envision designs through the lens of the audience
-              and craft exceptional user experiences. Recognizing that the front
-              end serves as the initial point of contact for users, I am
-              committed to delivering top-notch user interfaces that contribute
-              significantly to the success of businesses.
+          <div class="loading textLoading mt-5 inline-block">
+            <p class="text-lg">
+              <strong>Over 6 years’ experience</strong> building high-performance, responsive, and SEO-friendly web applications in <strong>FinTech, cryptocurrency, and
+              e-commerce</strong>.
+              <br/>
+              Led front-end development for 10+ major projects using modern frameworks to deliver
+              <strong>seamless, scalable UI/UX for global audiences.</strong>
+              <br/><br/>
+              <strong>Open to Hybrid, Remote and Relocation Opportunities..</strong>
             </p>
           </div>
-          <img
-              src="/imgs/about/mehdi.jpg"
-              alt=""
-              class="md:hidden sm:(inline-block max-w-50) xs:hidden rounded-md shadow-lg"
-          />
         </div>
 
-        <div class="relative lg:mt-20 md:mt-14 xs:mt-12 text-2xl font-bold">
+        <div class="relative lg:mt-12 md:mt-14 xs:mt-12 text-2xl font-bold">
           <span
               class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
           ></span>
@@ -47,9 +43,9 @@
         <ul class="flex flex-col gap-4 mt-8">
           <li class="" v-for="skill in skills">
             <div class="loading textLoading inline-block">
-              <div class="inline-block">
+              <div class="sm:inline-flex gap-2">
                 <span
-                    class="text-xl inline-block font-medium text-main-orange min-w-28 sm:inline-block xs:block"
+                    class="text-xl inline-block font-medium text-main-orange  sm:inline-block xs:block"
                 >
                   {{ skill.title }}:
                 </span>
@@ -59,15 +55,9 @@
           </li>
         </ul>
       </div>
-
-      <img
-          src="/imgs/about/mehdi.jpg"
-          alt=""
-          class="md:(w-86 inline-block) sm:hidden xs:(mt-8 w-60 mx-auto) rounded-md shadow-lg order-1"
-      />
     </div>
 
-    <div class="relative xl:mt-20 xs:mt-30 text-2xl font-bold">
+    <div class="relative mt-14 text-2xl font-bold">
       <span
           class="updown inline-block absolute -top-1 -left-2.5 w-12 h-12 bg-main-orange/70 rounded-full"
       ></span>
@@ -85,36 +75,36 @@
       <div
           ref="experienceRefs"
           :class="[
-            'transition-max-height duration-400 ease-linear relative bg-dark/70 py-8 xs:(py-6) px-6 border border-zinc-700 rounded-md flex gap-4 overflow-hidden max-h-[160px]'
+            'transition-max-height duration-400 ease-linear relative bg-dark/70 py-10 2xl:py-6 px-6 border border-zinc-700 rounded-md flex gap-4 overflow-hidden max-h-[148px]'
           ]"
           v-for="(experience, index) in experiences"
           :key="experience.id"
       >
         <span
-            class="md:relative xs:absolute inline-block min-w-8 h-8 bg-main-orange rounded-full flex items-center justify-center"
+            class="sm:relative xs:absolute inline-block min-w-8 h-8 bg-main-orange rounded-full flex items-center justify-center"
         >
           <span
               class="inline-block w-7 h-7 bg-main-orange border-7 border-dark rounded-full"
           ></span>
         </span>
 
-        <div class="md:w-[calc(100%-2rem)] xs:w-full">
+        <div class="sm:w-[calc(100%-2rem)] xs:w-full">
           <div>
             <div
                 class="w-full flex justify-between items-start sm:flex-row xs:flex-col"
             >
               <h3
-                  class="md:w-9/12 sm:w-8/12 xs:w-full text-xl text-main-orange font-medium"
+                  class="sm:w-9/12 xs:w-full text-xl text-main-orange font-medium"
               >
-                <span class="md:ml-0 xs:ml-12">{{ experience.company }}</span>
+                <span class="sm:ml-0 xs:ml-12">{{ experience.company }}</span>
                 <span
-                    class="text-white lg:(inline-block mb-0 mt-0 ml-2) sm:mb-5 xs:(block mt-4)"
+                    class="text-white lg:(inline-block mb-0 mt-0 ml-2) xs:(block mt-4)"
                 >({{ experience.role }})</span
                 >
               </h3>
               <div
                   :class="[
-                  'transition duration-300 ease-in-out flex gap-2 items-center cursor-pointer md:(absolute top-9 right-8 mb-0) xs:(relative top-2 min-w-36 mb-12)',
+                  'transition duration-300 ease-in-out flex gap-2 items-center cursor-pointer sm:(absolute top-9 right-8 mb-0) xs:(relative top-2 min-w-36 mb-12)',
                   experience.showDetails ? 'text-red' : 'text-main-green',
                 ]"
                   @click="toggleDetails(index, experience)"
@@ -142,7 +132,7 @@
             </p>
           </div>
 
-          <p class="mt-10 font-bold text-main-green">Some of tasks:</p>
+          <p class="mt-14 font-bold text-main-green">Some of tasks:</p>
           <ul class="flex flex-col gap-2 mt-2 text-white/80 w-11/12">
             <li
                 v-for="task in experience.tasks"
@@ -232,7 +222,7 @@
 </template>
 
 <script>
-import { mapState } from "pinia";
+import {mapState} from "pinia";
 import useProjectsStore from "@/stores/projects";
 import gsap from "gsap";
 
@@ -243,42 +233,40 @@ export default {
         320: {
           itemsToShow: 1,
         },
-        900: {
+        700:{
           itemsToShow: 1.2,
         },
+        900: {
+          itemsToShow: 1.4,
+        },
         1200: {
-          itemsToShow: 1.5,
+          itemsToShow: 2,
         },
-        1400: {
-          itemsToShow: 1.6,
-        },
-        1600: {
-          itemsToShow: 1.8,
-        },
-        1900: {
+        1840: {
           itemsToShow: 3,
         },
       },
       skills: [
         {
-          title: "Languages",
-          items: "HTML, CSS, JavaScript (ECMAScript), TypeScript, NodeJS, JSON",
+          "title": "Languages",
+          "items": "HTML5, CSS3, JavaScript (ES6+), TypeScript, Node.js, JSON (Data Format)"
         },
         {
-          title: "Modules",
-          items:
-              "Vue, Vuex, Nuxt, SASS, Tailwind, UnoCSS, I18N, Jest, Webpack, WebSocket, jQuery, Bootstrap",
+          "title": "Frameworks & Libraries",
+          "items": "Vue.js (Nuxt, Vuetify, Pinia, Vuex, PrimeVue), React.js (Next.js, Redux), SCSS, Tailwind CSS, UnoCSS, Bootstrap, jQuery, Lodash"
         },
         {
-          title: "Concepts",
-          items:
-              "Responsive Design, Restful APIs, UI/UX Design, SEO, Cross-Browser compatibility, PWA, Core web vitals, SPA",
+          "title": "Testing",
+          "items": "Vitest, Cypress, Jest"
         },
         {
-          title: "Tools & etc",
-          items:
-              "Version Control (Git, GitHub, GitLab), Jira, Figma, Emmet, ESLint, Prettier, NPM, Yarn, Docker, PM2",
+          "title": "Concepts",
+          "items": "Responsive Web Design, RESTful API Integration, UI/UX Design, SEO Optimization, Core Web Vitals, Cross-Browser Compatibility, Progressive Web Apps (PWA), Single Page Applications (SPA), Internationalization (i18n), WebSockets, Server-Sent Events (SSE), Front-End Architecture, Performance Optimization"
         },
+        {
+          "title": "Tools",
+          "items": "Git, GitHub, GitLab, Jira, Figma, Emmet, ESLint, Prettier, NPM, Yarn, Docker, PM2"
+        }
       ],
       experiences: [
         {
@@ -371,7 +359,7 @@ export default {
         },
         {
           "id": 2,
-          "company": "Freelance - Contract projects",
+          "company": "Freelance projects",
           "role": "Full-Stack Web Developer",
           "bio": "Worked on multiple projects during freelancing & free time",
           "startDate": "Jul 2017",
@@ -416,14 +404,13 @@ export default {
 
       if (experience.showDetails) {
         gsap.to(element, {
-          maxHeight: element.scrollHeight,
+          maxHeight: element.scrollHeight + 28,
           duration: 0.5,
           ease: "power2.out",
         });
       } else {
-        // Collapse: Animate to a smaller max-height
         gsap.to(element, {
-          maxHeight: 160, // Adjust to match the collapsed height (approximate)
+          maxHeight: 160,
           duration: 0.5,
           ease: "power2.out",
         });
@@ -433,7 +420,7 @@ export default {
 };
 </script>
 <style scoped>
-test{
-  
+test {
+
 }
 </style>
