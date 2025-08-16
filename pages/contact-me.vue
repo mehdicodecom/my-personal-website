@@ -219,7 +219,7 @@ export default {
   data() {
     return {
       contacts: [
-        { type: "mail", value: "info@mehdicode.com" },
+        { type: "mail", value: "Career@mehdicode.com" },
         // {
         //   type: "phone",
         //   value: "+989300432875",
@@ -323,7 +323,7 @@ export default {
       if (!validatePhoneNumber(this.sender.tel)) this.errors.tel = true;
       if (this.sender.message.length < 8) this.errors.message = true;
       let has_error = Object.values(this.errors).every(
-        (item) => item === false
+        (item) => item === false,
       );
       return has_error;
     },

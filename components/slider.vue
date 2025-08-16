@@ -42,7 +42,7 @@
             <span class="text-sm">{{ item.date }}</span>
           </div>
           <div
-            class="absolute inline-flex justify-center items-center w-14 h-14 rounded-full bg-black bg-opacity-70 top-1/2 transition duration-400 transform opacity-0 -translate-y-30 scale-150 right-0 left-0 mx-auto group-hover:(-translate-y-1/2 opacity-100 scale-100)"
+            class="absolute inline-flex justify-center items-center w-14 h-14 rounded-full bg-black bg-opacity-70 top-1/2 transition duration-400 transform opacity-0 -translate-y-30 scale-150 right-0 left-0 mx-auto group-hover:(-translate-y-16 opacity-100 scale-100)"
           >
             <svg class="w-6 h-6 text-white select-none">
               <use href="/imgs/icons.svg#link"></use>
@@ -91,7 +91,7 @@ export default {
             typeof item.title === "string" &&
             typeof item.description === "string" &&
             typeof item.date === "string" &&
-            typeof item.slug === "string"
+            typeof item.slug === "string",
         ),
     },
     breakpoints: {
