@@ -21,6 +21,7 @@ export default defineStore("projects", {
                         type: "video",
                         title: "Platform Demo",
                         src: "/projects/bitbank/bitbank.mp4",
+                        poster: "/projects/bitbank/home-en-dark.png",
                         scroll: true,
                         transition: "2s"
                     },
@@ -82,11 +83,13 @@ export default defineStore("projects", {
                         type: "video",
                         title: "Demo video",
                         src: "/projects/sarmayex-market/market.mp4",
+                        poster: "/projects/sarmayex-market/sarmayex-market.png",
                     },
                     {
                         type: "video",
                         title: "Market mobile version demo",
                         src: "/projects/sarmayex-market/market-mobile.mp4",
+                        poster: "/projects/sarmayex-market/mobile-chart.png",
                         mobile: true,
                     },
                     {
@@ -144,6 +147,7 @@ export default defineStore("projects", {
                         type: "video",
                         title: "Full demo video",
                         src: "/projects/sarmayex/sarmayex.mp4",
+                        poster: "/projects/sarmayex/home.png",
                     },
                     {
                         type: "img",
@@ -246,6 +250,7 @@ export default defineStore("projects", {
                         type: "video",
                         title: "Full demo video",
                         src: "/projects/iranecar/iranecar.mp4",
+                        poster: "/projects/iranecar/home.png",
                     },
                     {
                         type: "img",
@@ -327,6 +332,7 @@ export default defineStore("projects", {
                         type: "video",
                         title: "Full demo video",
                         src: "/projects/mega/mega.mp4",
+                        poster: "/projects/mega/home.png",
                     },
                     {
                         type: "img",
@@ -435,6 +441,7 @@ export default defineStore("projects", {
                         type: "video",
                         src: "/projects/finnotex/finnotex.mp4",
                         title: "Demo",
+                        poster: "/projects/finnotex/home.jpg",
                     },
                     {
                         type: "img",
@@ -494,6 +501,7 @@ export default defineStore("projects", {
                         type: "video",
                         title: "Demo",
                         src: "/projects/finnobot/video.mp4",
+                        poster: "/projects/finnobot/light.jpg",
                     },
                     {
                         type: "img",
@@ -546,6 +554,7 @@ export default defineStore("projects", {
                         type: "video",
                         title: "Demo",
                         src: "/projects/rotana/video.mp4",
+                        poster: "/projects/rotana/legal-buy.jpg",
                     },
                     {
                         type: "img",
@@ -622,7 +631,8 @@ export default defineStore("projects", {
                     {
                         type: "video",
                         title: "Platform Demo",
-                        src: "/projects/simcard/simcard.mp4"
+                        src: "/projects/simcard/simcard.mp4",
+                        poster: "/projects/simcard/simcard.png"
                     },
                     {
                         type: "img",
@@ -745,6 +755,7 @@ export default defineStore("projects", {
                         type: "video",
                         title: "Library video",
                         src: "/projects/library/library-video.mp4",
+                        poster: "/projects/library/andishe-library.jpg",
                     },
                 ],
                 mainMedia: 0,
@@ -763,6 +774,7 @@ export default defineStore("projects", {
                         type: "video",
                         title: "Video",
                         src: "/projects/4sou/4sou.mp4",
+                        poster: "/projects/4sou/4sou-english.jpg",
                     },
                     {
                         type: "img",
@@ -960,6 +972,7 @@ export default defineStore("projects", {
                         type: "video",
                         title: "Demo",
                         src: "/projects/soundsland/demo.mp4",
+                        poster: "/projects/soundsland/home.jpg",
                     },
                 ],
                 mainMedia: 0,

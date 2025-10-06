@@ -48,6 +48,7 @@
         :media="project.media[project.mainMedia]"
         screen-height="lg:h-134 md:h-126 sm:h-100 xs:h-86"
         :only-screen="true"
+        :enable-hover-effects="true"
       />
       <div
         @click="showGallery(project.id, mediaIndex + 1)"

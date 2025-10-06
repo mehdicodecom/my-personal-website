@@ -185,6 +185,7 @@ export default {
               :about-page="true"
               screen-height="sm:h-60 h-50"
               :media="project.media[project.mainMedia]"
+              :enable-hover-effects="true"
             />
             <section
               class="flex flex-col gap-2 flex-wrap items-center justify-center w-full px-12"
@@ -271,6 +272,7 @@ export default {
         <Shared-Screen
           @click="showGallery(project.id)"
           :media="project.media[project.mainMedia]"
+          :enable-hover-effects="true"
           class="relative z-50 xl:min-w-120 xl:w-140 lg:(min-w-116 w-116 mx-initial) md:(w-140 mx-auto) sm:w-110 xs:(w-86)"
           screen-height="xl:h-74 lg:h-66 md:h-74 h-70"
         />

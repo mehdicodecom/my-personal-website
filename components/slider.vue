@@ -1,7 +1,7 @@
 <template>
   <div
     class="swiper-container transition duration-300"
-    :class="[swiperInitialized ? 'opacity-100' : 'opacity-0', containerClass]"
+    :class="swiperInitialized ? 'opacity-100' : 'opacity-0'"
   >
     <swiper
       :effect="sliderConfig.effect"
@@ -93,10 +93,6 @@ export default {
             typeof item.date === "string" &&
             typeof item.slug === "string",
         ),
-    },
-    containerClass: {
-      type: String,
-      default: "",
     },
     breakpoints: {
       type: Object,

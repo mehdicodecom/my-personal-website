@@ -5,11 +5,12 @@
       <div class="display">
         <div :class="['screen', screenHeight]">
           <div
-            :class="['relative viewport group', { scrollToEnd: scroll }]"
+            @mouseenter="handleHover(true)"
+            @mouseleave="handleHover(false)"
+            :class="['relative viewport group', { scrollToEnd: (enableHoverEffects && isHovered && media?.type === 'img' && media?.scroll === true) || (!enableHoverEffects && scroll && media?.type === 'img') }]"
             :style="[
               {
-                backgroundImage:
-                  media?.type === 'img' ? `url(${media?.src})` : 'none',
+                backgroundImage: getBackgroundImage(),
               },
               { '--transitionSpeed': media?.transition },
             ]"
@@ -21,11 +22,15 @@
               :class="[
                 'absolute h-full w-full rounded-lg screenVideo',
                 { 'object-cover': !videoControls },
+                { 'opacity-0': enableHoverEffects && !isHovered },
+                { 'opacity-100': !enableHoverEffects || isHovered },
               ]"
-              v-if="media?.type === 'video'"
+              v-show="media?.type === 'video'"
               :src="media?.src"
               :controls="videoControls"
               controlsList="nodownload"
+              :muted="enableHoverEffects && isHovered && media?.type === 'video'"
+              loop
             ></video>
             <Shared-Zoom v-if="zoom" />
             <!-- <img
@@ -73,9 +78,70 @@ export default {
     videoControls: {
       default: false,
     },
+    autoplay: {
+      default: false,
+    },
+    enableHoverEffects: {
+      default: false,
+    },
+  },
+  data() {
+    return {
+      isHovered: false,
+    };
   },
   computed: {
     ...mapWritableState(useProjectsStore, ["videoPlaying"]),
+  },
+  methods: {
+    getBackgroundImage() {
+      if (this.media?.type === 'img') {
+        return `url(${this.media?.src})`;
+      } else if (this.media?.type === 'video') {
+        // In gallery (videoControls = true), don't show poster
+        if (this.videoControls) {
+          return 'none';
+        }
+        // In carousels, show poster when not hovered or when video element is not visible
+        if (!this.enableHoverEffects || !this.isHovered) {
+          return this.media?.poster ? `url(${this.media?.poster})` : 'none';
+        }
+        return 'none'; // Hide background when video is playing
+      }
+      return 'none';
+    },
+    handleHover(hovering) {
+      if (!this.enableHoverEffects) return;
+      
+      this.isHovered = hovering;
+      
+      if (this.media?.type === 'video') {
+        // Use nextTick to ensure video element is ready
+        this.$nextTick(() => {
+          if (this.$refs.video) {
+            if (hovering) {
+              // Ensure video is loaded before playing
+              if (this.$refs.video.readyState >= 2) { // HAVE_CURRENT_DATA
+                this.$refs.video.play().catch(err => {
+                  console.log('Video play failed:', err);
+                });
+              } else {
+                // Wait for video to load
+                this.$refs.video.addEventListener('canplay', () => {
+                  this.$refs.video.play().catch(err => {
+                    console.log('Video play failed after load:', err);
+                  });
+                }, { once: true });
+              }
+            } else {
+              // Stop video when leaving hover
+              this.$refs.video.pause();
+              this.$refs.video.currentTime = 0; // Reset to beginning
+            }
+          }
+        });
+      }
+    },
   },
 };
 </script>

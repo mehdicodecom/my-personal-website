@@ -6,8 +6,8 @@
   >
     <Home-HelloWorld />
   </div>
-  <div class="flex mt-10 w-full overflow-hidden mx-auto">
-    <Slider :items="getPosts(6)" containerClass="home-carousel" />
+  <div class="flex mt-10 w-full overflow-hidden mx-auto home-carousel">
+    <Slider :items="getPosts(6)" />
   </div>
 
   <Shared-Projects
