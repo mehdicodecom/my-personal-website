@@ -12,7 +12,7 @@ export default defineConfig({
     "bg-socials-github",
     "bg-socials-telegram",
   ],
-  transformers: [transformerVariantGroup()],
+  transformers: [transformerVariantGroup() as any],
   theme: {
     colors: {
       main: {
@@ -39,4 +39,4 @@ export default defineConfig({
       "2xl": "1550px",
     },
   },
-});
+} as any);
