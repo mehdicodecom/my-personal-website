@@ -7,7 +7,7 @@
     <Home-HelloWorld />
   </div>
   <div class="flex mt-10 w-full overflow-hidden mx-auto home-carousel">
-    <Slider :items="getPosts(6)" />
+    <Slider :items="getPosts(6)" :show-skeleton="!carouselReady" />
   </div>
 
   <Shared-Projects
@@ -31,6 +31,11 @@ import useProjectsStore from "@/stores/projects";
 import usePostsStore from "@/stores/posts";
 
 export default {
+  data() {
+    return {
+      carouselReady: false,
+    };
+  },
   computed: {
     ...mapState(useProjectsStore, [
       "galleryVisible",
@@ -39,6 +44,36 @@ export default {
       "getPortfolios",
     ]),
     ...mapState(usePostsStore, ["getPosts"]),
+  },
+  mounted() {
+    // Wait for critical resources to load
+    this.$nextTick(() => {
+      // Preload critical images
+      this.preloadCriticalImages().then(() => {
+        setTimeout(() => {
+          this.carouselReady = true;
+        }, 200); // Give some time for smooth transition
+      });
+    });
+  },
+  methods: {
+    preloadCriticalImages() {
+      return new Promise((resolve) => {
+        const posts = this.getPosts(6);
+        const imagePromises = posts.slice(0, 3).map((post) => {
+          return new Promise((imgResolve) => {
+            const img = new Image();
+            img.onload = imgResolve;
+            img.onerror = imgResolve;
+            img.src = `/imgs/blog/${post.img}`;
+          });
+        });
+        
+        Promise.all(imagePromises).then(() => {
+          resolve();
+        });
+      });
+    },
   },
 };
 </script>

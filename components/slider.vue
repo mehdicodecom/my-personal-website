@@ -1,7 +1,41 @@
 <template>
+  <div class="slider-wrapper relative">
+  <!-- Skeleton Layout (Static) -->
   <div
-    class="swiper-container transition duration-300"
-    :class="swiperInitialized ? 'opacity-100' : 'opacity-0'"
+    class="skeleton-container transition-all duration-700 ease-out"
+    :class="showSkeleton ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4 pointer-events-none'"
+  >
+    <div
+      v-for="(item, i) in visibleSkeletonItems"
+      :key="`skeleton-${i}`"
+      class="skeleton-slide"
+      :class="{ 'skeleton-active': i === Math.floor(visibleSkeletonItems.length / 2) }"
+    >
+      <div class="relative w-full h-full">
+        <!-- Skeleton image -->
+        <div class="skeleton-image rounded-xl w-full h-full"></div>
+        
+        <!-- Skeleton date badge -->
+        <div class="absolute top-3 left-3 flex items-center gap-2 bg-black bg-opacity-20 rounded-lg p-1">
+          <div class="skeleton-icon w-5 h-5 rounded"></div>
+          <div class="skeleton-date w-16 h-4 rounded"></div>
+        </div>
+        
+        
+        <!-- Skeleton content -->
+        <div class="p-4 pb-8 flex flex-col gap-2 backdrop-blur-[6px] bg-black w-full absolute bottom-0 rounded-xl bg-opacity-15">
+          <div class="skeleton-title h-6 rounded w-3/4"></div>
+          <div class="skeleton-description h-4 rounded w-full"></div>
+          <div class="skeleton-description h-4 rounded w-2/3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real Carousel -->
+  <div
+    class="swiper-container transition-all duration-700 ease-out absolute top-0 left-0 w-full"
+    :class="showSkeleton ? 'opacity-0 scale-105 translate-y-4 pointer-events-none' : 'opacity-100 scale-100 translate-y-0'"
   >
     <swiper
       :effect="sliderConfig.effect"
@@ -31,6 +65,7 @@
           <img
             class="rounded-xl w-full h-full transition duration-800 group-hover:(scale-110)"
             :src="`/imgs/blog/${item.img}`"
+            :loading="i < 3 ? 'eager' : 'lazy'"
             alt=""
           />
           <div
@@ -60,6 +95,7 @@
         </NuxtLink>
       </swiper-slide>
     </swiper>
+  </div>
   </div>
 </template>
 
@@ -93,6 +129,10 @@ export default {
             typeof item.date === "string" &&
             typeof item.slug === "string",
         ),
+    },
+    showSkeleton: {
+      type: Boolean,
+      default: false,
     },
     breakpoints: {
       type: Object,
@@ -135,6 +175,12 @@ export default {
       swiperInitialized: false,
     };
   },
+  computed: {
+    visibleSkeletonItems() {
+      // Show only 5 items for skeleton (like the real carousel)
+      return this.items.slice(0, 5);
+    },
+  },
   methods: {
     onSwiper(swiper) {
       console.log(swiper);
@@ -149,13 +195,46 @@ export default {
       }
       return description;
     },
+    waitForImages() {
+      return new Promise((resolve) => {
+        const images = this.$el.querySelectorAll('img');
+        if (images.length === 0) {
+          resolve();
+          return;
+        }
+        
+        let loadedCount = 0;
+        const totalImages = images.length;
+        
+        const checkComplete = () => {
+          loadedCount++;
+          if (loadedCount === totalImages) {
+            resolve();
+          }
+        };
+        
+        images.forEach((img) => {
+          if (img.complete) {
+            checkComplete();
+          } else {
+            img.addEventListener('load', checkComplete);
+            img.addEventListener('error', checkComplete);
+          }
+        });
+      });
+    },
   },
   mounted() {
-    this.$nextTick(() => {
-      setTimeout(() => {
-        this.swiperInitialized = true;
-      }, 50);
-    });
+    if (!this.showSkeleton) {
+      this.$nextTick(() => {
+        // Wait for images to load before initializing swiper
+        this.waitForImages().then(() => {
+          setTimeout(() => {
+            this.swiperInitialized = true;
+          }, 50);
+        });
+      });
+    }
   },
   beforeDestroy() {
     this.swiperInitialized = false;
@@ -189,5 +268,104 @@ export default {
 
 .home-carousel .mySwiper .swiper-slide a {
   pointer-events: auto;
+}
+
+/* Skeleton loading styles */
+.skeleton-image,
+.skeleton-icon,
+.skeleton-date,
+.skeleton-title,
+.skeleton-description {
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+
+/* Slider wrapper */
+.slider-wrapper {
+  width: 100%;
+  padding: 2rem 0;
+  min-height: 480px;
+}
+
+/* Skeleton container styles */
+.skeleton-container {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  padding: 0 2rem;
+  position: relative;
+  overflow: visible;
+}
+
+/* Create equal spacing on both sides - only show 5 items */
+.skeleton-container::before {
+  content: '';
+  flex: 0 0 300px;
+  max-width: 300px;
+}
+
+.skeleton-container::after {
+  content: '';
+  flex: 0 0 300px;
+  max-width: 300px;
+}
+
+.skeleton-slide {
+  width: 350px;
+  height: 420px;
+  border-radius: 12px;
+  position: relative;
+  transform: scale(0.8);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.skeleton-slide.skeleton-active {
+  transform: scale(1);
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Responsive heights */
+@media (max-width: 768px) {
+  .slider-wrapper {
+    min-height: 400px;
+  }
+  
+  .skeleton-container {
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+  
+  .skeleton-slide {
+    width: 300px;
+    height: 360px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-wrapper {
+    min-height: 350px;
+  }
+  
+  .skeleton-slide {
+    width: 260px;
+    height: 320px;
+  }
 }
 </style>

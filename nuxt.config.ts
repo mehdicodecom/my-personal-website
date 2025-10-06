@@ -6,18 +6,26 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false,
   },
-  app: {
-    head: {
-      title: "Mehdi Rafiei | Front-end Developer",
-      meta: [
-        {
-          name: "description",
-          content:
-            "Experienced front end developer knowledge about UI/UX Design, TDD, Nuxt, Vue, PWA, TWA, Responsive design & etc",
-        },
-      ],
-    },
-  },
+          app: {
+            head: {
+              title: "Mehdi Rafiei | Front-end Developer",
+              meta: [
+                {
+                  name: "description",
+                  content:
+                    "Experienced front end developer knowledge about UI/UX Design, TDD, Nuxt, Vue, PWA, TWA, Responsive design & etc",
+                },
+              ],
+              link: [
+                {
+                  rel: "preload",
+                  href: "/imgs/icons.svg",
+                  as: "image",
+                  type: "image/svg+xml",
+                },
+              ],
+            },
+          },
   css: ["@/assets/css/main.css"],
   modules: ["@pinia/nuxt", "@unocss/nuxt", "vue3-carousel-nuxt"],
   carousel: {
