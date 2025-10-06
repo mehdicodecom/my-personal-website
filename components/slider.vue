@@ -1,7 +1,7 @@
 <template>
   <div
     class="swiper-container transition duration-300"
-    :class="swiperInitialized ? 'opacity-100' : 'opacity-0'"
+    :class="[swiperInitialized ? 'opacity-100' : 'opacity-0', containerClass]"
   >
     <swiper
       :effect="sliderConfig.effect"
@@ -94,6 +94,10 @@ export default {
             typeof item.slug === "string",
         ),
     },
+    containerClass: {
+      type: String,
+      default: "",
+    },
     breakpoints: {
       type: Object,
       default: () => ({
@@ -176,5 +180,18 @@ export default {
 
 .swiper-pagination-bullet {
   background: white;
+}
+
+/* Fix pointer events for clickable cards - only for home carousel */
+.home-carousel .mySwiper {
+  pointer-events: none;
+}
+
+.home-carousel .mySwiper .swiper-slide {
+  pointer-events: auto;
+}
+
+.home-carousel .mySwiper .swiper-slide a {
+  pointer-events: auto;
 }
 </style>
