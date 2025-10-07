@@ -38,11 +38,22 @@
           </h1>
         </div>
       </div>
-      <img
-        :src="`/imgs/blog/${post.img}`"
-        alt=""
-        class="w-full h-auto object-contain max-h-96 mt-6 rounded-md"
-      />
+      
+      <!-- Image container with skeleton background -->
+      <div class="relative w-full mt-6" style="min-height: 24rem;">
+        <!-- Skeleton background -->
+        <div 
+          v-if="!imageLoaded" 
+          class="absolute inset-0 skeleton-bg rounded-md pointer-events-none"
+        ></div>
+        
+        <img
+          :src="`/imgs/blog/${post.img}`"
+          alt=""
+          :class="['w-full h-auto object-contain max-h-96 rounded-md relative z-10', { 'loaded': imageLoaded }]"
+          @load="onImageLoad"
+        />
+      </div>
     </div>
 
     <!-- Content Section -->
@@ -100,6 +111,13 @@ import { mapState } from "pinia";
 import usePostsStore from "@/stores/posts";
 
 export default {
+  data() {
+    return {
+      imageLoaded: false,
+      skeletonStartTime: null,
+      skeletonMinTime: 500, // Minimum time to show skeleton (500ms)
+    };
+  },
   computed: {
     ...mapState(usePostsStore, ["getPost"]),
     post() {
@@ -120,6 +138,30 @@ export default {
         ? window.location.href
         : `https://your-site.com/post/${this.post.slug}`; // Fallback for SSR
       return `https://x.com/intent/tweet?text=Check out this post: ${encodeURIComponent(this.post.title)}&url=${encodeURIComponent(url)}`;
+    },
+  },
+  mounted() {
+    // Record when skeleton loading started
+    this.skeletonStartTime = Date.now();
+    
+    // Fallback for SSR: ensure image becomes visible after a timeout
+    this.$nextTick(() => {
+      setTimeout(() => {
+        if (!this.imageLoaded) {
+          this.imageLoaded = true;
+        }
+      }, 2000); // 2 second fallback
+    });
+  },
+  methods: {
+    onImageLoad() {
+      // Ensure minimum skeleton time for client-side loads
+      const elapsed = Date.now() - this.skeletonStartTime;
+      const remainingTime = Math.max(0, this.skeletonMinTime - elapsed);
+      
+      setTimeout(() => {
+        this.imageLoaded = true;
+      }, remainingTime);
     },
   },
 };
@@ -166,6 +208,33 @@ export default {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Blog image loading states */
+img {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+img.loaded {
+  opacity: 1;
+}
+
+/* Skeleton background effect */
+.skeleton-bg {
+  background: linear-gradient(90deg, #343334 25%, #4a4a4a 50%, #343334 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+/* Skeleton shimmer animation */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
   }
 }
 </style>
