@@ -13,7 +13,8 @@
     "@types/node": "^18.16.19",
     "@unocss/nuxt": "^0.59.0",
     "@unocss/transformer-variant-group": "^0.59.0",
-    "nuxt": "^3.9.3"
+    "nuxt": "^3.9.3",
+    "nuxt-svgo": "^4.2.6"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",

@@ -33,7 +33,7 @@
             class="inline-flex items-center justify-center w-14 h-14 bg-dark-200 rounded-full"
           >
             <svg class="w-6 h-6 text-white-3 select-none text-main-orange">
-              <use :href="`/imgs/icons.svg#${contact.type}`"></use>
+              <component :is="`Icon${contact.type.charAt(0).toUpperCase() + contact.type.slice(1)}`" />
             </svg>
           </span>
           <div class="loading textLoading inline-block">
@@ -58,14 +58,14 @@
             placeholder="Your name"
           />
           <svg class="absolute top-3 left-4 w-6 h-6 text-main-orange">
-            <use :href="`/imgs/icons.svg#user_input`"></use>
+            <IconUserInput />
           </svg>
           <svg
             v-if="errors.name"
             class="absolute top-2.5 right-4 w-6 h-6 text-red-500"
             title="At least 2 characters"
           >
-            <use :href="'/imgs/icons.svg#error'"></use>
+            <IconError />
           </svg>
         </div>
         <div class="relative flex-1">
@@ -76,14 +76,14 @@
             placeholder="Subject"
           />
           <svg class="absolute top-3 left-4 w-6 h-6 text-main-orange">
-            <use :href="`/imgs/icons.svg#subject`"></use>
+            <IconSubject />
           </svg>
           <svg
             v-if="errors.subject"
             class="absolute top-2.5 right-4 w-6 h-6 text-red-500"
             title="At least 3 characters"
           >
-            <use :href="'/imgs/icons.svg#error'"></use>
+            <IconError />
           </svg>
         </div>
       </div>
@@ -97,14 +97,14 @@
             placeholder="Email"
           />
           <svg class="absolute top-3 left-4 w-6 h-6 text-main-orange">
-            <use :href="`/imgs/icons.svg#mail`"></use>
+            <IconMail />
           </svg>
           <svg
             v-if="errors.mail"
             class="absolute top-2.5 right-4 w-6 h-6 text-red-500"
             title="Incorrect email address"
           >
-            <use :href="'/imgs/icons.svg#error'"></use>
+            <IconError />
           </svg>
         </div>
         <div class="relative flex-1">
@@ -117,14 +117,14 @@
             placeholder="Phone Number"
           />
           <svg class="absolute top-3 left-4 w-5 h-5 text-main-orange">
-            <use :href="`/imgs/icons.svg#phone`"></use>
+            <IconPhone />
           </svg>
           <svg
             v-if="errors.tel"
             class="absolute top-2.5 right-4 w-6 h-6 text-red-500"
             title="Incorrect Phone number"
           >
-            <use :href="'/imgs/icons.svg#error'"></use>
+            <IconError />
           </svg>
         </div>
       </div>
@@ -143,7 +143,7 @@
           class="absolute top-3 right-4 w-6 h-6 text-red-500"
           title="Incorrect Phone number"
         >
-          <use :href="'/imgs/icons.svg#error'"></use>
+          <IconError />
         </svg>
       </div>
 
@@ -158,7 +158,7 @@
           ]"
         >
           <svg class="w-5 h-5 text-white-2" v-if="!sending">
-            <use :href="'/imgs/icons.svg#send'"></use>
+            <IconSend />
           </svg>
 
           <svg

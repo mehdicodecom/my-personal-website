@@ -4,15 +4,11 @@
   >
     <div class="bg-dark/60 h-24 flex">
       <div class="h-full flex-1 flex gap-3 items-center justify-center px-4">
-        <svg
+        <IconImg
           v-if="currentMedia.type === 'img'"
           class="relative w-6 h-6 text-main-orange inline-block"
-        >
-          <use :href="'/imgs/icons.svg#img'"></use>
-        </svg>
-        <svg v-else class="relative w-8 h-8 text-main-orange inline-block">
-          <use :href="'/imgs/icons.svg#video'"></use>
-        </svg>
+        />
+        <IconVideo v-else class="relative w-8 h-8 text-main-orange inline-block" />
         <NuxtLink
           @click.prevent="
             hideGallery();
@@ -28,14 +24,12 @@
           v-if="currentMedia.type === 'img' && currentMedia.scroll"
           class="cursor-pointer inline-block trans3ms h-10 min-w-max text-dark-100 font-semibold rounded-lg flex items-center pl-1 pr-2 bg-main-orange hover:(bg-main-orange/80 shadow-lg)"
         >
-          <svg
-            :class="[
-              'relative w-8 h-8',
-              imgScrollDown ? '-rotate-90' : 'rotate-90',
-            ]"
-          >
-            <use :href="'/imgs/icons.svg#arrow'"></use>
-          </svg>
+            <IconArrow
+              :class="[
+                'relative w-8 h-8',
+                imgScrollDown ? '-rotate-90' : 'rotate-90',
+              ]"
+            />
 
           <p>{{ imgScrollDown ? "Scroll Up" : "Scroll Down" }}</p>
         </div>
@@ -45,11 +39,8 @@
           v-if="currentMedia.type === 'video'"
           class="cursor-pointer inline-block trans3ms min-w-max h-10 text-dark-100 rounded-lg flex items-center px-4 gap-2 bg-main-orange font-bold hover:(bg-main-orange/80 shadow-lg)"
         >
-          <svg class="relative w-5 h-5">
-            <use
-              :href="'/imgs/icons.svg' + `#${videoPlaying ? 'pause' : 'play'}`"
-            ></use>
-          </svg>
+          <IconPlay v-if="!videoPlaying" class="relative w-5 h-5" />
+          <IconPause v-else class="relative w-5 h-5" />
 
           <p>{{ videoPlaying ? "Pause Video" : "Play Video" }}</p>
         </div>
@@ -75,21 +66,17 @@
             @click="prevMedia"
             class="group absolute z-20 lg:(-left-26 w-18 h-18) md:(-left-18 w-14 h-14 -left-6) -left-3.5 w-10 h-10 top-1/2 -translate-y-1/2 md:bg-dark-100 bg-main-orange transition md:hover:bg-dark-300 flex items-center justify-center cursor-pointer rounded-full"
           >
-            <svg
+            <IconArrow
               class="relative md:(w-14 h-14) w-12 h-12 rotate-180 md:text-white text-dark-100 md:group-hover:text-main-orange transition"
-            >
-              <use :href="'/imgs/icons.svg#arrow'"></use>
-            </svg>
+            />
           </div>
           <div
             @click="nextMedia"
             class="group lg:(-right-26 w-18 h-18) z-20 md:(-right-18 w-14 h-14 -right-6) -right-3.5 w-10 h-10 absolute top-1/2 -translate-y-1/2 rounded-full md:bg-dark-100 bg-main-orange transition md:hover:bg-dark-300 flex items-center justify-center cursor-pointer"
           >
-            <svg
+            <IconArrow
               class="relative md:(w-14 h-14) w-12 h-12 md:text-white text-dark-100 md:group-hover:text-main-orange transition"
-            >
-              <use :href="'/imgs/icons.svg#arrow'"></use>
-            </svg>
+            />
           </div>
         </template>
 
@@ -97,9 +84,7 @@
           @click="hideGallery"
           class="absolute z-20 sm:(w-12 h-12 -right-6 -top-6) w-10 h-10 -right-3.5 mx-auto -top-4 rounded-full bg-red-500 flex items-center justify-center cursor-pointer transition hover:bg-red-600"
         >
-          <svg class="relative sm:(w-5 h-5) w-5 h-5 text-white">
-            <use :href="'/imgs/icons.svg#close'"></use>
-          </svg>
+          <IconClose class="relative sm:(w-5 h-5) w-5 h-5 text-white" />
         </div>
       </Shared-Screen>
     </div>

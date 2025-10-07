@@ -11,9 +11,7 @@
       class="absolute flex items-center gap-3 xl:(left-0 -top-16) xs:(left-0 -top-16)"
     >
       <button class="bg-dark-100 rounded-full">
-        <svg :class="['rotate-180 w-12 h-12 text-main-orange']">
-          <use :href="'/imgs/icons.svg' + `#arrow`"></use>
-        </svg>
+        <IconArrow :class="['rotate-180 w-12 h-12 text-main-orange']" />
       </button>
       <span class="text-main-orange font-bold text-lg">Portfolios</span>
     </nuxt-link>
@@ -52,20 +50,29 @@
       />
       <div
         @click="showGallery(project.id, mediaIndex + 1)"
-        class="relative group row-span-1 w-full h-42 overflow-hidden rounded-xl"
+        class="relative group row-span-1 w-full h-42 overflow-hidden rounded-xl skeleton"
         v-for="(media, mediaIndex) in otherMedia"
+        :key="mediaIndex"
       >
+        <!-- Skeleton background -->
+        <div 
+          v-if="!mediaLoaded[mediaIndex]" 
+          class="absolute inset-0 skeleton-bg pointer-events-none"
+        ></div>
+        
         <img
           v-if="media?.type === 'img'"
           :src="media.src"
           alt=""
-          class="min-h-full"
+          :class="['w-full h-full object-cover', { 'loaded': mediaLoaded[mediaIndex] }]"
+          @load="onImageLoad(mediaIndex)"
         />
         <video
-          class="min-h-full w-full"
+          :class="['w-full h-full object-cover', { 'loaded': mediaLoaded[mediaIndex] }]"
           v-if="media?.type === 'video'"
           :src="media?.src"
           controlsList="nodownload"
+          @loadeddata="onVideoLoad(mediaIndex)"
         ></video>
         <Shared-Zoom />
       </div>
@@ -91,10 +98,13 @@
 <script>
 import { mapState, mapActions } from "pinia";
 import useProjectsStore from "@/stores/projects";
+
 export default {
   data() {
     return {
       cachedProjectName: "",
+      mediaLoaded: [],
+      skeletonMinTime: 500, // Minimum time to show skeleton (500ms)
     };
   },
   computed: {
@@ -123,12 +133,48 @@ export default {
       return project;
     },
   },
+  mounted() {
+    // Initialize mediaLoaded state for all media items
+    this.mediaLoaded = new Array(this.otherMedia.length).fill(false);
+    
+    // Record when skeleton loading started
+    this.skeletonStartTime = Date.now();
+    
+    // Fallback for SSR: ensure all images become visible after a timeout
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.otherMedia.forEach((_, index) => {
+          if (!this.mediaLoaded[index]) {
+            this.mediaLoaded[index] = true;
+          }
+        });
+      }, 3000); // 3 second fallback for SSR cases
+    });
+  },
   methods: {
     ...mapActions(useProjectsStore, ["showGallery"]),
     updatePageTitle() {
       console.log("test");
 
       document.title = `Mehdi Rafiei | ${this.project.name} | Front-end Developer`;
+    },
+    onImageLoad(mediaIndex) {
+      // Image loaded successfully - ensure minimum skeleton time
+      const elapsed = Date.now() - this.skeletonStartTime;
+      const remainingTime = Math.max(0, this.skeletonMinTime - elapsed);
+      
+      setTimeout(() => {
+        this.mediaLoaded[mediaIndex] = true;
+      }, remainingTime);
+    },
+    onVideoLoad(mediaIndex) {
+      // Video loaded successfully - ensure minimum skeleton time
+      const elapsed = Date.now() - this.skeletonStartTime;
+      const remainingTime = Math.max(0, this.skeletonMinTime - elapsed);
+      
+      setTimeout(() => {
+        this.mediaLoaded[mediaIndex] = true;
+      }, remainingTime);
     },
   },
 };
@@ -147,5 +193,49 @@ export default {
   background-position: 0 0;
   background-size: 100% auto;
   border-radius: 0.5rem;
+}
+
+/* Grid item loading states */
+.grid img,
+.grid video {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.grid img.loaded,
+.grid video.loaded {
+  opacity: 1;
+}
+
+/* Skeleton background effect */
+.skeleton-bg {
+  background: linear-gradient(90deg, #343334 25%, #4a4a4a 50%, #343334 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ensure media content appears above skeleton */
+.group img,
+.group video {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure zoom component is always on top */
+.group > div:last-child {
+  position: absolute;
+  z-index: 10;
+}
+
+/* Skeleton shimmer animation */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 </style>

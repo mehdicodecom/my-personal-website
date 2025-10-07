@@ -21,7 +21,7 @@
         class="bg-dark-100 rounded-full p-2 hover:bg-dark transition duration-200"
       >
         <svg :class="['rotate-180 w-10 h-10 text-main-orange']">
-          <use :href="'/imgs/icons.svg#arrow'"></use>
+          <IconArrow />
         </svg>
       </button>
       <span class="text-main-orange font-bold text-lg">Blog</span>
@@ -63,7 +63,7 @@
             class="inline-flex items-center bg-gradient-to-r from-main-orange/20 to-main-orange/40 text-main-orange font-semibold text-lg pr-4 pl-1 rounded-lg hover:bg-gradient-to-r hover:from-main-orange/30 hover:to-main-orange/50 hover:scale-105 transition duration-200 shadow-md"
           >
             <svg class="w-16 h-16">
-              <use href="/imgs/icons.svg#twitter"></use>
+              <IconTwitter />
             </svg>
             Share on X
           </a>

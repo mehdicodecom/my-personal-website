@@ -11,7 +11,7 @@
             :class="`min-w-12 h-12 relative flex justify-center items-center rounded-full trans3ms ${value.groupHover}`"
           >
             <svg class="relative w-6 h-6">
-              <use :href="'/imgs/icons.svg' + `#${socialNetwork}`"></use>
+              <component :is="`Icon${socialNetwork.charAt(0).toUpperCase() + socialNetwork.slice(1)}`" />
             </svg>
           </span>
 

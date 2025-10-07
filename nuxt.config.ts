@@ -16,19 +16,17 @@ export default defineNuxtConfig({
                     "Experienced front end developer knowledge about UI/UX Design, TDD, Nuxt, Vue, PWA, TWA, Responsive design & etc",
                 },
               ],
-              link: [
-                {
-                  rel: "preload",
-                  href: "/imgs/icons.svg",
-                  as: "image",
-                  type: "image/svg+xml",
-                },
-              ],
+              link: [],
             },
           },
   css: ["@/assets/css/main.css"],
-  modules: ["@pinia/nuxt", "@unocss/nuxt", "vue3-carousel-nuxt"],
+  modules: ["@pinia/nuxt", "@unocss/nuxt", "vue3-carousel-nuxt", "nuxt-svgo"],
   carousel: {
     prefix: "swipe",
+  },
+  svgo: {
+    autoImportPath: "~/public/imgs/icons/",
+    defaultImport: "component",
+    componentPrefix: "Icon",
   },
 });

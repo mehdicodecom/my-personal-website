@@ -109,13 +109,8 @@
                 ]"
                   @click="toggleDetails(index, experience)"
               >
-                <svg class="w-8 h-8 text-white-3 select-none">
-                  <use
-                      :href="`/imgs/icons.svg#eye_${
-                      experience.showDetails ? 'close' : 'open'
-                    }`"
-                  ></use>
-                </svg>
+                <IconEyeClose v-if="experience.showDetails" class="w-8 h-8 text-white-3 select-none" />
+                <IconEyeOpen v-else class="w-8 h-8 text-white-3 select-none" />
                 <p class="text-lg font-bold">
                   {{ experience.showDetails ? "Hide Details" : "Show Details" }}
                 </p>
@@ -191,7 +186,7 @@
           class="bg-dark py-8 px-6 border border-zinc-700 rounded-md flex gap-4"
       >
         <svg class="w-10 h-10 text-main-orange select-none">
-          <use :href="`/imgs/icons.svg#edu`"></use>
+          <IconEdu />
         </svg>
 
         <div>

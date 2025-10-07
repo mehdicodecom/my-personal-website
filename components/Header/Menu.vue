@@ -72,7 +72,7 @@ export default {
                   index !== activeMenu && 'opacity-90'
                 ]"
               >
-                <use :href="'/imgs/icons.svg' + `#${menu.icon}`"></use>
+                <component :is="`Icon${menu.icon.charAt(0).toUpperCase() + menu.icon.slice(1)}`" />
               </svg>
 
               <span :class="[{ 'sm:block xs:(opacity-70 text-sm)': index !== activeMenu }]">{{

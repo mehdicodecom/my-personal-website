@@ -139,7 +139,7 @@ export default {
         <span class="sm:block xs:(hidden)">View More Projects</span>
         <span class="sm:hidden xs:(block)">View More</span>
         <svg :class="['relative w-10 h-10 ']">
-          <use :href="'/imgs/icons.svg' + `#arrow`"></use>
+          <IconArrow />
         </svg>
       </nuxt-link>
     </div>
@@ -220,7 +220,7 @@ export default {
               prevDisabled ? ' text-stone-500' : 'text-orange',
             ]"
           >
-            <use :href="'/imgs/icons.svg' + `#arrow`"></use>
+            <IconArrow />
           </svg>
         </button>
 
@@ -237,7 +237,7 @@ export default {
               nextDisabled ? 'text-stone-500' : 'text-orange',
             ]"
           >
-            <use :href="'/imgs/icons.svg' + `#arrow`"></use>
+            <IconArrow />
           </svg>
         </button>
       </div>

@@ -15,10 +15,16 @@
               { '--transitionSpeed': media?.transition },
             ]"
           >
+            <!-- Skeleton background for loading -->
+            <div 
+              v-if="!mediaLoaded" 
+              class="absolute inset-0 skeleton-bg pointer-events-none"
+            ></div>
             <video
               ref="video"
               @play="videoPlaying = true"
               @pause="videoPlaying = false"
+              @loadeddata="onMediaLoad"
               :class="[
                 'absolute h-full w-full rounded-lg screenVideo',
                 { 'object-cover': !videoControls },
@@ -88,6 +94,7 @@ export default {
   data() {
     return {
       isHovered: false,
+      mediaLoaded: false,
     };
   },
   computed: {
@@ -142,11 +149,57 @@ export default {
         });
       }
     },
+    onMediaLoad() {
+      this.mediaLoaded = true;
+    },
+  },
+  watch: {
+    media: {
+      handler() {
+        // Reset loading state when media changes
+        this.mediaLoaded = false;
+        
+        // For background images, we need to check if they're loaded
+        // Only do this on client side to avoid SSR issues
+        if (this.media?.type === 'img') {
+          if (typeof window !== 'undefined') {
+            const img = new Image();
+            img.onload = () => {
+              this.mediaLoaded = true;
+            };
+            img.src = this.media.src;
+          } else {
+            // On server side, assume image is loaded to avoid skeleton showing
+            this.mediaLoaded = true;
+          }
+        }
+      },
+      immediate: true,
+    },
   },
 };
 </script>
 
 <style scoped>
+/* Skeleton background effect */
+.skeleton-bg {
+  background: linear-gradient(90deg, #343334 25%, #4a4a4a 50%, #343334 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Skeleton shimmer animation */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 .display {
   position: relative;
   display: flex;
