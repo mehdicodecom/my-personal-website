@@ -34,15 +34,15 @@ export default {
           itemsToShow: 1.8,
         },
         1300: {
-          itemsToShow: 1.8,
-        },
-        1400: {
           itemsToShow: 2,
         },
-        1600: {
+        1400: {
           itemsToShow: 2.2,
         },
-        1900: {
+        1600: {
+          itemsToShow: 2.5,
+        },
+        1800: {
           itemsToShow: 3,
         },
       },
