@@ -37,7 +37,7 @@
           <img
               :src="`/imgs/blog/${post.img}`"
               alt=""
-              :class="['w-full h-48 object-cover rounded-md group-hover:scale-105 transition duration-500', { 'loaded': imageLoaded[index] }]"
+              :class="['w-full h-48 object-cover rounded-md group-hover:scale-105 transition-all duration-500 ease-in-out', { 'loaded': imageLoaded[index] }]"
               @load="onImageLoad(index)"
           />
         </div>
@@ -112,7 +112,7 @@ export default {
 /* Blog image loading states */
 img {
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
 }
 
 img.loaded {
