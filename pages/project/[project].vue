@@ -21,6 +21,13 @@
         <span>{{ project.title }}</span>
       </span>
     </div>
+    
+    <!-- Category Badge -->
+    <div class="loading textLoading inline-block mt-4">
+      <span class="bg-main-orange/20 text-main-orange px-4 py-2 rounded-full text-sm font-medium">
+        {{ project.category }}
+      </span>
+    </div>
     <div class="loading sm:w-8/12 mx-auto textLoading inline-block mt-2">
       <p class="text-lg text-center">{{ project.description }}</p>
     </div>

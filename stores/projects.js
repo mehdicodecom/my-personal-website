@@ -9,6 +9,7 @@ export default defineStore("projects", {
                 name: "BitBank",
                 title: "Professional Crypto Exchange",
                 description: "BitBank offers secure spot, P2P, futures, and fiat trading, including forex and gold, with real-time data, staking, and 24/7 support.",
+                category: "Cryptocurrency & Trading",
                 media: [
                     {
                         type: "img",
@@ -71,6 +72,7 @@ export default defineStore("projects", {
                 name: "Sarmayex Market",
                 title: "Advanced Trading",
                 description: "Sarmayex Market offers advanced crypto trading with real-time data, P2P functionality, and user-friendly price analytics.",
+                category: "Cryptocurrency & Trading",
                 media: [
                     {
                         type: "img",
@@ -135,6 +137,7 @@ export default defineStore("projects", {
                 title: "Cryptocurrency OTC Exchange",
                 description:
                     "Sarmayex enables secure OTC trading for 537+ cryptocurrencies with real-time pricing, staking, 24/7 support, and 1.5M+ users.",
+                category: "Cryptocurrency & Trading",
                 media: [
                     {
                         type: "img",
@@ -238,6 +241,7 @@ export default defineStore("projects", {
                 title: "Vehicle Sales & Leasing Platform",
                 description:
                     "Mega provides a platform for buying and selling new and used vehicles, along with comprehensive leasing services.",
+                category: "E-commerce & Sales",
                 media: [
                     {
                         type: "img",
@@ -322,6 +326,7 @@ export default defineStore("projects", {
                 title: "Vehicle Sales Information",
                 description:
                     "Mega provides a platform for buying and selling new and used vehicles, along with comprehensive leasing services.",
+                category: "E-commerce & Sales",
                 media: [
                     {
                         type: "img",
@@ -390,6 +395,7 @@ export default defineStore("projects", {
                 title: "Tokenizing Realstates",
                 description:
                     "MetriLand offers investment on realstates by tokens, even with small budget you can get profit",
+                category: "Real Estate & Investment",
                 media: [
                     {
                         type: "img",
@@ -436,6 +442,7 @@ export default defineStore("projects", {
                 title: "Trading CryptoCurrencies",
                 description:
                     "This platform (FinnoTex) has many features like advanced trading and OTC trading.",
+                category: "Cryptocurrency & Trading",
                 media: [
                     {
                         type: "video",
@@ -496,6 +503,7 @@ export default defineStore("projects", {
                 title: "Automatic Trading",
                 description:
                     "Buy automatic trading bots and connect to ur trading accounts like binance and get profit with it",
+                category: "Cryptocurrency & Trading",
                 media: [
                     {
                         type: "video",
@@ -549,6 +557,7 @@ export default defineStore("projects", {
                 title: "Bank Tokens Trading System",
                 description:
                     "This platform was meant to be used on banks for trading special tokens",
+                category: "Financial Services",
                 media: [
                     {
                         type: "video",
@@ -627,6 +636,7 @@ export default defineStore("projects", {
                 name: "Simcard",
                 title: "Bank Card Issuance & Services",
                 description: "Simcard provides seamless bank card issuance, KYC verification, and services like PIN reset, dynamic PIN activation",
+                category: "Financial Services",
                 media: [
                     {
                         type: "video",
@@ -701,6 +711,7 @@ export default defineStore("projects", {
                 name: "Andisheh",
                 title: "Online Library",
                 description: "Full of different books to read online",
+                category: "Education & Content",
                 media: [
                     {
                         type: "img",
@@ -768,6 +779,7 @@ export default defineStore("projects", {
                 title: "Job Searching for immigrants",
                 description:
                     "4sou was a large app with multiple languages support for immigrants to find their dream jobs",
+                category: "Job & Career",
                 img: "4sou-English.jpg",
                 media: [
                     {
@@ -843,6 +855,7 @@ export default defineStore("projects", {
                 title: "Printing services",
                 description:
                     "Ordering online printing services based on type & format & other customizations of users",
+                category: "E-commerce & Sales",
                 media: [
                     {
                         type: "img",
@@ -875,6 +888,7 @@ export default defineStore("projects", {
                 title: "Products for baby safety",
                 description:
                     "Producer of products like Baby Carseat,Baby Stroller,Baby Walker & etc",
+                category: "E-commerce & Sales",
                 media: [
                     {
                         type: "img",
@@ -934,6 +948,7 @@ export default defineStore("projects", {
                 name: "SoundsLand",
                 title: "Find your favorite music",
                 description: "New Music website with powerful search engine for musics",
+                category: "Entertainment & Media",
                 media: [
                     {
                         type: "img",
@@ -985,6 +1000,7 @@ export default defineStore("projects", {
                 title: "Artificial Ice Cloud Generator",
                 description:
                     "Artificial Cloud Generator for weddings and ceminars with ice and water",
+                category: "Business Services",
                 media: [
                     {
                         type: "img",
@@ -1021,6 +1037,7 @@ export default defineStore("projects", {
                 title: "Projects",
                 description:
                     "Some of personal or freelance projects developed with WordPress CMS",
+                category: "WordPress & CMS",
                 media: [
                     {
                         type: "img",
@@ -1050,7 +1067,7 @@ export default defineStore("projects", {
     }),
     getters: {
         getPortfolios: (state) => {
-            return (howMany, related_experience_id) => {
+            return (howMany, related_experience_id, category) => {
                 let portfolios = [];
                 portfolios = state.portfolios.slice(
                     0,
@@ -1061,9 +1078,18 @@ export default defineStore("projects", {
                         return portfolio.related_experience_id === related_experience_id;
                     });
                 }
+                if (category && category !== 'all') {
+                    portfolios = portfolios.filter((portfolio) => {
+                        return portfolio.category === category;
+                    });
+                }
 
                 return portfolios;
             };
+        },
+        getCategories: (state) => {
+            const categories = ['all', ...new Set(state.portfolios.map(portfolio => portfolio.category))];
+            return categories;
         },
         getPortfolio: (state) => {
             return (id, name) => {

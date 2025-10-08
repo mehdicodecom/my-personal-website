@@ -9,6 +9,8 @@ export default {
     homePage: { default: false },
     aboutPage: { default: false },
     portfoliosPage: { default: false },
+    selectedCategory: { default: 'all' },
+    totalProjectsCount: { default: 0 },
     slidesPerView: {
       default: 2.5,
     },
@@ -112,6 +114,9 @@ export default {
     },
     goToLink(link) {
       this.$router.push({ path: link });
+    },
+    onCategorySelected(category) {
+      this.$emit('category-selected', category);
     },
   },
 };
@@ -254,16 +259,30 @@ export default {
       <div class="loading textLoading inline-block">
         <span class="relative inline-block z-20"
           >Projects
-          <span class="text-lg">({{ projects?.length }} items)</span></span
+          <span class="text-lg">({{ totalProjectsCount }} total)</span></span
         >
       </div>
     </div>
-    <section class="grid lg:grid-cols-2 gap-6 mt-10">
-      <div
-        v-for="project in projects"
-        :key="project.id"
-        class="relative bg-dark/70 rounded-lg flex lg:(flex-col gap-8) md:(pr-16 pl-18) shadow-lg xs:(py-8 pr-4 pl-4 flex-col gap-4 items-center)"
+    
+    <!-- Category Filter -->
+    <div class="mt-8 mb-6">
+      <Shared-CategoryFilter 
+        :selected-category="selectedCategory"
+        @category-selected="onCategorySelected"
+      />
+    </div>
+    <div class="mt-10">
+      <transition-group 
+        name="project-filter" 
+        tag="section" 
+        class="grid lg:grid-cols-2 gap-6"
+        style="min-height: 300px;"
       >
+        <div
+          v-for="project in projects"
+          :key="project.id"
+          class="relative bg-dark/70 rounded-lg flex lg:(flex-col gap-8) md:(pr-16 pl-18) shadow-lg xs:(py-8 pr-4 pl-4 flex-col gap-4 items-center) project-item"
+        >
         <nuxt-link
           :to="{ path: `/project/${project.name}` }"
           class="absolute z-30 w-full h-full"
@@ -310,11 +329,48 @@ export default {
           <!--          </div>-->
         </section>
       </div>
-    </section>
+      </transition-group>
+    </div>
   </section>
 </template>
 <style>
 .carousel__viewport {
   border-radius: 8px;
+}
+
+/* Project Filter Animations */
+.project-filter-enter-active,
+.project-filter-leave-active {
+  transition: all 0.4s ease;
+}
+
+.project-filter-enter-from {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+}
+
+.project-filter-leave-to {
+  opacity: 0;
+  transform: translateY(-30px) scale(0.9);
+}
+
+.project-filter-move {
+  transition: transform 0.4s ease;
+}
+
+/* Ensure single items stay in first column position */
+.project-item:only-child {
+  grid-column: 1;
+}
+
+
+/* Project item hover effects */
+.project-item {
+  transition: all 0.3s ease;
+}
+
+.project-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 </style>
