@@ -19,6 +19,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
     "gsap": "^3.13.0",
+    "highlight.js": "^11.11.1",
     "pinia": "^2.1.6",
     "swiper": "^11.2.1",
     "uuid": "^11.1.0",

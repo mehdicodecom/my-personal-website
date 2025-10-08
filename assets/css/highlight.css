@@ -1,0 +1,61 @@
+/* Basic styling for code blocks - let highlight.js theme handle the rest */
+.prose pre {
+  margin: 2rem 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #282c34; /* Atom One Dark background */
+  border: 1px solid #404040;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.prose pre code {
+  display: block;
+  padding: 1.5em;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+  white-space: pre;
+  border-radius: 0.75rem;
+  margin: 0;
+  background: transparent;
+  color: #abb2bf; /* Atom One Dark text color */
+}
+
+/* Ensure highlight.js styles are applied */
+.prose pre code.hljs {
+  background: transparent !important;
+  padding: 1.5em !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.prose code:not([class*="language-"]) {
+  background: rgba(255, 165, 0, 0.1);
+  color: #ffa500;
+  padding: 0.2em 0.4em;
+  border-radius: 0.3em;
+  font-size: 0.9em;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
+}
+
+/* Restore list styles for post content */
+.prose ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+  display: list-item;
+}
+

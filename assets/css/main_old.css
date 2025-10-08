@@ -1,0 +1,689 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import 'highlight.js/styles/atom-one-dark.css';
+@import './highlight.css';
+
+/* Highlight.js styles are now in highlight.css */
+.hljs {
+  background: #2d2d2d !important;
+  color: #f8f8f2 !important;
+  border-radius: 0.5em;
+  border: 1px solid #404040;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5em !important;
+  margin: 1.5em 0 !important;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+.prose pre {
+  margin: 2rem 0;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  background: #2d2d2d !important;
+  border: 1px solid #404040;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5em;
+}
+
+.prose pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  color: #f8f8f2 !important;
+  font-size: 0.9em !important;
+  line-height: 1.5 !important;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
+}
+
+.prose code {
+  font-size: 0.875em;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  background: #2d2d2d;
+  color: #e6db74;
+}
+
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.875em;
+}
+
+/* Ensure code blocks with hljs class get proper styling */
+.prose pre code.hljs {
+  background: #2d2d2d !important;
+  color: #f8f8f2 !important;
+  padding: 1.5em !important;
+  margin: 1.5em 0 !important;
+  border-radius: 0.75rem;
+  border: 1px solid #404040;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: block;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+/* Target code elements that are direct children of pre */
+.prose pre > code.hljs {
+  background: #2d2d2d !important;
+  color: #f8f8f2 !important;
+  padding: 1.5em !important;
+  margin: 0 !important;
+  border-radius: 0.75rem;
+  border: 1px solid #404040;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: block;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+  width: 100%;
+}
+
+
+       /* Blog post content spacing */
+       .prose {
+         line-height: 1.7;
+         overflow-x: visible;
+       }
+
+       .prose pre {
+         overflow-x: auto;
+         overflow-y: visible;
+       }
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.prose h1 {
+  font-size: 2.25rem;
+  margin-top: 0;
+}
+
+.prose h2 {
+  font-size: 1.875rem;
+  border-bottom: 1px solid #404040;
+  padding-bottom: 0.5rem;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+}
+
+.prose h4 {
+  font-size: 1.25rem;
+}
+
+.prose p {
+  margin-bottom: 1.5rem;
+}
+
+.prose ul,
+.prose ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose blockquote {
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #e0b078;
+  background: #2d2d2d;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+}
+
+.prose blockquote p {
+  margin-bottom: 0;
+}
+
+.prose blockquote cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #9ca3af;
+  font-style: normal;
+}
+
+.prose pre {
+  margin: 2rem 0;
+}
+
+.prose code {
+  font-size: 0.875em;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  background: #2d2d2d;
+  color: #e6db74;
+}
+
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.875em;
+}
+
+       .prose strong {
+         font-weight: 600;
+         color: #f8f8f2;
+       }
+
+       .prose em {
+         font-style: italic;
+         color: #d1d5db;
+       }
+
+       /* Additional styling for code blocks */
+       .prose code[class*="language-"] {
+         background: #2d2d2d !important;
+         color: #f8f8f2 !important;
+         padding: 1.5em !important;
+         margin: 1.5em 0 !important;
+         border-radius: 0.75rem;
+         border: 1px solid #404040;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         display: block;
+         overflow-x: auto;
+         font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
+         font-size: 0.9em;
+         line-height: 1.5;
+         white-space: pre;
+         width: 100%;
+         box-sizing: border-box;
+       }
+
+       /* Ensure pre elements containing code blocks have proper styling */
+       .prose pre:has(code[class*="language-"]) {
+         background: transparent !important;
+         padding: 0 !important;
+         margin: 0 !important;
+         border: none !important;
+         box-shadow: none !important;
+         overflow: visible;
+       }
+
+       /* Fix for highlight.js styling */
+       .prose pre code.hljs {
+         background: #2d2d2d !important;
+         color: #f8f8f2 !important;
+         padding: 1.5em !important;
+         margin: 1.5em 0 !important;
+         border-radius: 0.75rem;
+         border: 1px solid #404040;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         display: block;
+         overflow-x: auto;
+         font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
+         font-size: 0.9em;
+         line-height: 1.5;
+         white-space: pre;
+         width: 100%;
+         box-sizing: border-box;
+       }
+
+       /* Override highlight.js default styles */
+       .hljs {
+         background: #2d2d2d !important;
+         color: #f8f8f2 !important;
+         padding: 1.5em !important;
+         margin: 1.5em 0 !important;
+         border-radius: 0.75rem !important;
+         border: 1px solid #404040 !important;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+         display: block;
+         overflow-x: auto;
+         font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
+         font-size: 0.9em;
+         line-height: 1.5;
+         white-space: pre;
+         width: 100%;
+         box-sizing: border-box;
+       }
+
+       /* Force syntax highlighting to work */
+       .prose code.hljs,
+       .prose pre code.hljs,
+       code.hljs {
+         background: #2d2d2d !important;
+         color: #f8f8f2 !important;
+         padding: 1.5em !important;
+         margin: 1.5em 0 !important;
+         border-radius: 0.75rem !important;
+         border: 1px solid #404040 !important;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+         display: block;
+         overflow-x: auto;
+         font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
+         font-size: 0.9em;
+         line-height: 1.5;
+         white-space: pre;
+         width: 100%;
+         box-sizing: border-box;
+       }
+
+       /* Highlight.js token styling with higher specificity */
+       .prose .hljs-comment,
+       .prose .hljs-quote,
+       .hljs-comment,
+       .hljs-quote {
+         color: #6a9955 !important;
+         font-style: italic;
+       }
+
+       .prose .hljs-keyword,
+       .prose .hljs-selector-tag,
+       .prose .hljs-subst,
+       .hljs-keyword,
+       .hljs-selector-tag,
+       .hljs-subst {
+         color: #569cd6 !important;
+       }
+
+       .prose .hljs-number,
+       .prose .hljs-literal,
+       .prose .hljs-variable,
+       .prose .hljs-template-variable,
+       .prose .hljs-tag .hljs-attr,
+       .hljs-number,
+       .hljs-literal,
+       .hljs-variable,
+       .hljs-template-variable,
+       .hljs-tag .hljs-attr {
+         color: #b5cea8 !important;
+       }
+
+       .prose .hljs-string,
+       .prose .hljs-doctag,
+       .hljs-string,
+       .hljs-doctag {
+         color: #ce9178 !important;
+       }
+
+       .prose .hljs-title,
+       .prose .hljs-section,
+       .prose .hljs-selector-id,
+       .hljs-title,
+       .hljs-section,
+       .hljs-selector-id {
+         color: #dcdcaa !important;
+       }
+
+       .prose .hljs-subst,
+       .hljs-subst {
+         font-weight: normal;
+       }
+
+       .prose .hljs-type,
+       .prose .hljs-class .hljs-title,
+       .hljs-type,
+       .hljs-class .hljs-title {
+         color: #4ec9b0 !important;
+       }
+
+       .prose .hljs-tag,
+       .prose .hljs-name,
+       .prose .hljs-attr,
+       .hljs-tag,
+       .hljs-name,
+       .hljs-attr {
+         color: #569cd6 !important;
+       }
+
+       .prose .hljs-regexp,
+       .prose .hljs-link,
+       .hljs-regexp,
+       .hljs-link {
+         color: #d16969 !important;
+       }
+
+       .prose .hljs-symbol,
+       .prose .hljs-bullet,
+       .hljs-symbol,
+       .hljs-bullet {
+         color: #dcdcaa !important;
+       }
+
+       .prose .hljs-built_in,
+       .prose .hljs-builtin-name,
+       .hljs-built_in,
+       .hljs-builtin-name {
+         color: #4ec9b0 !important;
+       }
+
+       .prose .hljs-meta,
+       .hljs-meta {
+         color: #569cd6 !important;
+       }
+
+       .prose .hljs-deletion,
+       .hljs-deletion {
+         background: #fdd;
+       }
+
+       .prose .hljs-addition,
+       .hljs-addition {
+         background: #dfd;
+       }
+
+       .prose .hljs-emphasis,
+       .hljs-emphasis {
+         font-style: italic;
+       }
+
+       .prose .hljs-strong,
+       .hljs-strong {
+         font-weight: bold;
+       }
+
+       /* Additional highlight.js classes for better coverage */
+       .prose .hljs-function,
+       .hljs-function {
+         color: #4ec9b0 !important;
+       }
+
+       .prose .hljs-params,
+       .hljs-params {
+         color: #f8f8f2 !important;
+       }
+
+       .prose .hljs-operator,
+       .hljs-operator {
+         color: #f8f8f2 !important;
+       }
+
+       .prose .hljs-punctuation,
+       .hljs-punctuation {
+         color: #f8f8f2 !important;
+       }
+
+       .prose .hljs-property,
+       .hljs-property {
+         color: #9cdcfe !important;
+       }
+
+       .prose .hljs-attribute,
+       .hljs-attribute {
+         color: #9cdcfe !important;
+       }
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fadeScale-enter-active,
+.fadeScale-leave-active {
+  transition: all 0.5s;
+}
+
+.fadeScale-enter-from,
+.fadeScale-leave-to {
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.marqueeY {
+  animation: marqueeY 9s linear infinite;
+}
+
+@keyframes marqueeY {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.viewport {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: 12px 10px 22px;
+  transition: background-position var(--transitionSpeed) linear;
+  background: #333 0 0;
+  background-size: 100% auto;
+  border-radius: 0.5rem;
+}
+.trans3ms {
+  transition: all 0.3s ease-out;
+}
+.transMaxHeightIn {
+  transition: max-height 3s ease-in-out;
+}
+
+.transMaxHeightOut {
+  transition: max-height 1.5s ease-in-out;
+}
+/* .page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+} */
+
+body {
+  font-family: "Roboto", inter, arial;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  scrollbar-width: thin;
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background-color: #e0b078;
+}
+
+ul {
+  list-style: none;
+}
+
+th,
+td {
+  padding: 1rem;
+}
+
+.rtl {
+  direction: rtl;
+}
+.ltr {
+  direction: ltr;
+}
+
+.vertical-text {
+  writing-mode: vertical-lr;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  display: none !important;
+}
+
+.sliderProgressbar {
+  animation: sliderProgress calc(5 * 1s) linear forwards;
+}
+
+.circleProgress {
+  background: conic-gradient(#059669 var(--progress), #bfc2c4 0deg);
+}
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+.loading > * {
+  position: relative;
+  animation: down-to-up 2s ease-in-out normal;
+}
+.textLoading::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #404040 25%, #555555 50%, #404040 75%);
+  transform: translateX(-152%);
+  animation: text-progress-loading 2s ease-in-out normal;
+}
+.circleLoading {
+  position: relative;
+}
+.circleLoading::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transform-origin: center;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background: linear-gradient(90deg, #404040 25%, #555555 50%, #404040 75%);
+  animation: circle-loading 1.5s linear forwards;
+}
+
+.updown {
+  animation: updown 1.8s ease-in-out infinite forwards alternate;
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(-15%);
+  }
+
+  100% {
+    transform: translateY(13%);
+  }
+}
+
+@keyframes text-progress-loading {
+  0% {
+    transform: translateX(-101%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes circle-loading {
+  0% {
+    transform: translateY(-50%) scale(1);
+  }
+  100% {
+    transform: translateY(-50%) scale(0);
+  }
+}
+
+@keyframes down-to-up {
+  0% {
+    transform: translateY(100%);
+  }
+  70% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #404040;
+  }
+  100% {
+    background-color: #555555;
+  }
+}
+
+@keyframes sliderProgress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1700px) {
+  html {
+    font-size: 95%;
+  }
+}
+@media (max-width: 1600px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media (max-width: 1500px) {
+  html {
+    font-size: 85%;
+  }
+}
+
+@media (max-width: 1400px) {
+  html {
+    font-size: 80%;
+  }
+}
+@media (max-width:780px){
+  .viewport {
+    margin: 6px;
+  }
+}
