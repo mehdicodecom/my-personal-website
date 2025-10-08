@@ -57,7 +57,17 @@
                    </div>
                  </div>
 
+                 <!-- Loading state for content -->
+                 <div v-if="isHighlighting" class="flex items-center justify-center py-12">
+                   <div class="flex items-center space-x-3">
+                     <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-main-orange"></div>
+                     <span class="text-gray-300 text-lg">Processing code blocks...</span>
+                   </div>
+                 </div>
+                 
+                 <!-- Content with highlighting -->
                  <div
+                   v-else
                    class="prose prose-invert prose-lg max-w-4xl mx-auto"
                    v-html="processedContent"
                  ></div>
@@ -138,6 +148,8 @@ export default {
       skeletonStartTime: null,
       skeletonMinTime: 500, // Minimum time to show skeleton (500ms)
       readProgress: 0,
+      isHighlighting: false,
+      highlightingStarted: false,
     };
   },
   computed: {
@@ -193,15 +205,8 @@ export default {
     // Record when skeleton loading started
     this.skeletonStartTime = Date.now();
     
-             // Initialize highlight.js syntax highlighting
-             this.$nextTick(() => {
-               if (process.client) {
-                 // Wait a bit for content to be rendered
-                 setTimeout(() => {
-                   this.highlightCode();
-                 }, 500);
-               }
-             });
+    // Start highlighting immediately for better performance
+    this.startHighlighting();
     
     // Initialize progress bar
     this.initProgressBar();
@@ -335,23 +340,40 @@ export default {
                  return;
                }
 
-               // Wait for highlight.js to be available
+               // Wait for highlight.js to be available with optimized retry
                const checkHljs = () => {
                  const hljs = this.$hljs || window.hljs;
                  if (hljs) {
                    this.performHighlighting(hljs);
                  } else {
-                   setTimeout(checkHljs, 100);
+                   // Reduced delay for better performance
+                   setTimeout(checkHljs, 50);
                  }
                };
 
                checkHljs();
              },
 
+             startHighlighting() {
+               if (this.highlightingStarted) return;
+               this.highlightingStarted = true;
+               this.isHighlighting = true;
+               
+               // Run highlighting as soon as possible
+               this.$nextTick(() => {
+                 if (process.client) {
+                   this.highlightCode();
+                 }
+               });
+             },
+
              performHighlighting(hljs) {
                try {
                  // Use highlightAll for better coverage
                  hljs.highlightAll();
+                 
+                 // Mark highlighting as complete
+                 this.isHighlighting = false;
                } catch (error) {
                  console.error('Error in highlightAll():', error);
                  
@@ -369,6 +391,9 @@ export default {
                      console.error(`Error highlighting block ${index}:`, error);
                    }
                  });
+                 
+                 // Mark highlighting as complete even if there were errors
+                 this.isHighlighting = false;
                }
              },
   },
