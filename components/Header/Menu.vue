@@ -35,9 +35,23 @@ export default {
     activeMenu() {
       let route = this.$route.path;
       let activeIndex = 0;
+      
       this.menus.forEach((menu, index) => {
-        if (route === menu.path) activeIndex = index;
+        if (route === menu.path) {
+          activeIndex = index;
+        }
       });
+      
+      // Handle dynamic routes
+      // Blog posts: /post/[slug] should activate Blog menu (index 1)
+      if (route.startsWith('/post/')) {
+        activeIndex = 1; // Blog menu index
+      }
+      // Project pages: /project/[project] should activate Portfolios menu (index 2)
+      else if (route.startsWith('/project/')) {
+        activeIndex = 2; // Portfolios menu index
+      }
+      
       if (activeIndex === 0 && route !== "/") return null;
       return activeIndex;
     },

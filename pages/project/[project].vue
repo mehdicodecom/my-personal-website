@@ -38,7 +38,7 @@
       </ul>
     </div>
     <div
-      class="grid lg:grid-cols-4 sm:(grid-cols-3 grid-rows-3) xs:(grid-rows-4 grid-cols-2) gap-4 mt-8"
+      class="w-full grid lg:grid-cols-4 sm:(grid-cols-3 grid-rows-3) xs:(grid-rows-4 grid-cols-2) gap-4 mt-8"
     >
       <Shared-Screen
         @click="showGallery(project.id)"
