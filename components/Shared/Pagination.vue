@@ -1,31 +1,33 @@
 <template>
   <div class="pagination-container" v-if="totalPages > 1">
-    <div class="flex items-center justify-center gap-2">
+    <div class="flex items-center justify-center gap-2 md:gap-2 sm:gap-3">
       <!-- Previous Button -->
       <button
         @click="goToPage(currentPage - 1)"
         :disabled="currentPage === 1"
         :class="[
           'px-3 py-2 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 relative z-10',
+          'md:px-3 md:py-2 sm:px-3 sm:py-2 sm:min-h-[40px]',
           currentPage === 1
             ? 'bg-dark-200 text-white/50 cursor-not-allowed'
             : 'bg-dark-200 text-white/80 hover:bg-main-orange hover:text-white hover:scale-105'
         ]"
       >
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
         </svg>
-        Previous
+        <span class="hidden md:inline">Previous</span>
       </button>
 
       <!-- Page Numbers -->
-      <div class="flex items-center gap-1">
+      <div class="flex items-center gap-1 md:gap-1 sm:gap-2">
         <button
           v-for="page in visiblePages"
           :key="page"
           @click="goToPage(page)"
           :class="[
             'px-3 py-2 rounded-lg font-medium transition-all duration-300 min-w-[40px] relative z-10',
+            'md:px-3 md:py-2 md:min-w-[40px] sm:px-2 sm:py-2 sm:min-w-[32px] sm:text-sm sm:min-h-[40px]',
             page === '...'
               ? 'cursor-default text-white/50'
               : currentPage === page
@@ -44,20 +46,21 @@
         :disabled="currentPage === totalPages"
         :class="[
           'px-3 py-2 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 relative z-10',
+          'md:px-3 md:py-2 sm:px-3 sm:py-2 sm:min-h-[40px]',
           currentPage === totalPages
             ? 'bg-dark-200 text-white/50 cursor-not-allowed'
             : 'bg-dark-200 text-white/80 hover:bg-main-orange hover:text-white hover:scale-105'
         ]"
       >
-        Next
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+        <span class="hidden md:inline">Next</span>
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
         </svg>
       </button>
     </div>
 
     <!-- Page Info -->
-    <div class="text-center mt-4 text-white/60 text-sm">
+    <div class="text-center mt-4 text-white/60 text-sm hidden md:block">
       Showing {{ startItem }}-{{ endItem }} of {{ totalItems }} items
     </div>
   </div>
