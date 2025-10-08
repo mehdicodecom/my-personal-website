@@ -20,27 +20,16 @@
     </div>
     <section class="grid lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-6 mt-10">
       <div
-          v-for="(post, index) in filteredPosts"
+          v-for="post in filteredPosts"
           :key="post.id"
           class="relative bg-dark/70 rounded-lg flex flex-col gap-4 items-center py-6 px-4 shadow-lg group hover:shadow-xl hover:bg-dark/80 transition duration-300 transform hover:-translate-y-1"
       >
         <NuxtLink :to="`/post/${post.slug}`" class="absolute z-30 w-full h-full"></NuxtLink>
-        
-        <!-- Image container with skeleton background -->
-        <div class="relative w-full h-48 rounded-md overflow-hidden">
-          <!-- Skeleton background -->
-          <div 
-            v-if="!imageLoaded[index]" 
-            class="absolute inset-0 skeleton-bg pointer-events-none"
-          ></div>
-          
-          <img
-              :src="`/imgs/blog/${post.img}`"
-              alt=""
-              :class="['w-full h-48 object-cover rounded-md group-hover:scale-105 transition-all duration-500 ease-in-out', { 'loaded': imageLoaded[index] }]"
-              @load="onImageLoad(index)"
-          />
-        </div>
+        <img
+            :src="`/imgs/blog/${post.img}`"
+            alt=""
+            class="w-full h-48 object-cover rounded-md group-hover:scale-105 transition duration-500"
+        />
         <section class="flex flex-col gap-2 items-center text-center">
           <div class="loading textLoading inline-block">
             <p class="font-medium text-xl text-main-orange">{{ post.title }}</p>
@@ -66,7 +55,6 @@ export default {
   data() {
     return {
       searchQuery: '',
-      imageLoaded: [],
     };
   },
   computed: {
@@ -85,54 +73,5 @@ export default {
       );
     },
   },
-  mounted() {
-    // Initialize imageLoaded state for all posts
-    this.imageLoaded = new Array(this.posts.length).fill(false);
-    
-    // Fallback for SSR: ensure all images become visible after a timeout
-    this.$nextTick(() => {
-      setTimeout(() => {
-        this.posts.forEach((_, index) => {
-          if (!this.imageLoaded[index]) {
-            this.imageLoaded[index] = true;
-          }
-        });
-      }, 2000); // 2 second fallback
-    });
-  },
-  methods: {
-    onImageLoad(index) {
-      this.imageLoaded[index] = true;
-    },
-  },
 };
 </script>
-
-<style scoped>
-/* Blog image loading states */
-img {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
-}
-
-img.loaded {
-  opacity: 1;
-}
-
-/* Skeleton background effect */
-.skeleton-bg {
-  background: linear-gradient(90deg, #343334 25%, #4a4a4a 50%, #343334 75%);
-  background-size: 200% 100%;
-  animation: skeleton-shimmer 1.5s ease-in-out infinite;
-}
-
-/* Skeleton shimmer animation */
-@keyframes skeleton-shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-</style>

@@ -344,7 +344,7 @@ export default {
 /* Responsive heights */
 @media (max-width: 768px) {
   .slider-wrapper {
-    min-height: 400px;
+    min-height: 300px;
   }
   
   .skeleton-container {
@@ -356,16 +356,36 @@ export default {
     width: 300px;
     height: 360px;
   }
+  
+  /* Match actual carousel height to skeleton */
+  .mySwiper .swiper-slide {
+    height: 360px !important;
+  }
+  
+  .mySwiper .swiper-slide img {
+    height: 360px;
+    object-fit: cover;
+  }
 }
 
 @media (max-width: 480px) {
   .slider-wrapper {
-    min-height: 350px;
+    min-height: 250px;
   }
   
   .skeleton-slide {
     width: 260px;
     height: 320px;
+  }
+  
+  /* Match actual carousel height to skeleton */
+  .mySwiper .swiper-slide {
+    height: 320px !important;
+  }
+  
+  .mySwiper .swiper-slide img {
+    height: 320px;
+    object-fit: cover;
   }
 }
 </style>
