@@ -59,17 +59,17 @@
       <swiper-slide
         v-for="(item, i) in items"
         :key="item.id"
-        class="group overflow-hidden"
+        class="group overflow-hidden relative"
       >
-        <NuxtLink :to="`/post/${item.slug}`" class="relative">
+        <NuxtLink :to="`/post/${item.slug}`" class="relative block w-full h-full">
           <img
-            class="rounded-xl w-full h-full transition duration-800 group-hover:(scale-110)"
+            class="rounded-xl w-full h-full transition-all duration-800 ease-out group-hover:scale-110"
             :src="`/imgs/blog/${item.img}`"
             :loading="i < 3 ? 'eager' : 'lazy'"
             alt=""
           />
           <div
-            class="absolute text-white top-3 left-3 flex items-center gap-2 bg-black bg-opacity-20 rounded-lg p-1"
+            class="absolute text-white top-3 left-3 flex items-center gap-2 bg-black bg-opacity-20 rounded-lg p-1 z-10"
           >
             <svg class="w-5 h-5 select-none">
               <IconClock />
@@ -77,14 +77,14 @@
             <span class="text-sm">{{ item.date }}</span>
           </div>
           <div
-            class="absolute inline-flex justify-center items-center w-14 h-14 rounded-full bg-black bg-opacity-70 top-1/2 transition duration-400 transform opacity-0 -translate-y-30 scale-150 right-0 left-0 mx-auto group-hover:(-translate-y-16 opacity-100 scale-100)"
+            class="absolute inline-flex justify-center items-center w-14 h-14 rounded-full bg-black bg-opacity-70 top-1/2 left-1/2 transform -translate-x-1/2 transition-all duration-400 ease-out opacity-0 -translate-y-30 scale-150 group-hover:-translate-y-16 group-hover:opacity-100 group-hover:scale-100 z-20"
           >
             <svg class="w-6 h-6 text-white select-none">
               <IconLink />
             </svg>
           </div>
           <div
-            class="p-4 transition duration-200 pb-8 flex flex-col gap-2 backdrop-blur-[6px] bg-black w-full absolute bottom-0 rounded-xl bg-opacity-15 group-hover:bg-opacity-70"
+            class="p-4 transition-all duration-300 ease-out pb-8 flex flex-col gap-2 backdrop-blur-[6px] bg-black w-full absolute bottom-0 left-0 right-0 rounded-xl bg-opacity-15 group-hover:bg-opacity-70 z-10"
             :class="activeIndex === i && 'bg-opacity-50'"
           >
             <h2 class="text-lg text-gray-100">{{ item.title }}</h2>
@@ -269,6 +269,7 @@ export default {
 .home-carousel .mySwiper .swiper-slide a {
   pointer-events: auto;
 }
+
 
 /* Skeleton loading styles */
 .skeleton-image,

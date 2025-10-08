@@ -32,7 +32,7 @@
              <div class="flex lg:flex-row flex-col gap-8 mt-10">
                <!-- Main Content -->
                <div
-                 class="flex-1 bg-dark/70 rounded-lg p-8 border border-neutral-700 shadow-lg animate-slide-up"
+                 class="flex-1 bg-dark/70 rounded-lg p-8 xl:px-22 lg:px-18 md:px-14 sm:px-0 xs:px-0 border border-neutral-700 shadow-lg animate-slide-up"
                >
                  <!-- Title and Image at top of content -->
                  <div class="text-center mb-8 border-b border-neutral-700 pb-8">
@@ -75,7 +75,7 @@
 
       <!-- Sidebar -->
       <aside
-        class="lg:w-80 bg-dark/70 rounded-lg p-6 border border-neutral-700 shadow-lg lg:sticky lg:top-20 lg:h-fit animate-slide-up space-y-6"
+        class="lg:w-80 bg-dark/70 rounded-lg p-6 xl:px-6 lg:px-6 md:px-14 sm:px-0 xs:px-0 border border-neutral-700 shadow-lg lg:sticky lg:top-20 lg:h-fit animate-slide-up space-y-6"
       >
                  <!-- Reading Progress -->
                  <div class="sidebar-section">
@@ -148,7 +148,7 @@ export default {
       skeletonStartTime: null,
       skeletonMinTime: 500, // Minimum time to show skeleton (500ms)
       readProgress: 0,
-      isHighlighting: false,
+      isHighlighting: true, // Start with loading state for SSR
       highlightingStarted: false,
     };
   },
@@ -346,8 +346,8 @@ export default {
                  if (hljs) {
                    this.performHighlighting(hljs);
                  } else {
-                   // Reduced delay for better performance
-                   setTimeout(checkHljs, 50);
+                   // Minimal delay for fastest performance
+                   setTimeout(checkHljs, 25);
                  }
                };
 
@@ -357,14 +357,16 @@ export default {
              startHighlighting() {
                if (this.highlightingStarted) return;
                this.highlightingStarted = true;
-               this.isHighlighting = true;
                
-               // Run highlighting as soon as possible
-               this.$nextTick(() => {
-                 if (process.client) {
+               // Run highlighting immediately for better performance
+               if (process.client) {
+                 this.highlightCode();
+               } else {
+                 // For SSR, start highlighting as soon as client hydrates
+                 this.$nextTick(() => {
                    this.highlightCode();
-                 }
-               });
+                 });
+               }
              },
 
              performHighlighting(hljs) {
