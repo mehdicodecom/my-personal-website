@@ -1,5 +1,5 @@
 <script>
-import { mapActions } from "pinia";
+import { mapActions, mapState } from "pinia";
 import useProjectsStore from "@/stores/projects";
 
 export default {
@@ -56,8 +56,20 @@ export default {
     };
   },
   computed: {
+    ...mapState(useProjectsStore, ["getPortfolios", "getCategories"]),
     currentSlider() {
       return this.$refs[`slider${this.currentSliderNum}`];
+    },
+    categoryCounts() {
+      const counts = {};
+      this.getCategories.forEach(category => {
+        if (category === 'all') {
+          counts[category] = this.getPortfolios().length;
+        } else {
+          counts[category] = this.getPortfolios(null, null, category).length;
+        }
+      });
+      return counts;
     },
     settings() {
       if (process.client) {
@@ -256,18 +268,19 @@ export default {
       <span
         class="updown inline-block absolute -top-1 -left-2.5 w-14 h-14 bg-main-orange rounded-full"
       ></span>
-      <div class="loading textLoading inline-block">
-        <span class="relative inline-block z-20"
-          >Projects
-          <span class="text-lg">({{ totalProjectsCount }} total)</span></span
-        >
-      </div>
+          <div class="loading textLoading inline-block">
+            <span class="relative inline-block z-20"
+              >Projects
+              <span class="text-lg hidden md:inline">({{ totalProjectsCount }} total)</span></span
+            >
+          </div>
     </div>
     
     <!-- Category Filter -->
     <div class="mt-8 mb-6">
       <Shared-CategoryFilter 
         :selected-category="selectedCategory"
+        :category-counts="categoryCounts"
         @category-selected="onCategorySelected"
       />
     </div>

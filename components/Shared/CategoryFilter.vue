@@ -1,6 +1,7 @@
 <template>
   <div class="category-filter">
-    <div class="flex flex-wrap gap-3 justify-start">
+    <!-- Desktop: Button Layout -->
+    <div class="hidden md:flex flex-wrap gap-3 justify-start">
       <button
         v-for="category in categories"
         :key="category"
@@ -16,6 +17,57 @@
         {{ category === 'all' ? 'All Projects' : category }}
       </button>
     </div>
+
+    <!-- Mobile: Dropdown Layout -->
+    <div class="md:hidden">
+      <div class="relative">
+        <button
+          @click="toggleDropdown"
+          :class="[
+            'w-full px-4 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-between gap-2 min-h-[48px] relative z-10',
+            'bg-dark-200 text-white/80 hover:bg-dark-300 hover:text-white'
+          ]"
+        >
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" v-html="getCategoryIcon(selectedCategory)"></svg>
+            <span>{{ selectedCategory === 'all' ? 'All Projects' : selectedCategory }}</span>
+            <span class="text-white/60 text-sm">({{ getCategoryCount(selectedCategory) }})</span>
+          </div>
+          <svg 
+            class="w-5 h-5 transition-transform duration-300"
+            :class="{ 'rotate-180': dropdownOpen }"
+            fill="currentColor" 
+            viewBox="0 0 20 20"
+          >
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <transition name="dropdown">
+          <div
+            v-if="dropdownOpen"
+            class="absolute top-full left-0 right-0 mt-2 bg-dark-200 rounded-lg shadow-lg border border-dark-300 z-[9999] max-h-60 overflow-y-auto"
+          >
+            <button
+              v-for="category in categories"
+              :key="category"
+              @click="selectCategory(category)"
+              :class="[
+                'w-full px-4 py-3 text-left font-medium transition-all duration-200 flex items-center gap-2 hover:bg-dark-300 first:rounded-t-lg last:rounded-b-lg relative z-10',
+                selectedCategory === category
+                  ? 'bg-main-orange/20 text-main-orange'
+                  : 'text-white/80 hover:text-white'
+              ]"
+            >
+              <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" v-html="getCategoryIcon(category)"></svg>
+              <span class="flex-1">{{ category === 'all' ? 'All Projects' : category }}</span>
+              <span class="text-white/60 text-sm">({{ getCategoryCount(category) }})</span>
+            </button>
+          </div>
+        </transition>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -28,17 +80,47 @@ export default {
     selectedCategory: {
       type: String,
       default: 'all'
+    },
+    categoryCounts: {
+      type: Object,
+      default: () => ({})
     }
+  },
+  data() {
+    return {
+      dropdownOpen: false
+    };
   },
   computed: {
     ...mapState(useProjectsStore, ["getCategories"]),
     categories() {
       return this.getCategories;
+    },
+    getCategoryCount(category) {
+      return (category) => {
+        return this.categoryCounts[category] || 0;
+      };
     }
+  },
+  mounted() {
+    // Close dropdown when clicking outside
+    document.addEventListener('click', this.handleClickOutside);
+  },
+  beforeUnmount() {
+    document.removeEventListener('click', this.handleClickOutside);
   },
   methods: {
     selectCategory(category) {
       this.$emit('category-selected', category);
+      this.dropdownOpen = false; // Close dropdown after selection
+    },
+    toggleDropdown() {
+      this.dropdownOpen = !this.dropdownOpen;
+    },
+    handleClickOutside(event) {
+      if (!this.$el.contains(event.target)) {
+        this.dropdownOpen = false;
+      }
     },
     getCategoryIcon(category) {
       const icons = {
@@ -104,5 +186,28 @@ export default {
 /* Button click animation */
 .category-filter button:active {
   transform: scale(0.95);
+}
+
+/* Dropdown animations */
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: all 0.3s ease;
+}
+
+.dropdown-enter-from {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
+/* Mobile dropdown specific styles */
+@media (max-width: 767px) {
+  .category-filter {
+    width: 100%;
+  }
 }
 </style>
