@@ -32,7 +32,7 @@
              <div class="flex lg:flex-row flex-col gap-8 mt-10">
                <!-- Main Content -->
                <div
-                 class="flex-1 bg-dark/70 rounded-lg p-8 xl:px-22 lg:px-18 md:px-14 sm:px-0 xs:px-0 border border-neutral-700 shadow-lg animate-slide-up"
+                 class="flex-1 bg-dark/70 rounded-lg p-8 xl:px-22 lg:px-18 md:px-8 sm:px-6 xs:px-4 border border-neutral-700 shadow-lg animate-slide-up"
                >
                  <!-- Title and Image at top of content -->
                  <div class="text-center mb-8 border-b border-neutral-700 pb-8">
@@ -75,7 +75,7 @@
 
       <!-- Sidebar -->
       <aside
-        class="lg:w-80 bg-dark/70 rounded-lg p-6 xl:px-6 lg:px-6 md:px-14 sm:px-0 xs:px-0 border border-neutral-700 shadow-lg lg:sticky lg:top-20 lg:h-fit animate-slide-up space-y-6"
+        class="lg:w-80 bg-dark/70 rounded-lg p-6 xl:px-6 lg:px-6 md:px-8 sm:px-6 xs:px-4 border border-neutral-700 shadow-lg lg:sticky lg:top-20 lg:h-fit animate-slide-up space-y-6"
       >
                  <!-- Reading Progress -->
                  <div class="sidebar-section">
