@@ -32,7 +32,7 @@
              <div class="flex lg:flex-row flex-col gap-8 mt-10">
                <!-- Main Content -->
                <div
-                 class="flex-1 bg-dark/70 rounded-lg p-8 xl:px-22 lg:px-18 md:px-8 sm:px-6 xs:px-4 border border-neutral-700 shadow-lg animate-slide-up"
+                 class="flex-1 bg-dark/70 rounded-lg p-8 lg:px-12 md:px-8 sm:px-6 xs:px-4 border border-neutral-700 shadow-lg animate-slide-up"
                >
                  <!-- Title and Image at top of content -->
                  <div class="text-center mb-8 border-b border-neutral-700 pb-8">
