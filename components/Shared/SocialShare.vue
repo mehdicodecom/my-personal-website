@@ -7,10 +7,10 @@
         class="social-share-btn group"
         :class="{ 'active': dropdownOpen }"
       >
-        <svg class="w-5 h-5 transition-transform duration-200 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 transition-transform duration-200 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
           <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
         </svg>
-        <span class="ml-2 text-sm font-medium">Share</span>
+        <span class="text-sm">Share</span>
       </button>
 
       <!-- Dropdown Menu -->
@@ -197,23 +197,29 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
-  background-color: rgba(255, 122, 0, 0.2);
+  padding: 0.625rem 1rem;
+  background-color: rgba(255, 122, 0, 0.1);
   color: #ff7a00;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(255, 122, 0, 0.3);
-  transition: all 0.2s ease;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 122, 0, 0.2);
+  transition: all 0.3s ease;
   width: 100%;
+  font-weight: 500;
+  gap: 0.5rem;
 }
 
 .social-share-btn:hover {
-  background-color: rgba(255, 122, 0, 0.3);
-  border-color: rgba(255, 122, 0, 0.5);
+  background-color: rgba(255, 122, 0, 0.2);
+  border-color: rgba(255, 122, 0, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2);
 }
 
 .social-share-btn.active {
-  background-color: rgba(255, 122, 0, 0.3);
-  border-color: rgba(255, 122, 0, 0.5);
+  background-color: rgba(255, 122, 0, 0.2);
+  border-color: rgba(255, 122, 0, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2);
 }
 
 .social-dropdown {
@@ -222,11 +228,11 @@ export default {
   left: 0;
   margin-top: 0.5rem;
   width: 12rem;
-  background-color: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(8px);
-  border-radius: 0.5rem;
-  border: 1px solid #404040;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 122, 0, 0.2);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
   z-index: 50;
   animation: slideDown 0.2s ease-out;
 }
@@ -235,93 +241,107 @@ export default {
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.125rem;
 }
 
 .social-option {
   display: flex;
   align-items: center;
-  padding: 0.75rem;
-  color: rgba(255, 255, 255, 0.8);
+  padding: 0.625rem 0.75rem;
+  color: rgba(255, 255, 255, 0.9);
   border-radius: 0.375rem;
   transition: all 0.2s ease;
   cursor: pointer;
   text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
 }
 
 .social-option:hover {
   color: white;
-  background-color: rgba(255, 122, 0, 0.2);
+  background-color: rgba(255, 122, 0, 0.15);
+  transform: translateX(2px);
 }
 
 .social-icon {
-  width: 2rem;
-  height: 2rem;
+  width: 1.75rem;
+  height: 1.75rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 0.75rem;
+  margin-right: 0.625rem;
   transition: all 0.2s ease;
 }
 
-       .social-icon.twitter {
-         background-color: rgba(0, 0, 0, 0.8);
-         color: #ffffff;
-       }
+.social-icon.twitter {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
 .social-icon.linkedin {
-  background-color: rgba(0, 119, 181, 0.2);
+  background-color: rgba(0, 119, 181, 0.15);
   color: #0077b5;
+  border: 1px solid rgba(0, 119, 181, 0.3);
 }
 
 .social-icon.facebook {
-  background-color: rgba(24, 119, 242, 0.2);
+  background-color: rgba(24, 119, 242, 0.15);
   color: #1877f2;
+  border: 1px solid rgba(24, 119, 242, 0.3);
 }
 
 .social-icon.telegram {
-  background-color: rgba(0, 136, 204, 0.2);
+  background-color: rgba(0, 136, 204, 0.15);
   color: #0088cc;
+  border: 1px solid rgba(0, 136, 204, 0.3);
 }
 
 .social-icon.copy {
-  background-color: rgba(75, 85, 99, 0.2);
+  background-color: rgba(75, 85, 99, 0.15);
   color: #d1d5db;
+  border: 1px solid rgba(75, 85, 99, 0.3);
 }
 
 .social-option.copied .social-icon.copy {
   background-color: rgba(34, 197, 94, 0.2);
   color: #4ade80;
+  border-color: rgba(34, 197, 94, 0.4);
 }
 
 .social-option:hover .social-icon {
   transform: scale(1.1);
 }
 
-       .social-option:hover .social-icon.twitter {
-         background-color: rgba(0, 0, 0, 0.9);
-         color: #ffffff;
-       }
+.social-option:hover .social-icon.twitter {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
 
 .social-option:hover .social-icon.linkedin {
-  background-color: rgba(0, 119, 181, 0.3);
+  background-color: rgba(0, 119, 181, 0.25);
   color: #0077b5;
+  border-color: rgba(0, 119, 181, 0.4);
 }
 
 .social-option:hover .social-icon.facebook {
-  background-color: rgba(24, 119, 242, 0.3);
+  background-color: rgba(24, 119, 242, 0.25);
   color: #1877f2;
+  border-color: rgba(24, 119, 242, 0.4);
 }
 
 .social-option:hover .social-icon.telegram {
-  background-color: rgba(0, 136, 204, 0.3);
+  background-color: rgba(0, 136, 204, 0.25);
   color: #0088cc;
+  border-color: rgba(0, 136, 204, 0.4);
 }
 
 .social-option:hover .social-icon.copy {
-  background-color: rgba(75, 85, 99, 0.3);
+  background-color: rgba(75, 85, 99, 0.25);
   color: #d1d5db;
+  border-color: rgba(75, 85, 99, 0.4);
 }
 
 @keyframes slideDown {
