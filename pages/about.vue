@@ -104,7 +104,7 @@
               </h3>
               <div
                   :class="[
-                  'transition duration-300 ease-in-out flex gap-2 items-center cursor-pointer sm:(absolute top-9 right-8 mb-0) xs:(relative top-2 min-w-36 mb-12)',
+                  'select-none transition duration-300 ease-in-out flex gap-2 items-center cursor-pointer sm:(absolute top-9 right-8 mb-0) xs:(relative top-2 min-w-36 mb-12)',
                   experience.showDetails ? 'text-red' : 'text-main-green',
                 ]"
                   @click="toggleDetails(index, experience)"

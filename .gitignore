@@ -1,8 +1,9 @@
 # Media
 public/projects
 public/Mehdi Rafiei - FrontEnd Developer.pdf
-
+mail/*
 # Nuxt dev/build outputs
+
 .output
 .nuxt
 .nitro
