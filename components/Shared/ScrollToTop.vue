@@ -107,15 +107,15 @@ export default {
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .scroll-to-top-btn {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 2.5rem;
-    height: 2.5rem;
+    bottom: 7.5rem; /* Higher above mobile navigation */
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
   }
   
   .scroll-to-top-btn svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
 
