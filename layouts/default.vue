@@ -4,6 +4,7 @@
     <Layout-Header />
     <slot />
     <Layout-Footer />
+    <Shared-ScrollToTop />
   </div>
 </template>
 
