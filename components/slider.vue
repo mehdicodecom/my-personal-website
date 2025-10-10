@@ -84,7 +84,7 @@
             </svg>
           </div>
           <div
-            class="p-4 transition-all duration-300 ease-out pb-8 flex flex-col gap-2 backdrop-blur-[6px] bg-black w-full absolute bottom-0 left-0 right-0 rounded-xl bg-opacity-15 group-hover:bg-opacity-70 z-10"
+            class="p-4 transition-all duration-300 ease-out pb-8 flex flex-col gap-2 backdrop-blur-[6px] bg-black w-full absolute bottom-0 left-0 right-0 rounded-xl bg-opacity-30 group-hover:bg-opacity-70 z-10"
             :class="activeIndex === i && 'bg-opacity-50'"
           >
             <h2 class="text-lg text-gray-100">{{ item.title }}</h2>

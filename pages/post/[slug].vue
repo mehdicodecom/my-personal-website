@@ -35,7 +35,7 @@
                  class="flex-1 bg-dark/70 rounded-lg p-8 lg:px-12 md:px-8 sm:px-6 xs:px-4 border border-neutral-700 shadow-lg animate-slide-up"
                >
                  <!-- Enhanced Title and Image Section -->
-                 <div class="relative mb-12">
+                 <div class="relative mb-6 lg:mb-8">
                    <!-- Hero Image Container -->
                    <div class="relative w-full mb-8 overflow-hidden rounded-2xl">
                      <!-- Image with overlay -->
@@ -54,19 +54,8 @@
                        />
                        
                        <!-- Gradient overlay -->
-                       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-20"></div>
+                       <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-20"></div>
                        
-                       <!-- Category tags overlay -->
-                       <div class="absolute top-4 left-4 z-30 flex flex-wrap gap-2 max-w-[60%] sm:max-w-none">
-                         <NuxtLink
-                           v-for="category in post.categories.slice(0, 2)"
-                           :key="category"
-                           :to="`/blog?category=${encodeURIComponent(category)}`"
-                           class="px-2 py-1 bg-main-orange/90 text-white text-xs sm:text-sm font-medium rounded-full backdrop-blur-sm hover:bg-main-orange hover:scale-105 transition-all duration-200"
-                         >
-                           {{ category }}
-                         </NuxtLink>
-                       </div>
                        
                        <!-- Reading time overlay -->
                        <div class="absolute top-4 right-4 z-30">
@@ -81,35 +70,11 @@
                      </div>
                    </div>
 
-                   <!-- Title Section -->
-                   <div class="text-center space-y-6">
-                     <h1 class="font-bold text-4xl lg:text-5xl xl:text-6xl gradient-title leading-tight">
+                   <!-- Title Overlay on Image -->
+                   <div class="absolute bottom-0 left-0 right-0 z-30 p-6 lg:p-8 title-overlay">
+                     <h1 class="font-bold text-xl sm:text-2xl lg:text-3xl xl:text-4xl gradient-title leading-tight text-center drop-shadow-2xl">
                        {{ post.title }}
                      </h1>
-                     
-                     <!-- Meta Information - Hidden on mobile, shown on desktop -->
-                     <div class="hidden lg:flex flex-col sm:flex-row items-center justify-center gap-4 text-white/70">
-                       <div class="flex items-center gap-2">
-                         <div class="w-8 h-8 rounded-full overflow-hidden">
-                           <img src="/imgs/about/mehdi.jpg" alt="Mehdi Rafiei" class="w-full h-full object-cover opacity-100">
-                         </div>
-                         <span class="font-medium">Mehdi Rafiei</span>
-                       </div>
-                       <div class="hidden sm:block w-1 h-1 bg-white/30 rounded-full"></div>
-                       <div class="flex items-center gap-1">
-                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                         </svg>
-                         <span>{{ post.date }}</span>
-                       </div>
-                       <div class="hidden sm:block w-1 h-1 bg-white/30 rounded-full"></div>
-                       <div class="flex items-center gap-1">
-                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                         </svg>
-                         <span>{{ wordCount }} words</span>
-                       </div>
-                     </div>
                    </div>
                  </div>
 
@@ -124,7 +89,7 @@
                  <!-- Content with highlighting -->
                  <div
                    v-else
-                   class="prose prose-invert prose-lg max-w-4xl mx-auto"
+                   class="prose prose-invert prose-lg w-full"
                    v-html="processedContent"
                  ></div>
                </div>
@@ -731,6 +696,12 @@ export default {
   background-clip: text;
   color: transparent; /* Fallback for browsers that don't support background-clip */
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Title overlay enhancements */
+.title-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+  backdrop-filter: blur(1px);
 }
 
 /* Enhanced image hover effects */
