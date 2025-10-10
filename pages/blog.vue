@@ -2,7 +2,8 @@
   <Title>Mehdi Rafiei | Blog | Front-end Developer</Title>
 
   <div class="relative xl:px-22 lg:(px-18 w-full) mx-auto md:px-16 sm:px-14 xs:px-12 xs:w-full mt-20">
-    <div class="relative text-3xl font-bold">
+    <!-- Header -->
+    <div class="relative text-3xl font-bold mb-8">
       <span
           class="updown inline-block absolute -top-1 -left-2.5 w-14 h-14 bg-main-orange rounded-full"
       ></span>
@@ -10,40 +11,37 @@
         <span class="relative inline-block">Blog Posts <span class="text-lg" v-if="filteredPosts.length">({{ filteredPosts.length }} items)</span></span>
       </div>
     </div>
-    <div class="mt-6 flex pt-4">
-      <input
-          v-model="searchQuery"
-          type="text"
-          placeholder="Search posts by title, description, or category..."
-          class="w-full outline-none max-w-lg px-5 py-3 rounded-lg bg-dark/50 text-white border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-main-orange hover:(ring-2 ring-main-orange) transition duration-200"
+
+    <!-- Compact Filters -->
+    <div class="mb-8">
+      <Shared-CompactBlogFilters
+        :categories="categories"
+        :selected-category="selectedCategory"
+        :category-counts="categoryCounts"
+        :search-query="searchQuery"
+        @category-selected="onCategorySelected"
+        @search-changed="onSearchChanged"
       />
     </div>
-    <section class="grid lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-6 mt-10">
-      <div
-          v-for="post in filteredPosts"
-          :key="post.id"
-          class="relative bg-dark/70 rounded-lg flex flex-col gap-4 items-center py-6 px-4 shadow-lg group hover:shadow-xl hover:bg-dark/80 transition duration-300 transform hover:-translate-y-1"
-      >
-        <NuxtLink :to="`/post/${post.slug}`" class="absolute z-30 w-full h-full"></NuxtLink>
-        <img
-            :src="`/imgs/blog/${post.img}`"
-            alt=""
-            class="w-full h-48 object-cover rounded-md group-hover:scale-105 transition duration-500"
-        />
-        <section class="flex flex-col gap-2 items-center text-center">
-          <div class="loading textLoading inline-block">
-            <p class="font-medium text-xl text-main-orange">{{ post.title }}</p>
-          </div>
-          <div class="loading textLoading inline-block">
-            <p class="text-white/80 text-sm">{{ post.date }}</p>
 
-          </div>
-          <div class="loading textLoading inline-block">
-            <p class="text-lg opacity-70 group-hover:opacity-100 transition duration-300">{{ post.description }}</p>
-          </div>
-        </section>
-      </div>
+    <!-- Blog Posts Grid -->
+    <section class="grid lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 gap-8 mb-12">
+      <Shared-BlogCard
+        v-for="post in paginatedPosts"
+        :key="post.id"
+        :post="post"
+      />
     </section>
+
+    <!-- Pagination -->
+    <div class="flex justify-center">
+      <Shared-Pagination
+        :current-page="currentPage"
+        :total-items="filteredPosts.length"
+        :items-per-page="itemsPerPage"
+        @page-changed="onPageChanged"
+      />
+    </div>
   </div>
 </template>
 
@@ -55,23 +53,78 @@ export default {
   data() {
     return {
       searchQuery: '',
+      selectedCategory: 'all',
+      currentPage: 1,
+      itemsPerPage: 6,
     };
   },
   computed: {
-    ...mapState(usePostsStore, ["getPosts"]),
-    posts() {
-      return this.getPosts();
+    ...mapState(usePostsStore, ["getPosts", "getCategories", "getCategoryCounts"]),
+    categories() {
+      return this.getCategories;
+    },
+    categoryCounts() {
+      return this.getCategoryCounts;
     },
     filteredPosts() {
-      if (!this.searchQuery) return this.posts;
-      const query = this.searchQuery.toLowerCase();
-      return this.posts.filter(
-          (post) =>
-              post.title.toLowerCase().includes(query) ||
-              post.description.toLowerCase().includes(query) ||
-              post.categories.some((category) => category.toLowerCase().includes(query))
-      );
+      return this.getPosts(null, this.searchQuery, this.selectedCategory);
     },
+    paginatedPosts() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.filteredPosts.slice(start, end);
+    }
   },
+  watch: {
+    '$route.query': {
+      handler(newQuery) {
+        this.selectedCategory = newQuery.category || 'all';
+        this.currentPage = parseInt(newQuery.page) || 1;
+        this.searchQuery = newQuery.search || '';
+      },
+      immediate: true
+    }
+  },
+  methods: {
+    onCategorySelected(category) {
+      this.selectedCategory = category;
+      this.currentPage = 1; // Reset to first page when category changes
+      this.updateQuery();
+      this.scrollToTop();
+    },
+    onSearchChanged(query) {
+      this.searchQuery = query;
+      this.currentPage = 1; // Reset to first page when search changes
+      this.updateQuery();
+    },
+    onPageChanged(page) {
+      this.currentPage = page;
+      this.updateQuery();
+      this.scrollToTop();
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    },
+    updateQuery() {
+      const query = {};
+      if (this.selectedCategory !== 'all') {
+        query.category = this.selectedCategory;
+      }
+      if (this.currentPage > 1) {
+        query.page = this.currentPage.toString();
+      }
+      if (this.searchQuery) {
+        query.search = this.searchQuery;
+      }
+      
+      this.$router.replace({ 
+        path: this.$route.path, 
+        query: Object.keys(query).length ? query : {} 
+      });
+    }
+  }
 };
 </script>

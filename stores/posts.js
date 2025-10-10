@@ -3023,11 +3023,46 @@ app.mount('#vue-app');</code></pre>
     ]
   }),
   getters: {
-    getPosts: (state) => (howMany) => {
-      return state.posts.slice(0, howMany || state.posts.length);
+    getPosts: (state) => (howMany, searchQuery, selectedCategory) => {
+      let filteredPosts = state.posts;
+      
+      // Filter by category
+      if (selectedCategory && selectedCategory !== 'all') {
+        filteredPosts = filteredPosts.filter(post => 
+          post.categories.includes(selectedCategory)
+        );
+      }
+      
+      // Filter by search query
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        filteredPosts = filteredPosts.filter(post =>
+          post.title.toLowerCase().includes(query) ||
+          post.description.toLowerCase().includes(query) ||
+          post.categories.some(category => category.toLowerCase().includes(query))
+        );
+      }
+      
+      return filteredPosts.slice(0, howMany || filteredPosts.length);
     },
     getPost: (state) => (slug) => {
       return state.posts.find(post => post.slug === slug);
+    },
+    getCategories: (state) => {
+      const categories = new Set();
+      state.posts.forEach(post => {
+        post.categories.forEach(category => categories.add(category));
+      });
+      return ['all', ...Array.from(categories).sort()];
+    },
+    getCategoryCounts: (state) => {
+      const counts = { all: state.posts.length };
+      state.posts.forEach(post => {
+        post.categories.forEach(category => {
+          counts[category] = (counts[category] || 0) + 1;
+        });
+      });
+      return counts;
     }
   }
 });

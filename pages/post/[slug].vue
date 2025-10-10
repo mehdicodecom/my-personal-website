@@ -34,26 +34,82 @@
                <div
                  class="flex-1 bg-dark/70 rounded-lg p-8 lg:px-12 md:px-8 sm:px-6 xs:px-4 border border-neutral-700 shadow-lg animate-slide-up"
                >
-                 <!-- Title and Image at top of content -->
-                 <div class="text-center mb-8 border-b border-neutral-700 pb-8">
-                   <h1 class="font-medium text-3xl lg:text-4xl text-main-orange mb-6">
-                     {{ post.title }}
-                   </h1>
+                 <!-- Enhanced Title and Image Section -->
+                 <div class="relative mb-12">
+                   <!-- Hero Image Container -->
+                   <div class="relative w-full mb-8 overflow-hidden rounded-2xl">
+                     <!-- Image with overlay -->
+                     <div class="relative h-80 lg:h-96">
+                       <!-- Skeleton background -->
+                       <div
+                         v-if="!imageLoaded"
+                         class="absolute inset-0 skeleton-bg pointer-events-none"
+                       ></div>
 
-                   <!-- Image container with skeleton background -->
-                   <div class="relative w-full" style="min-height: 24rem;">
-                     <!-- Skeleton background -->
-                     <div
-                       v-if="!imageLoaded"
-                       class="absolute inset-0 skeleton-bg rounded-md pointer-events-none"
-                     ></div>
+                       <img
+                         :src="`/imgs/blog/${post.img}`"
+                         :alt="post.title"
+                         :class="['w-full h-full object-cover relative z-10 transition-all duration-700 blog-hero-image', { 'loaded': imageLoaded }]"
+                         @load="onImageLoad"
+                       />
+                       
+                       <!-- Gradient overlay -->
+                       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-20"></div>
+                       
+                       <!-- Category tags overlay -->
+                       <div class="absolute top-4 left-4 z-30 flex flex-wrap gap-2 max-w-[60%] sm:max-w-none">
+                         <NuxtLink
+                           v-for="category in post.categories.slice(0, 2)"
+                           :key="category"
+                           :to="`/blog?category=${encodeURIComponent(category)}`"
+                           class="px-2 py-1 bg-main-orange/90 text-white text-xs sm:text-sm font-medium rounded-full backdrop-blur-sm hover:bg-main-orange hover:scale-105 transition-all duration-200"
+                         >
+                           {{ category }}
+                         </NuxtLink>
+                       </div>
+                       
+                       <!-- Reading time overlay -->
+                       <div class="absolute top-4 right-4 z-30">
+                         <div class="px-2 py-1 bg-black/50 text-white text-xs sm:text-sm rounded-full backdrop-blur-sm flex items-center gap-1">
+                           <svg class="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                           </svg>
+                           <span class="hidden sm:inline">{{ readingTime }} min read</span>
+                           <span class="sm:hidden">{{ readingTime }}m</span>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
 
-                     <img
-                       :src="`/imgs/blog/${post.img}`"
-                       alt=""
-                       :class="['w-full h-auto object-contain max-h-96 rounded-md relative z-10', { 'loaded': imageLoaded }]"
-                       @load="onImageLoad"
-                     />
+                   <!-- Title Section -->
+                   <div class="text-center space-y-6">
+                     <h1 class="font-bold text-4xl lg:text-5xl xl:text-6xl gradient-title leading-tight">
+                       {{ post.title }}
+                     </h1>
+                     
+                     <!-- Meta Information - Hidden on mobile, shown on desktop -->
+                     <div class="hidden lg:flex flex-col sm:flex-row items-center justify-center gap-4 text-white/70">
+                       <div class="flex items-center gap-2">
+                         <div class="w-8 h-8 rounded-full overflow-hidden">
+                           <img src="/imgs/about/mehdi.jpg" alt="Mehdi Rafiei" class="w-full h-full object-cover opacity-100">
+                         </div>
+                         <span class="font-medium">Mehdi Rafiei</span>
+                       </div>
+                       <div class="hidden sm:block w-1 h-1 bg-white/30 rounded-full"></div>
+                       <div class="flex items-center gap-1">
+                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                         </svg>
+                         <span>{{ post.date }}</span>
+                       </div>
+                       <div class="hidden sm:block w-1 h-1 bg-white/30 rounded-full"></div>
+                       <div class="flex items-center gap-1">
+                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                         </svg>
+                         <span>{{ wordCount }} words</span>
+                       </div>
+                     </div>
                    </div>
                  </div>
 
@@ -75,7 +131,7 @@
 
       <!-- Sidebar -->
       <aside
-        class="lg:w-80 bg-dark/70 rounded-lg p-6 xl:px-6 lg:px-6 md:px-8 sm:px-6 xs:px-4 border border-neutral-700 shadow-lg lg:sticky lg:top-20 lg:h-fit animate-slide-up space-y-6"
+        class="lg:w-80 bg-dark/70 rounded-lg p-6 xl:px-6 lg:px-6 md:px-8 sm:px-6 xs:px-4 border border-neutral-700 shadow-lg lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:overflow-y-auto sidebar-scrollable animate-slide-up lg:h-fit space-y-6"
       >
                  <!-- Reading Progress -->
                  <div class="sidebar-section">
@@ -92,9 +148,13 @@
             <li
               v-for="category in post.categories"
               :key="category"
-              class="bg-main-orange/20 text-main-orange text-sm px-3 py-1 rounded-full hover:bg-main-orange/30 hover:scale-105 transition duration-200"
             >
-              {{ category }}
+              <NuxtLink
+                :to="`/blog?category=${encodeURIComponent(category)}`"
+                class="bg-main-orange/20 text-main-orange text-sm px-3 py-1 rounded-full hover:bg-main-orange/30 hover:scale-105 transition duration-200 inline-block"
+              >
+                {{ category }}
+              </NuxtLink>
             </li>
           </ul>
         </div>
@@ -114,20 +174,52 @@
         <!-- Divider -->
         <div class="border-t border-neutral-700"></div>
 
+        <!-- Author Info (Mobile Only) -->
+        <div class="sidebar-section lg:hidden">
+          <h3 class="text-lg font-bold text-main-orange mb-4">Author</h3>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full overflow-hidden">
+              <img src="/imgs/about/mehdi.jpg" alt="Mehdi Rafiei" class="w-full h-full object-cover opacity-100">
+            </div>
+            <div>
+              <div class="text-white font-medium">Mehdi Rafiei</div>
+              <div class="text-white/60 text-sm">Front-end Developer</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider (Mobile Only) -->
+        <div class="border-t border-neutral-700 lg:hidden"></div>
+
         <!-- Metadata -->
         <div class="sidebar-section">
           <h3 class="text-lg font-bold text-main-orange mb-4">Article Info</h3>
           <div class="space-y-3">
-            <div class="flex justify-between items-center">
-              <span class="text-white/60 text-sm">Published:</span>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span class="text-white/60 text-sm">Published:</span>
+              </div>
               <span class="text-white text-sm">{{ post.date }}</span>
             </div>
-            <div class="flex justify-between items-center">
-              <span class="text-white/60 text-sm">Reading Time:</span>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-white/60 text-sm">Reading Time:</span>
+              </div>
               <span class="text-white text-sm">{{ readingTime }} min</span>
             </div>
-            <div class="flex justify-between items-center">
-              <span class="text-white/60 text-sm">Word Count:</span>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                <span class="text-white/60 text-sm">Word Count:</span>
+              </div>
               <span class="text-white text-sm">{{ wordCount }}</span>
             </div>
           </div>
@@ -605,12 +697,12 @@ export default {
 }
 
 /* Blog image loading states */
-img {
+.blog-hero-image {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
 
-img.loaded {
+.blog-hero-image.loaded {
   opacity: 1;
 }
 
@@ -628,6 +720,110 @@ img.loaded {
   }
   100% {
     background-position: 200% 0;
+  }
+}
+
+/* Gradient title styling */
+.gradient-title {
+  background: linear-gradient(135deg, #ffffff 0%, #f47a08 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* Fallback for browsers that don't support background-clip */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced image hover effects */
+img.loaded {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.7s ease;
+}
+
+img.loaded:hover {
+  transform: scale(1.05);
+}
+
+/* Category tag animations */
+.category-tag {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Meta information animations */
+.meta-item {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero section enhancements */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(244, 122, 8, 0.1) 0%, transparent 50%, rgba(244, 122, 8, 0.1) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Sidebar scrollbar styling */
+.sidebar-scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(244, 122, 8, 0.5) transparent;
+}
+
+.sidebar-scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-scrollable::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.sidebar-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(244, 122, 8, 0.5);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.sidebar-scrollable::-webkit-scrollbar-thumb:hover {
+  background: rgba(244, 122, 8, 0.7);
+}
+
+/* Ensure sidebar content is always accessible */
+@media (min-width: 1024px) {
+  .sidebar-scrollable {
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
   }
 }
 </style>
