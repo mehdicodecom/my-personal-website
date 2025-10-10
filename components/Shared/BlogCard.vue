@@ -34,7 +34,7 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <span>{{ getReadingTime(post.description) }} min read</span>
+            <span>{{ getReadingTime() }} min read</span>
           </div>
         </div>
 
@@ -67,10 +67,14 @@ export default {
     }
   },
   methods: {
-    getReadingTime(text) {
+    getReadingTime() {
+      if (!this.post?.content) return 1;
       const wordsPerMinute = 200;
-      const wordCount = text.split(' ').length;
-      return Math.ceil(wordCount / wordsPerMinute);
+      // Remove HTML tags and count words from the full content
+      const textContent = this.post.content.replace(/<[^>]*>/g, ' ');
+      const words = textContent.trim().split(/\s+/).filter(word => word.length > 0);
+      const wordCount = words.length;
+      return Math.ceil(wordCount / wordsPerMinute) || 1; // Minimum 1 minute
     }
   }
 };
