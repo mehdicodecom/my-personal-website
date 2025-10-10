@@ -17,6 +17,10 @@
     :home-page="true"
   />
 
+  <Home-ServicesSection />
+
+  <Home-ContactPreview />
+
   <transition name="fadeScale">
     <Shared-Gallery
       v-if="galleryVisible"
